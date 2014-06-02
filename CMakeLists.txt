@@ -1,6 +1,8 @@
 cmake_minimum_required (VERSION 2.6)
 project(iash)
 
+add_definitions(-std=c++11)
+
 include_directories(${PROJECT_SOURCE_DIR}/lib)
 add_subdirectory(lib)
 link_directories(${PROJECT_BINARY_DIR}/iash)
