@@ -3,3 +3,12 @@
 *.creator
 *.config
 *.files
+*.user
+
+#Build files
+build/
+CMakeFiles/
+*.cmake
+*Makefile
+*.a
+
