@@ -39,7 +39,7 @@ public:
      *                    on the prompt.
      * @param app_nm: The name of the application.
      */
-    void setAppName (string app_nm) { m_appName = app_nm; }
+    void setAppName (string app_nm);
 
     /**
      * @brief useAppNameInPrompt: Show the app name in the command
@@ -67,7 +67,7 @@ public:
      * @brief getOptions: Get the options from the last getCmdLine() call
      * @return: all of the options passed at the commandline
      */
-    vector<string> getOptions(vector<string> cmd=m_cmdLine);
+    vector<string> getOptions() { return getOptions(m_cmdLine); }
 
     /**
      * @brief setenv: Set internal environment variables
@@ -111,6 +111,7 @@ public:
      */
     void clearScreen();
 private:
+    vector<string> getOptions(vector<string> cmd);
     void debugConsole (vector<string> cmd);
     void debugConsole ();
     void cmdNotFound_dbg();

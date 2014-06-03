@@ -1,14 +1,14 @@
 cmake_minimum_required (VERSION 2.6)
-project(iash)
+project(IASH)
 
-add_definitions(-std=c++11)
+list(APPEND CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
-include_directories(${PROJECT_SOURCE_DIR}/lib)
-add_subdirectory(lib)
+include_directories(${PROJECT_SOURCE_DIR}/iash)
+add_subdirectory(iash)
 link_directories(${PROJECT_BINARY_DIR}/iash)
 
 add_executable (iashexample example.cpp)
 target_link_libraries (iashexample iash)
 
-install (TARGETS iash DESTINATION bin)
-install (FILES "${PROJECT_SOURCE_DIR/iash.h" DESTINATION include)
+install (TARGETS iashexample DESTINATION bin)
+install (FILES "${PROJECT_SOURCE_DIR}/iash.h" DESTINATION include)
