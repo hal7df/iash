@@ -112,6 +112,7 @@ public:
     void clearScreen();
 private:
     vector<string> getOptions(vector<string> cmd);
+    vector<string> parseCmdLine(string raw);
     void debugConsole (vector<string> cmd);
     void debugConsole ();
     void cmdNotFound_dbg();

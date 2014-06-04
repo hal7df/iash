@@ -2,7 +2,7 @@
 
 iash::iash (string app_nm, bool useInPrompt)
 {
-    cout<<"iash version 0.1 initializing..."<<endl;
+    cout<<"iash version 0.1.1 'Dawn' initializing..."<<endl;
 
     m_appName = app_nm;
     f_useAppNameInPrompt = useInPrompt;
@@ -15,7 +15,6 @@ iash::iash (string app_nm, bool useInPrompt)
 vector<string> iash::getCmdLine()
 {
     string raw;
-    unsigned space, lastSpace;
     vector<string> cmdLine;
 
     clear();
@@ -32,6 +31,25 @@ vector<string> iash::getCmdLine()
 
         getline(cin,raw);
     } while (raw == "");
+
+    cmdLine = parseCmdLine(raw);
+
+    if (cmdLine[0] == "iash")
+    {
+        if (cmdLine.size() > 1)
+            debugConsole(cmdLine);
+        else
+            debugConsole();
+    }
+    m_cmdLine = cmdLine;
+
+    return cmdLine;
+}
+
+vector<string> iash::parseCmdLine(string raw)
+{
+    vector<string> cmdLine;
+    unsigned space, lastSpace;
 
     lastSpace = 0;
 
@@ -50,15 +68,6 @@ vector<string> iash::getCmdLine()
         }
 
     }while(space != string::npos);
-
-    if (cmdLine[0] == "iash")
-    {
-        if (cmdLine.size() > 1)
-            debugConsole(cmdLine);
-        else
-            debugConsole();
-    }
-    m_cmdLine = cmdLine;
 
     return cmdLine;
 }
