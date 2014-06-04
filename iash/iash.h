@@ -84,9 +84,9 @@ public:
      * @param name: The name of the variable
      * @return: The variable
      */
-    string getenv_string (string name) { return m_env.at(name); }
-    int getenv_int (string name) { return stoi(m_env.at(name)); }
-    float getenv_float (string name) { return stof(m_env.at(name)); }
+    string getenv_string (string name);
+    int getenv_int (string name) { return stoi(getenv_string(name)); }
+    float getenv_float (string name) { return stof(getenv_string(name)); }
     bool getenv_bool (string name);
 
     /**

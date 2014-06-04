@@ -7,9 +7,9 @@ iash::iash (string app_nm, bool useInPrompt)
     m_appName = app_nm;
     f_useAppNameInPrompt = useInPrompt;
 
-    setenv("APP_NAME",m_appName);
-    setenv("APP_NAME_IN_PROMPT",f_useAppNameInPrompt);
-    setenv("SYNC_ENV", true);
+    setenv("IASH_APP_NAME",m_appName);
+    setenv("IASH_APP_NAME_IN_PROMPT",f_useAppNameInPrompt);
+    setenv("IASH_SYNC_ENV", true);
 }
 
 vector<string> iash::getCmdLine()
@@ -20,15 +20,19 @@ vector<string> iash::getCmdLine()
 
     clear();
 
-    if (getenv_bool("SYNC_ENV"))
+    if (getenv_bool("IASH_SYNC_ENV"))
         updateAttached();
 
-    if (f_useAppNameInPrompt)
-        cout<<m_appName<<"> ";
-    else
-        cout<<">>> ";
+    do
+    {
+        if (f_useAppNameInPrompt)
+            cout<<m_appName<<"> ";
+        else
+            cout<<">>> ";
 
-    getline(cin,raw);
+        getline(cin,raw);
+    } while (raw == "");
+
     lastSpace = 0;
 
     do
@@ -169,9 +173,19 @@ void iash::setenv(string name, bool value)
     }
 }
 
+string iash::getenv_string(string name)
+{
+    int x;
+
+    for (x = 0; x < name.length(); x++)
+        name[x] = toupper(name[x]);
+
+    return m_env.at(name);
+}
+
 bool iash::getenv_bool(string name)
 {
-    if (m_env.at(name) == "true")
+    if (getenv_string(name) == "true")
         return true;
     else
         return false;
@@ -179,20 +193,27 @@ bool iash::getenv_bool(string name)
 
 void iash::rmenv(string name)
 {
-    if (name != "APP_NAME" && name != "APP_NAME_IN_PROMPT" && name != "SYNC_ENV")
+    int x;
+
+    for (x = 0; x < name.length(); x++)
+        name[x] = toupper(name[x]);
+
+    if (name.find("IASH_") == string::npos)
         m_env.erase(name);
+    else
+        cout<<"Error: cannot remove required environment variable '"<<name<<"'."<<endl;
 }
 
 void iash::setAppName(string app_nm)
 {
     m_appName = app_nm;
-    setenv("APP_NAME",app_nm);
+    setenv("IASH_APP_NAME",app_nm);
 }
 
 void iash::useAppNameInPrompt(bool name)
 {
     f_useAppNameInPrompt = name;
-    setenv("APP_NAME_IN_PROMPT",name);
+    setenv("IASH_APP_NAME_IN_PROMPT",name);
 }
 
 void iash::debugConsole()
@@ -202,7 +223,7 @@ void iash::debugConsole()
     m_appName = "iash";
     f_useAppNameInPrompt = true;
 
-    setenv("SYNC_ENV",false);
+    setenv("IASH_SYNC_ENV",false);
 
     do {
         cmdLine = getCmdLine();
@@ -211,10 +232,10 @@ void iash::debugConsole()
         debugConsole(cmdLine);
     } while (cmdLine[1] != "exit" && cmdLine[1] != "quit");
 
-    setenv("SYNC_ENV",true);
+    setenv("IASH_SYNC_ENV",true);
 
-    m_appName = getenv_string("APP_NAME");
-    f_useAppNameInPrompt = getenv_bool("APP_NAME_IN_PROMPT");
+    m_appName = getenv_string("IASH_APP_NAME");
+    f_useAppNameInPrompt = getenv_bool("IASH_APP_NAME_IN_PROMPT");
     clear();
 }
 
@@ -311,16 +332,16 @@ void iash::debugConsole(vector<string> cmd)
         if (cmd.size() > 2)
         {
             if (cmd[2] == "quit" || cmd[2] == "exit")
-                exit(0);
+                exit(EXIT_SUCCESS);
             else if (cmd[2] == "kill" || cmd[2] == "crash")
-                exit(1);
+                exit(EXIT_FAILURE);
             else if (cmd[2] == "name" && cmd.size() == 4)
-                setenv("APP_NAME",cmd[3]);
+                setenv("IASH_APP_NAME",cmd[3]);
             else
                 cout<<cmd[2]<<": invalid "<<cmd[1]<<" argument"<<endl;
         }
         else
-            cout<<getenv_string("APP_NAME")<<endl;
+            cout<<getenv_string("IASH_APP_NAME")<<endl;
     }
     else if (cmd[1] != "exit" && cmd[1] != "quit")
         cmdNotFound_dbg();
@@ -328,9 +349,9 @@ void iash::debugConsole(vector<string> cmd)
 
 void iash::updateAttached()
 {
-    if (getenv_string("APP_NAME") != m_appName)
-        m_appName = getenv_string("APP_NAME");
+    if (getenv_string("IASH_APP_NAME") != m_appName)
+        m_appName = getenv_string("IASH_APP_NAME");
 
-    if (getenv_bool("APP_NAME_IN_PROMPT") != f_useAppNameInPrompt)
-        f_useAppNameInPrompt = getenv_bool("APP_NAME_IN_PROMPT");
+    if (getenv_bool("IASH_APP_NAME_IN_PROMPT") != f_useAppNameInPrompt)
+        f_useAppNameInPrompt = getenv_bool("IASH_APP_NAME_IN_PROMPT");
 }
