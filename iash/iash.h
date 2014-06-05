@@ -11,17 +11,22 @@
 #define IASH_H
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
+
 #include <vector>
 #include <map>
 #include <algorithm>
+
 #include <string>
-#include <limits>
+
 #include <cstdlib>
 #include <cctype>
 
 #ifdef __unix__
     #include <unistd.h>
     #include <term.h>
+    #include <sys/stat.h>
 #elif _WIN32
     #include <windows.h>
 #endif
@@ -70,24 +75,24 @@ public:
     vector<string> getOptions() { return getOptions(m_cmdLine); }
 
     /**
-     * @brief setenv: Set internal environment variables
+     * @brief setEnv: Set internal environment variables
      * @param name: The name of the variable
      * @param value: The value of the variable
      */
-    void setenv (string name, string value);
-    void setenv (string name, int value) { setenv(name,to_string(value)); }
-    void setenv (string name, float value) { setenv(name,to_string(value)); }
-    void setenv (string name, bool value);
+    void setEnv (string name, string value);
+    void setEnv (string name, int value) { setEnv(name,to_string(value)); }
+    void setEnv (string name, float value) { setEnv(name,to_string(value)); }
+    void setEnv (string name, bool value);
 
     /**
-     * @brief getenv: Get internal environment variables
+     * @brief getEnv: Get internal environment variables
      * @param name: The name of the variable
      * @return: The variable
      */
-    string getenv_string (string name);
-    int getenv_int (string name) { return stoi(getenv_string(name)); }
-    float getenv_float (string name) { return stof(getenv_string(name)); }
-    bool getenv_bool (string name);
+    string getEnv_string (string name);
+    int getEnv_int (string name) { return stoi(getEnv_string(name)); }
+    float getEnv_float (string name) { return stof(getEnv_string(name)); }
+    bool getEnv_bool (string name);
 
     /**
      * @brief rmenv: Remove internal environment variables
