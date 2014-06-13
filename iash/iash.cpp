@@ -2,78 +2,55 @@
 
 iash::iash (string app_nm, bool useInPrompt)
 {
-    ifstream fin;
+    fstream fs;
     stringstream ss (ios::in | ios::out);
 
-    cout<<"iash version 0.1.1 'Firmament' initializing..."<<endl;
+    cout<<"iash version 0.1.1 'Dawn' initializing..."<<endl;
 
     m_appName = app_nm;
     f_useAppNameInPrompt = useInPrompt;
 
-    ss<<getenv("HOME")<<"/.config/"<<m_appName<<'/';
+    ss<<CrossLib::getConfigDir()<<m_appName<<'/';
 
     setEnv("IASH_CONFIG_PATH", ss.str());
 
     ss.clear();
     ss.str("");
 
-    #ifdef __unix__
+    if (CrossLib::isdir(getEnv_string("IASH_CONFIG_PATH").c_str()))
+        CrossLib::mkdir(getEnv_string("IASH_CONFIG_PATH").c_str());
 
-    struct stat st;
+    ss<<getEnv_string("IASH_CONFIG_PATH")<<"iashenv";
 
-    if (!stat(getEnv_string("IASH_CONFIG_PATH").c_str(),&st))
-        mkdir(getEnv_string("IASH_CONFIG_PATH").c_str(), 755);
-
-    #elif WIN32
-
-    if (!PathIsDirectory(getEnv_string("IASH_CONFIG_PATH").c_str()))
-        CreateDirectory(getEnv_string("IASH_CONFIG_PATH").c_str());
-
-    #endif
-
-    ss<<getEnv_string("IASH_CONFIG_PATH")<<"/iashenv";
-
-    fin.open(ss.str());
-
-    ss.clear();
-    ss.str("");
-
-    if (fin.is_open())
+    if (CrossLib::isfile(ss.str().c_str()))
     {
-        fin.peek();
-
-        if (fin.eof())
+        if (!loadEnv())
         {
+            cout<<"Error opening config file. Starting default environment."<<endl;
+
             setEnv("IASH_APP_NAME",m_appName);
             setEnv("IASH_APP_NAME_IN_PROMPT",f_useAppNameInPrompt);
             setEnv("IASH_SYNC_ENV", true);
             setEnv("IASH_DEBUG_ACTIVE", false);
-            fin.close();
-        }
-        else
-        {
-            string name;
-            string value;
-
-            do
-            {
-                fin>>name>>value;
-                setEnv(name,value);
-            }while(!fin.eof());
-
-            fin.close();
         }
     }
     else
     {
-        cout<<"Error opening config file. Starting default environment."<<endl;
-
-        setEnv("IASH_APP_NAME",m_appName);
-        setEnv("IASH_APP_NAME_IN_PROMPT",f_useAppNameInPrompt);
+        setEnv("IASH_APP_NAME", m_appName);
+        setEnv("IASH_APP_NAME_IN_PROMPT", f_useAppNameInPrompt);
         setEnv("IASH_SYNC_ENV", true);
         setEnv("IASH_DEBUG_ACTIVE", false);
+
+        if (!saveEnv())
+            cout<<"Error creating configuration. Please check your filesystem."<<endl;
     }
 
+}
+
+iash::~iash ()
+{
+    if (!saveEnv())
+        cout<<"Error saving environment. Please check your filesystem."<<endl;
 }
 
 vector<string> iash::getCmdLine()
@@ -172,55 +149,6 @@ void iash::cmdNotFound_dbg()
     cout<<m_cmdLine[1]<<": command not found"<<endl;
 }
 
-void iash::clearScreen()
-{
-    #ifdef __unix__
-        if (!cur_term)
-        {
-            int result;
-            setupterm(NULL, STDOUT_FILENO, &result);
-            if (result <= 0)
-            return;
-        }
-
-        putp(tigetstr("clear"));
-    #elif _WIN32
-        HANDLE                     hStdOut;
-          CONSOLE_SCREEN_BUFFER_INFO csbi;
-          DWORD                      count;
-          DWORD                      cellCount;
-          COORD                      homeCoords = { 0, 0 };
-
-          hStdOut = GetStdHandle( STD_OUTPUT_HANDLE );
-          if (hStdOut == INVALID_HANDLE_VALUE) return;
-
-          /* Get the number of cells in the current buffer */
-          if (!GetConsoleScreenBufferInfo( hStdOut, &csbi )) return;
-          cellCount = csbi.dwSize.X *csbi.dwSize.Y;
-
-          /* Fill the entire buffer with spaces */
-          if (!FillConsoleOutputCharacter(
-            hStdOut,
-            (TCHAR) ' ',
-            cellCount,
-            homeCoords,
-            &count
-            )) return;
-
-          /* Fill the entire buffer with the current colors and attributes */
-          if (!FillConsoleOutputAttribute(
-            hStdOut,
-            csbi.wAttributes,
-            cellCount,
-            homeCoords,
-            &count
-            )) return;
-
-          /* Move the cursor home */
-          SetConsoleCursorPosition( hStdOut, homeCoords );
-    #endif
-}
-
 void iash::setEnv(string name, string value)
 {
     int x;
@@ -275,6 +203,73 @@ void iash::rmenv(string name)
         m_env.erase(name);
     else
         cout<<"Error: cannot remove required environment variable '"<<name<<"'."<<endl;
+}
+
+bool iash::saveEnv()
+{
+    stringstream ss;
+
+    ss<<getEnv_string("IASH_CONFIG_PATH")<<"iashenv";
+
+    return saveEnv(ss.str());
+}
+
+bool iash::saveEnv(string filepath)
+{
+    ofstream fout;
+    bool fileOpened;
+
+    fout.open(filepath.c_str(), ios_base::app);
+
+    if (fout.is_open())
+    {
+        fileOpened = true;
+
+        map<string,string>::iterator it;
+
+        for (it = m_env.begin(); it != m_env.end(); ++it)
+        {
+            if (it->first != "IASH_CONFIG_PATH")
+                fout<<it->first<<' '<<it->second<<endl;
+        }
+        fout.close();
+    }
+    else
+        fileOpened = false;
+
+    return fileOpened;
+}
+
+bool iash::loadEnv()
+{
+    stringstream ss;
+
+    ss<<getEnv_string("IASH_CONFIG_PATH")<<"iashenv";
+
+    return loadEnv(ss.str());
+}
+
+bool iash::loadEnv(string filepath)
+{
+    ifstream fin;
+    bool fileOpened;
+    string name, value;
+
+    fin.open(filepath.c_str());
+
+    if (fin.is_open())
+    {
+        fileOpened = true;
+
+        while (fin>>name>>value)
+            setEnv(name,value);
+
+        fin.close();
+    }
+    else
+        fileOpened = false;
+
+    return fileOpened;
 }
 
 void iash::setAppName(string app_nm)

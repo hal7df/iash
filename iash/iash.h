@@ -23,13 +23,7 @@
 #include <cstdlib>
 #include <cctype>
 
-#ifdef __unix__
-    #include <unistd.h>
-    #include <term.h>
-    #include <sys/stat.h>
-#elif _WIN32
-    #include <windows.h>
-#endif
+#include "crosslib.h"
 
 using namespace std;
 
@@ -37,7 +31,7 @@ class iash
 {
 public:
     iash(string app_nm="iash", bool useNameInPrompt=true);
-    ~iash() {}
+    ~iash();
 
     /**
      * @brief setAppName: Set the application name. This can be used
@@ -101,6 +95,24 @@ public:
     void rmenv (string name);
 
     /**
+     * @brief saveEnv: Save the environment to file.
+     * @param filepath: The file to save to. If no file is passed,
+     *          the default path at $IASH_CONFIG_PATH/iashenv is used.
+     * @return: true on success, false on failure
+     */
+    bool saveEnv ();
+    bool saveEnv (string filepath);
+
+    /**
+     * @brief loadEnv: Loads the environment from file.
+     * @param filepath: The file to load from. If no path is passed,
+     *          the default path at $IASH_CONFIG_PATH/iashenv is used.
+     * @return: true on success, false on failure
+     */
+    bool loadEnv ();
+    bool loadEnv (string filepath);
+
+    /**
      * @brief cmdNotFound: Prints a command not found message and clears the
      *        command buffer.
      */
@@ -114,7 +126,7 @@ public:
     /**
      * @brief clearScreen: Clear the screen.
      */
-    void clearScreen();
+    void clearScreen() { CrossLib::clearScreen(); }
 private:
     vector<string> getOptions(vector<string> cmd);
     vector<string> parseCmdLine(string raw);

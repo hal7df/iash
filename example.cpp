@@ -15,7 +15,7 @@ int main ()
         cmdLine = shell.getCmdLine();
         ops = shell.getOptions();
 
-        if (cmdLine[0] != "iash")
+        if (cmdLine[0] != "iash" && cmdLine[0] != "exit")
         {
             cout<<endl<<"Command: "<<cmdLine[0]<<endl<<endl<<"Arguments:"<<endl;
 
