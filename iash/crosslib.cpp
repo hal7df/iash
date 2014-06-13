@@ -18,7 +18,7 @@ void CrossLib::clearScreen()
 int CrossLib::mkdir(const char *pathname)
 {
     return ::mkdir(pathname,0755);
-}\
+}
 
 bool CrossLib::isdir(const char *pathname)
 {
