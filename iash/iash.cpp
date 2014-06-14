@@ -219,7 +219,7 @@ bool iash::saveEnv(string filepath)
     ofstream fout;
     bool fileOpened;
 
-    fout.open(filepath.c_str(), ios_base::app);
+    fout.open(filepath.c_str(), ios_base::trunc);
 
     if (fout.is_open())
     {
@@ -254,16 +254,36 @@ bool iash::loadEnv(string filepath)
     ifstream fin;
     bool fileOpened;
     string name, value;
+    int reqCount; //counts required environment variables
 
     fin.open(filepath.c_str());
+    reqCount = 0;
 
     if (fin.is_open())
     {
         fileOpened = true;
 
         while (fin>>name>>value)
-            setEnv(name,value);
+        {
+            if (name.find("IASH_") != string::npos)
+                reqCount++;
 
+            setEnv(name,value);
+        }
+
+        if (reqCount < 4)
+        {
+            if (m_env.count("IASH_APP_NAME") == 0)
+                setEnv("IASH_APP_NAME",m_appName);
+            else if (m_env.count("IASH_APP_NAME_IN_PROMPT") == 0)
+                setEnv("IASH_APP_NAME_IN_PROMPT", f_useAppNameInPrompt);
+            else if (m_env.count("IASH_DEBUG_ACTIVE") == 0)
+                setEnv("IASH_DEBUG_ACTIVE", false);
+            else if (m_env.count("IASH_SYNC_ENV") == 0)
+                setEnv("IASH_SYNC_ENV",true);
+        }
+
+        updateAttached();
         fin.close();
     }
     else
@@ -417,9 +437,12 @@ void iash::debugConsole(vector<string> cmd)
 
 void iash::updateAttached()
 {
-    if (getEnv_string("IASH_APP_NAME") != m_appName)
-        m_appName = getEnv_string("IASH_APP_NAME");
+    if (getEnv_bool("IASH_SYNC_ENV"))
+    {
+        if (getEnv_string("IASH_APP_NAME") != m_appName)
+            m_appName = getEnv_string("IASH_APP_NAME");
 
-    if (getEnv_bool("IASH_APP_NAME_IN_PROMPT") != f_useAppNameInPrompt)
-        f_useAppNameInPrompt = getEnv_bool("IASH_APP_NAME_IN_PROMPT");
+        if (getEnv_bool("IASH_APP_NAME_IN_PROMPT") != f_useAppNameInPrompt)
+            f_useAppNameInPrompt = getEnv_bool("IASH_APP_NAME_IN_PROMPT");
+    }
 }
