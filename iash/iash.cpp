@@ -5,7 +5,7 @@ iash::iash (string app_nm, bool useInPrompt)
     fstream fs;
     stringstream ss (ios::in | ios::out);
 
-    cout<<"iash version 0.1.1 'Dawn' initializing..."<<endl;
+    cout<<"iash version 0.2 'Firmament' initializing..."<<endl;
 
     m_appName = app_nm;
     f_useAppNameInPrompt = useInPrompt;
@@ -60,20 +60,26 @@ vector<string> iash::getCmdLine()
 
     clear();
 
-    if (getEnv_bool("IASH_SYNC_ENV"))
-        updateAttached();
+    updateAttached();
 
     do
     {
-        if (f_useAppNameInPrompt)
-            cout<<m_appName<<"> ";
+        if (getEnv_bool("IASH_DEBUG_ACTIVE"))
+            cout<<"iash> ";
         else
-            cout<<">>> ";
+        {
+            if (f_useAppNameInPrompt)
+                cout<<m_appName<<"> ";
+            else
+                cout<<">>> ";
+        }
 
         getline(cin,raw);
     } while (raw == "");
 
     cmdLine = parseCmdLine(raw);
+
+    m_cmdLine = cmdLine;
 
     if (cmdLine[0] == "iash")
     {
@@ -82,7 +88,6 @@ vector<string> iash::getCmdLine()
         else
             debugConsole();
     }
-    m_cmdLine = cmdLine;
 
     return cmdLine;
 }
@@ -144,17 +149,16 @@ void iash::cmdNotFound()
     cout<<m_cmdLine[0]<<": command not found"<<endl;
 }
 
-void iash::cmdNotFound_dbg()
+void iash::cmdNotFound_dbg(string cmd)
 {
-    cout<<m_cmdLine[1]<<": command not found"<<endl;
+    cout<<cmd<<": command not found"<<endl;
 }
 
 void iash::setEnv(string name, string value)
 {
     int x;
 
-    for (x = 0; x < name.length(); x++)
-        name[x] = toupper(name[x]);
+    name = convEnv(name);
 
     if (m_env.find(name) == m_env.end())
         m_env[name] = value;
@@ -178,8 +182,7 @@ string iash::getEnv_string(string name)
 {
     int x;
 
-    for (x = 0; x < name.length(); x++)
-        name[x] = toupper(name[x]);
+    name = convEnv(name);
 
     return m_env.at(name);
 }
@@ -196,8 +199,7 @@ void iash::rmenv(string name)
 {
     int x;
 
-    for (x = 0; x < name.length(); x++)
-        name[x] = toupper(name[x]);
+    name = convEnv(name);
 
     if (name.find("IASH_") == string::npos)
         m_env.erase(name);
@@ -306,24 +308,16 @@ void iash::useAppNameInPrompt(bool name)
 
 void iash::debugConsole()
 {
-    vector<string> cmdLine;
-
-    m_appName = "iash";
-    f_useAppNameInPrompt = true;
-
-    setEnv("IASH_SYNC_ENV",false);
+    setEnv("IASH_DEBUG_ACTIVE",true);
 
     do {
-        cmdLine = getCmdLine();
-        cmdLine.insert(cmdLine.begin(),"iash");
+        getCmdLine();
+        m_cmdLine.insert(m_cmdLine.begin(),"iash");
 
-        debugConsole(cmdLine);
-    } while (cmdLine[1] != "exit" && cmdLine[1] != "quit");
+        debugConsole(m_cmdLine);
+    } while (m_cmdLine[1] != "exit" && m_cmdLine[1] != "quit");
 
-    setEnv("IASH_SYNC_ENV",true);
-
-    m_appName = getEnv_string("IASH_APP_NAME");
-    f_useAppNameInPrompt = getEnv_bool("IASH_APP_NAME_IN_PROMPT");
+    setEnv("IASH_DEBUG_ACTIVE",false);
     clear();
 }
 
@@ -334,7 +328,7 @@ void iash::debugConsole(vector<string> cmd)
     if (cmd[1] == "cnf")
     {
         cout<<"DBG: IASH_CNF_TEST"<<endl;
-        cmdNotFound_dbg();
+        cmdNotFound();
     }
     else if (cmd[1] == "clear")
     {
@@ -366,36 +360,107 @@ void iash::debugConsole(vector<string> cmd)
                 for (x = 0; x < ops.size(); x++)
                     cout<<ops.at(x)<<endl;
             }
-            else if (cmd[2] == "env")
-            {
-                map<string,string>::iterator it;
-
-                for (it = m_env.begin(); it != m_env.end(); ++it)
-                    cout<<it->first<<' '<<it->second<<endl;
-            }
+            else if (cmd[2] == "name")
+                cout<<getEnv_string("IASH_APP_NAME")<<endl;
+            else if (cmd[2] == "appInPrompt")
+                cout<<boolalpha<<getEnv_bool("IASH_APP_NAME_IN_PROMPT")<<endl;
             else
                 cout<<cmd[2]<<": invalid "<<cmd[1]<<" argument"<<endl;
         }
         else
             cout<<cmd[1]<<": need an argument"<<endl;
     }
+    else if (cmd[1] == "env")
+    {
+        if (cmd.size() == 2)
+        {
+            map<string,string>::iterator it;
+
+            for (it = m_env.begin(); it != m_env.end(); ++it)
+                cout<<it->first<<' '<<it->second<<endl;
+        }
+        else if (cmd.size() >= 3)
+        {
+            if (cmd[2] == "save")
+            {
+                if (cmd.size() == 3)
+                {
+                     if (!saveEnv())
+                         cout<<"Failed to save the environment. Check your filesystem."<<endl;
+                     else
+                         cout<<"Saved environment to default path."<<endl;
+                }
+                else if (cmd.size() == 4)
+                {
+                     if (!saveEnv(cmd[3]))
+                         cout<<"Failed to save the environment. Check the path '"<<cmd[3]<<"'."<<endl;
+                     else
+                         cout<<"Saved environment to '"<<cmd[3]<<"'."<<endl;
+                }
+                else
+                    cout<<cmd[1]<<' '<<cmd[2]<<": too many arguments"<<endl;
+            }
+            else if (cmd[2] == "load")
+            {
+                if (cmd.size() == 3)
+                {
+                    if (!loadEnv())
+                         cout<<"Failed to load the environment. Check the path '"<<getEnv_string("IASH_CONFIG_PATH")<<"'."<<endl;
+                    else
+                         cout<<"Successfully loaded environment from default path."<<endl;
+                }
+                else if (cmd.size() == 4)
+                {
+                    if (!loadEnv(cmd[3]))
+                         cout<<"Failed to load the environment. Check the path '"<<cmd[3]<<"'."<<endl;
+                    else
+                         cout<<"Successfully loaded environment from '"<<cmd[3]<<"'."<<endl;
+                }
+                else
+                    cout<<cmd[1]<<' '<<cmd[2]<<": too many arguments"<<endl;
+            }
+            else if (cmd[2] == "-r" && doesEnvVarExist(cmd[3]))
+            {
+                int x;
+
+                for (x = 3; x < cmd.size(); x++)
+                {
+                    if (doesEnvVarExist(cmd[x]))
+                        rmenv(cmd[x]);
+                    else
+                        cout<<convEnv(cmd[x])<<": Environment variable not found."<<endl;
+                }
+            }
+            else if (cmd[2] == "-d")
+            {
+                int x;
+
+                for (x = 3; x < cmd.size(); x++)
+                {
+                    if (doesEnvVarExist(cmd[x]))
+                        cout<<convEnv(cmd[x])<<' '<<getEnv_string(cmd[x])<<endl;
+                    else
+                        cout<<convEnv(cmd[x])<<": Environment variable not found."<<endl;
+                }
+            }
+            else
+            {
+                if (cmd.size() == 3 && doesEnvVarExist(cmd[2]))
+                    cout<<convEnv(cmd[2])<<' '<<getEnv_string(cmd[2])<<endl;
+                else if (cmd.size() == 4)
+                    setEnv(cmd[2],cmd[3]);
+                else if (cmd.size() == 3)
+                    cout<<"Error: "<<cmd[2]<<": Environment variable not found or improper "<<cmd[1]<<" argument"<<endl;
+                else
+                    cout<<"Error: improper usage"<<endl<<"Usage:"<<endl<<"\tiash env <load/save (FILE)> (-rd) (NAME) (VALUE)"<<endl;
+            }
+        }
+    }
     else if (cmd[1] == "set")
     {
         if (cmd.size() > 2)
         {
-            if (cmd[2] == "env")
-            {
-                if (cmd.size() == 5)
-                {
-                    if (cmd[3] == "-r")
-                        rmenv(cmd[4]);
-                    else
-                        setEnv(cmd[3],cmd[4]);
-                }
-                else
-                    cout<<"Error: improper usage"<<endl<<"Usage: iash set env (-r) [NAME] [VALUE]"<<endl;
-            }
-            else if (cmd[2] == "appInPrompt")
+            if (cmd[2] == "appInPrompt")
             {
                 if (cmd.size() > 3)
                 {
@@ -409,6 +474,8 @@ void iash::debugConsole(vector<string> cmd)
                 else
                     useAppNameInPrompt();
             }
+            else if (cmd[2] == "name" && cmd.size() == 4)
+                setEnv("IASH_APP_NAME",cmd[3]);
             else
                 cout<<cmd[2]<<": invalid "<<cmd[1]<<" argument"<<endl;
         }
@@ -423,16 +490,27 @@ void iash::debugConsole(vector<string> cmd)
                 exit(EXIT_SUCCESS);
             else if (cmd[2] == "kill" || cmd[2] == "crash")
                 exit(EXIT_FAILURE);
-            else if (cmd[2] == "name" && cmd.size() == 4)
-                setEnv("IASH_APP_NAME",cmd[3]);
             else
                 cout<<cmd[2]<<": invalid "<<cmd[1]<<" argument"<<endl;
         }
         else
-            cout<<getEnv_string("IASH_APP_NAME")<<endl;
+            cout<<cmd[1]<<": need an argument"<<endl;
     }
     else if (cmd[1] != "exit" && cmd[1] != "quit")
-        cmdNotFound_dbg();
+        cmdNotFound_dbg(cmd[1]);
+}
+
+bool iash::doesEnvVarExist(string name)
+{
+    return m_env.count(convEnv(name)) != 0;
+}
+
+string iash::convEnv(string name)
+{
+    for (int x = 0; x < name.length(); x++)
+        name[x] = toupper(name[x]);
+
+    return name;
 }
 
 void iash::updateAttached()

@@ -130,9 +130,13 @@ public:
 private:
     vector<string> getOptions(vector<string> cmd);
     vector<string> parseCmdLine(string raw);
+
     void debugConsole (vector<string> cmd);
     void debugConsole ();
-    void cmdNotFound_dbg();
+    void cmdNotFound_dbg(string cmd);
+
+    bool doesEnvVarExist (string name);
+    string convEnv (string name);
     void updateAttached();
 
     vector<string> m_cmdLine;
