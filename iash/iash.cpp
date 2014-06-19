@@ -1,3 +1,21 @@
+/*  See iash.h for the project description.
+ *
+ *  Copyright (C) 2014  Paul Bonnen
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "iash.h"
 
 iash::iash (string app_nm, bool useInPrompt)
@@ -54,6 +72,22 @@ iash::~iash ()
     if (!saveEnv())
         cout<<"Error saving environment. Please check your filesystem."<<endl;
 }
+
+// CONFIGURATION **********************************************************************************
+
+void iash::setAppName(string app_nm)
+{
+    m_appName = app_nm;
+    setEnv("IASH_APP_NAME",app_nm);
+}
+
+void iash::useAppNameInPrompt(bool name)
+{
+    f_useAppNameInPrompt = name;
+    setEnv("IASH_APP_NAME_IN_PROMPT",name);
+}
+
+// COMMANDLINE ************************************************************************************
 
 vector<string> iash::getCmdLine()
 {
@@ -114,6 +148,12 @@ vector<string> iash::parseCmdLine(string raw)
             cmdLine.push_back(raw.substr(lastSpace));
         else
         {
+            while (raw[space-1] == '\\')
+            {
+                raw.erase(raw.begin()+(space-1));
+                space = raw.find(' ',space+1);
+            }
+
             cmdLine.push_back(raw.substr(lastSpace,(space-lastSpace)));
             lastSpace = space+1;
         }
@@ -149,15 +189,7 @@ vector<string> iash::getOptions(vector<string> cmd)
     return options;
 }
 
-void iash::cmdNotFound()
-{
-    cout<<m_cmdLine[0]<<": command not found"<<endl;
-}
-
-void iash::cmdNotFound_dbg(string cmd)
-{
-    cout<<cmd<<": command not found"<<endl;
-}
+// ENVIRONMENT SYSTEM *****************************************************************************
 
 void iash::setEnv(string name, string value)
 {
@@ -299,17 +331,82 @@ bool iash::loadEnv(string filepath)
     return fileOpened;
 }
 
-void iash::setAppName(string app_nm)
+bool iash::doesEnvVarExist(string name)
 {
-    m_appName = app_nm;
-    setEnv("IASH_APP_NAME",app_nm);
+    return m_env.count(convEnv(name)) != 0;
 }
 
-void iash::useAppNameInPrompt(bool name)
+string iash::convEnv(string name)
 {
-    f_useAppNameInPrompt = name;
-    setEnv("IASH_APP_NAME_IN_PROMPT",name);
+    for (int x = 0; x < name.length(); x++)
+        name[x] = toupper(name[x]);
+
+    return name;
 }
+
+// DIRECTORY MANAGER ******************************************************************************
+
+bool iash::changeDir(string path)
+{
+    stringstream ss;
+    string curDir;
+    bool absPath;
+
+    curDir = getEnv_string("IASH_CWD");
+    absPath = (path[0] == '/');
+
+    if (absPath)
+    {
+        if (CrossLib::isdir(path.c_str()))
+        {
+            setEnv("IASH_CWD",path);
+            return true;
+        }
+        else
+            return false;
+    }
+    else
+    {
+        unsigned begin, len;
+
+        while (path.find('.') != string::npos)
+        {
+            if ((path.find('.') + 1) == path.find('/',path.find('.')))
+                path.erase(path.find('.'),2);
+            else if ((path.find("..") + 2) == path.find('/',path.find("..")))
+            {
+                if (path.find("..") == 0)
+                {
+                    curDir = curDir.substr(0,curDir.find_last_of('/',curDir.size()-2));
+                    path = path.substr(path.find('/')+1);
+                }
+                else
+                {
+                    begin = path.find_last_of('/',path.find("..")-2);
+                    len = (path.find("..")+2)-begin;
+
+                    path.erase(begin,len);
+                }
+            }
+        }
+
+        ss<<curDir<<path;
+        ss>>curDir;
+
+        ss.clear();
+        ss.str("");
+
+        if (CrossLib::isdir(curDir.c_str()))
+        {
+            setEnv("IASH_CWD",curDir);
+            return true;
+        }
+        else
+            return false;
+    }
+}
+
+// DEBUG CONSOLE **********************************************************************************
 
 void iash::debugConsole()
 {
@@ -505,18 +602,7 @@ void iash::debugConsole(vector<string> cmd)
         cmdNotFound_dbg(cmd[1]);
 }
 
-bool iash::doesEnvVarExist(string name)
-{
-    return m_env.count(convEnv(name)) != 0;
-}
-
-string iash::convEnv(string name)
-{
-    for (int x = 0; x < name.length(); x++)
-        name[x] = toupper(name[x]);
-
-    return name;
-}
+// MISCELLANEOUS **********************************************************************************
 
 void iash::updateAttached()
 {
@@ -528,4 +614,14 @@ void iash::updateAttached()
         if (getEnv_bool("IASH_APP_NAME_IN_PROMPT") != f_useAppNameInPrompt)
             f_useAppNameInPrompt = getEnv_bool("IASH_APP_NAME_IN_PROMPT");
     }
+}
+
+void iash::cmdNotFound()
+{
+    cout<<m_cmdLine[0]<<": command not found"<<endl;
+}
+
+void iash::cmdNotFound_dbg(string cmd)
+{
+    cout<<cmd<<": command not found"<<endl;
 }
