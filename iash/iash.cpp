@@ -268,7 +268,7 @@ bool iash::saveEnv(string filepath)
 
         for (it = m_env.begin(); it != m_env.end(); ++it)
         {
-            if (it->first != "IASH_CONFIG_PATH" || it->first != "IASH_CWD")
+            if (it->first != "IASH_CONFIG_PATH" && it->first != "IASH_CWD")
                 fout<<it->first<<' '<<it->second<<endl;
         }
         fout.close();
