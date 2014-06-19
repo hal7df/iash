@@ -2,6 +2,7 @@
 #define CROSSLIB_H
 
 #include <string>
+#include <cstdlib>
 
 #ifdef __unix
     #include <sys/stat.h>
@@ -9,6 +10,7 @@
     #include <unistd.h>
 #elif _WIN32
     #include <windows.h>
+    #include <direct.h>
 #endif
 
 namespace CrossLib
@@ -50,6 +52,12 @@ namespace CrossLib
      *          is stored.
      */
     std::string getConfigDir ();
+
+    /**
+     * @brief getWorkingDir: Get the current working directory.
+     * @return : The current working directory.
+     */
+    std::string getWorkingDir ();
 }
 
 #endif // CROSSLIB_H

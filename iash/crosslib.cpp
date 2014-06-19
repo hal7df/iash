@@ -43,6 +43,19 @@ std::string CrossLib::getConfigDir()
     return std::string(getenv("HOME"))+"/.config/";
 }
 
+std::string CrossLib::getWorkingDir()
+{
+    char* buf;
+    std::string path;
+
+    buf = getcwd(NULL,0);
+
+    path = std::string(buf);
+    free(buf);
+
+    return path;
+}
+
 #elif _WIN32
 
 void CrossLib::clearScreen()
@@ -84,10 +97,7 @@ void CrossLib::clearScreen()
 
 int CrossLib::mkdir(const char *pathname)
 {
-    if (CreateDirectory(pathname) == 0)
-        return -1;
-    else
-        return 0;
+    return _mkdir(pathname);
 }
 
 bool CrossLib::isdir(const char *pathname)
@@ -108,6 +118,19 @@ std::string CrossLib::getConfigDir()
         return (std::string)getenv("LOCALAPPDATA");
     else
         return (std::string)getenv("APPDATA");
+}
+
+std::string CrossLib::getWorkingDir()
+{
+    char* buf;
+    std::string path;
+
+    buf = _getcwd(NULL,0);
+
+    path = std::string(buf);
+    free(buf);
+
+    return path;
 }
 
 #endif

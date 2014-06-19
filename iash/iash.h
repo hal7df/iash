@@ -10,6 +10,10 @@
 #ifndef IASH_H
 #define IASH_H
 
+#define IASH_VERSION_MAJOR 0
+#define IASH_VERSION_MINOR 2
+#define IASH_VERSION_PATCH 1
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -33,6 +37,8 @@ public:
     iash(string app_nm="iash", bool useNameInPrompt=true);
     ~iash();
 
+    // CONFIGURATION **********************************************************
+
     /**
      * @brief setAppName: Set the application name. This can be used
      *                    on the prompt.
@@ -47,6 +53,8 @@ public:
      *              prompt.
      */
     void useAppNameInPrompt (bool name=true);
+
+    // COMMAND LINE ***********************************************************
 
     /**
      * @brief getCmdLine: Clear the current shell contents and prompt a
@@ -67,6 +75,13 @@ public:
      * @return: all of the options passed at the commandline
      */
     vector<string> getOptions() { return getOptions(m_cmdLine); }
+
+    /**
+     * @brief clear: Clear the command buffer.
+     */
+    void clear() { m_cmdLine.clear(); }
+
+    // ENVIRONMENT SYSTEM *****************************************************
 
     /**
      * @brief setEnv: Set internal environment variables
@@ -112,6 +127,36 @@ public:
     bool loadEnv ();
     bool loadEnv (string filepath);
 
+    // DIRECTORY SYSTEM *******************************************************
+
+    /**
+     * @brief changeDir: Changes the current working directory (within iash)
+     *          based on path. It automatically determines if the path is
+     *          relative or absolute.
+     * @param path: The path to change to directory to.
+     * @return: true on succes, false on failure (path doesn't exist)
+     */
+    bool changeDir (string path);
+
+    /**
+     * @brief getDir: Gets the current working directory as maintained by iash.
+     * @return: The current working directory.
+     */
+    string getDir () { return getEnv_string("IASH_CWD"); }
+
+    /**
+     * @brief fileDelta: As iash changes directories internally, opening files
+     *          as if they were in the current directory will not work. Use
+     *          this function to get the actual path to the file.
+     * @param origPath: The path of the file as given relatively to the shell's
+     *          current working directory.
+     * @return: the absolute path to the file.
+     */
+
+    string fileDelta (string origPath);
+
+    // MISCELLANEOUS **********************************************************
+
     /**
      * @brief cmdNotFound: Prints a command not found message and clears the
      *        command buffer.
@@ -119,14 +164,10 @@ public:
     void cmdNotFound();
 
     /**
-     * @brief clear: Clear the command buffer.
-     */
-    void clear() { m_cmdLine.clear(); }
-
-    /**
      * @brief clearScreen: Clear the screen.
      */
     void clearScreen() { CrossLib::clearScreen(); }
+
 private:
     vector<string> getOptions(vector<string> cmd);
     vector<string> parseCmdLine(string raw);

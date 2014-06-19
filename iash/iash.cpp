@@ -2,10 +2,9 @@
 
 iash::iash (string app_nm, bool useInPrompt)
 {
-    fstream fs;
     stringstream ss (ios::in | ios::out);
 
-    cout<<"iash version 0.2 'Firmament' initializing..."<<endl;
+    cout<<"iash version "<<IASH_VERSION_MAJOR<<'.'<<IASH_VERSION_MINOR<<'.'<<IASH_VERSION_PATCH<<" 'Firmament' initializing..."<<endl;
 
     m_appName = app_nm;
     f_useAppNameInPrompt = useInPrompt;
@@ -13,6 +12,7 @@ iash::iash (string app_nm, bool useInPrompt)
     ss<<CrossLib::getConfigDir()<<m_appName<<'/';
 
     setEnv("IASH_CONFIG_PATH", ss.str());
+    setEnv("IASH_CWD",CrossLib::getWorkingDir());
 
     ss.clear();
     ss.str("");
@@ -44,6 +44,8 @@ iash::iash (string app_nm, bool useInPrompt)
         if (!saveEnv())
             cout<<"Error creating configuration. Please check your filesystem."<<endl;
     }
+
+    updateAttached();
 
 }
 
@@ -87,6 +89,9 @@ vector<string> iash::getCmdLine()
             debugConsole(cmdLine);
         else
             debugConsole();
+
+        clear();
+        cmdLine.clear();
     }
 
     return cmdLine;
@@ -231,7 +236,7 @@ bool iash::saveEnv(string filepath)
 
         for (it = m_env.begin(); it != m_env.end(); ++it)
         {
-            if (it->first != "IASH_CONFIG_PATH")
+            if (it->first != "IASH_CONFIG_PATH" || it->first != "IASH_CWD")
                 fout<<it->first<<' '<<it->second<<endl;
         }
         fout.close();
