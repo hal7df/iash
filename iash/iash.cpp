@@ -355,6 +355,9 @@ bool iash::changeDir(string path)
     curDir = getEnv_string("IASH_CWD");
     absPath = (path[0] == '/');
 
+    if (path.find_last_of('/') != path.length()-1)
+        path += '/';
+
     if (absPath)
     {
         if (CrossLib::isdir(path.c_str()))
