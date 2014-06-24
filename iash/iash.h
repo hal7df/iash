@@ -183,16 +183,53 @@ public:
     void clearScreen() { CrossLib::clearScreen(); }
 
 private:
+
+    /** PRIVATE METHODS  ******************************************************/
+
+    // COMMAND LINE ***********************************************************
+
+    /**
+     * @brief getOptions: Internal logic for getting options from a commandline
+     *          vector.
+     * @param cmd: The commandline vector to extract options from.
+     * @return
+     */
     vector<string> getOptions(vector<string> cmd);
+
+    /**
+     * @brief parseCmdLine: Parses a raw string into a vector of commands and
+     *          arguments.
+     * @param raw: The raw string to parse
+     * @return: A vector containing the command (at index 0) and its arguments
+     *          and options (in sequential order, following the command)
+     */
     vector<string> parseCmdLine(string raw);
 
+    /**
+     * @brief runInternal: Checks a commandline to see if it invokes iash
+     *          builtin methods, and runs those methods if so.
+     * @param cmdLine: The commandline to check.
+     * @return: If an internal command was run or not.
+     */
+    bool runInternal (vector<string> cmdLine);
+
+    // DEBUG CONSOLE **********************************************************
+
+    /**
+     * @brief debugConsole: Runs the debug console.
+     * @param cmd: The debug command
+     */
     void debugConsole (vector<string> cmd);
     void debugConsole ();
     void cmdNotFound_dbg(string cmd);
 
+    // ENVIRONMENT ************************************************************
+
     bool doesEnvVarExist (string name);
     string convEnv (string name);
     void updateAttached();
+
+    /** PRIVATE VARIABLES *****************************************************/
 
     vector<string> m_cmdLine;
     map<string,string> m_env;

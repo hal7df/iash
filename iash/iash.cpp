@@ -117,13 +117,8 @@ vector<string> iash::getCmdLine()
 
     m_cmdLine = cmdLine;
 
-    if (cmdLine[0] == "iash")
+    if (runInternal(cmdLine))
     {
-        if (cmdLine.size() > 1)
-            debugConsole(cmdLine);
-        else
-            debugConsole();
-
         clear();
         cmdLine.clear();
     }
@@ -187,6 +182,41 @@ vector<string> iash::getOptions(vector<string> cmd)
     }
 
     return options;
+}
+
+bool iash::runInternal(vector<string> cmdLine)
+{
+    if (cmdLine[0] == "iash")
+    {
+        if (cmdLine.size() > 1)
+            debugConsole(cmdLine);
+        else
+            debugConsole();
+
+        return true;
+    }
+    else if (cmdLine[0] == "cd")
+    {
+        if (cmdLine.size() > 1)
+        {
+            if (!changeDir(cmdLine[1]))
+                cout<<"iash: cd: "<<cmdLine[1]<<": No such file or directory"<<endl;
+        }
+        else
+        {
+            if(!changeDir(CrossLib::getHomeDir()))
+                cout<<"iash: cd: An error occurred finding the home directory."<<endl;
+        }
+
+        return true;
+    }
+    else if (cmdLine[0] == "pwd")
+    {
+        cout<<getEnv_string("IASH_CWD")<<endl;
+        return true;
+    }
+    else
+        return false;
 }
 
 // ENVIRONMENT SYSTEM *****************************************************************************
@@ -366,7 +396,9 @@ bool iash::changeDir(string path)
             return true;
         }
         else
+        {
             return false;
+        }
     }
     else
     {
@@ -407,6 +439,15 @@ bool iash::changeDir(string path)
         else
             return false;
     }
+}
+
+string iash::fileDelta(string origPath)
+{
+    stringstream ss;
+
+    ss<<getEnv_string("IASH_CWD")<<origPath;
+
+    return ss.str();
 }
 
 // DEBUG CONSOLE **********************************************************************************

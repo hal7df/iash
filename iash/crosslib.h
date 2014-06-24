@@ -69,6 +69,12 @@ namespace CrossLib
     bool isfile (const char* pathname);
 
     /**
+     * @brief getHomeDir: Returns the user's home directory.
+     * @return: The absolute path to the user's home directory.
+     */
+    std::string getHomeDir ();
+
+    /**
      * @brief getConfigDir: Gets the directory where application
      *          configuration is stored
      * @return: The absolute path to where the application configuration

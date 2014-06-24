@@ -56,6 +56,11 @@ bool CrossLib::isfile(const char* pathname)
     return S_ISREG(st.st_mode);
 }
 
+std::string CrossLib::getHomeDir()
+{
+    return std::string(getenv("HOME"));
+}
+
 std::string CrossLib::getConfigDir()
 {
     return std::string(getenv("HOME"))+"/.config/";
@@ -126,6 +131,11 @@ bool CrossLib::isdir(const char *pathname)
 bool CrossLib::isfile(const char *pathname)
 {
     return PathFileExists(pathname);
+}
+
+std::string CrossLib::getHomeDir()
+{
+    return std::string(getenv("HOMEPATH"));
 }
 
 std::string CrossLib::getConfigDir()
