@@ -9,6 +9,8 @@
 build/
 CMakeFiles/
 *.cmake
+CMakeCache.txt
 *Makefile
 *.a
 
+/Debug/
