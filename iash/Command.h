@@ -10,6 +10,7 @@
 
 #include "iash.h"
 #include "UserCommand.h"
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -22,11 +23,11 @@ public:
 
 	virtual void getName () const = 0;
 	virtual std::vector<std::string> getAliases () const;
-	virtual std::string getAliasMapping (std::string alias) const;
+	virtual std::string getAliasMapping (const std::string alias) const;
 
-	virtual int run (UserCommand *cmd) = 0;
-	virtual void showUsageMessage ();
-	virtual bool validate (UserCommand *cmd);
+	virtual int run (UserCommand *cmd, std::istream &is, std::ostream &os) = 0;
+	virtual void showUsageMessage (std::ostream &os) const;
+	virtual bool validate (UserCommand *cmd) const;
 protected:
 	iash *m_parent;
 };

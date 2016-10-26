@@ -6,13 +6,107 @@
  */
 
 #include "UserCommand.h"
+using namespace std;
 
-UserCommand::UserCommand() {
-	// TODO Auto-generated constructor stub
+UserCommand::UserCommand (string inputCommand) : m_raw (inputCommand)
+{
+	unsigned space, lastSpace;
 
+	lastSpace = 0;
+
+	do
+	{
+		space = m_raw.find(' ', lastSpace);
+
+		if (lastSpace == 0 && space == string::npos)
+			m_commandParts.push_back(m_raw);
+		else if (space == string::npos)
+			m_commandParts.push_back(m_raw.substr(lastSpace));
+		else
+		{
+			while (m_raw[space - 1] == '\\')
+			{
+				m_raw.erase(m_raw.begin() + (space - 1));
+				m_raw.find(' ', space + 1);
+			}
+
+			m_commandParts.push_back(m_raw.substr(lastSpace, (space - lastSpace)));
+			lastSpace = space + 1;
+		}
+	} while (space != string::npos);
 }
 
-UserCommand::~UserCommand() {
-	// TODO Auto-generated destructor stub
+UserCommand::~UserCommand () {}
+
+vector<string> UserCommand::getWholeCommand () const { return m_commandParts; }
+
+vector<string> UserCommand::getArguments () const
+{
+	vector<string> args;
+
+	for (unsigned cmd = 0; cmd < m_commandParts.size(); ++cmd)
+	{
+		if (m_commandParts[cmd].find('-') == string::npos)
+			args.push_back(m_commandParts[cmd]);
+	}
+
+	return args;
 }
 
+vector<string> UserCommand::getOptions() const
+{
+	vector<string> opts;
+
+	for (unsigned cmd = 0; cmd < m_commandParts.size(); ++cmd)
+	{
+		if (m_commandParts[cmd].find('-') == 0)
+		{
+			if (m_commandParts[cmd].find("--") == 0)
+				opts.push_back(m_commandParts[cmd].substr(2));
+			else if (m_commandParts[cmd].length() > 2)
+			{
+				for (unsigned i = 0; i < m_commandParts[cmd].length(); ++i)
+					opts.push_back(string(1, m_commandParts[cmd][i]));
+			}
+			else opts.push_back(m_commandParts[cmd].substr(1));
+		}
+	}
+
+	return opts;
+}
+
+string UserCommand::getContextualArgument (char opt) const
+{
+	bool hasContextualArg;
+
+	for (unsigned cmd = 0; cmd < m_commandParts.size() - 1; ++cmd)
+	{
+		hasContextualArg = (m_commandParts[cmd].find('-') == 0);
+		hasContextualArg &= (m_commandParts[cmd].back() == opt);
+		hasContextualArg &= (m_commandParts[cmd + 1].find('-') > 0);
+
+		if (hasContextualArg) return m_commandParts[cmd + 1];
+	}
+
+	return "";
+}
+
+string UserCommand::getContextualArgument (string opt) const
+{
+	if (opt.length() == 1) return getContextualArgument(opt[0]);
+	else
+	{
+		bool hasContextualArg;
+
+		for (unsigned cmd = 0; cmd < m_commandParts.size() - 1; ++cmd)
+		{
+			hasContextualArg = (m_commandParts[cmd].find("--") == 0);
+			hasContextualArg &= (m_commandParts[cmd].substr(2) == opt);
+			hasContextualArg &= (m_commandParts[cmd + 1].find('-') > 0);
+
+			if (hasContextualArg) return m_commandParts[cmd + 1];
+		}
+
+		return "";
+	}
+}
