@@ -27,6 +27,7 @@ public:
 private:
 	iash *m_parent;
 	std::map<std::string,Command*> m_registry;
+	std::map<std::string,Command*> m_aliasRegistry;
 };
 
 #endif /* IASH_COMMANDDISPATCHER_H_ */

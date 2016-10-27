@@ -16,6 +16,11 @@ Command::~Command() {
 	// TODO Auto-generated destructor stub
 }
 
+void Command::init (iash *parent)
+{
+	m_parent = parent;
+}
+
 vector<string> Command::getAliases() const
 {
 	return vector<string>;
