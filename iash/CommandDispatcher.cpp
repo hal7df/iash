@@ -69,3 +69,26 @@ Command* CommandDispatcher::unregisterCommand (Command *cmd)
 
 	return cmd;
 }
+
+int CommandDispatcher::dispatch (UserCommand *userCmd, istream &is, ostream &os)
+{
+	map<string,Command*>::iterator it;
+
+	it = m_registry.find(userCmd->getWholeCommand()[0]);
+
+	if (it != m_registry.end())
+	{
+		int retVal;
+		if (!it->second->validate(userCmd))
+		{
+			it->second->showUsageMessage(os);
+			retVal = 1;
+		}
+		else retVal = it->second->run(userCmd, is, os);
+
+		if (retVal == 127) retVal = 1;
+
+		return retVal;
+	}
+	else return 127;
+}

@@ -13,6 +13,7 @@
 #include "UserCommand.h"
 #include <string>
 #include <map>
+#include <iostream>
 
 class CommandDispatcher {
 public:
@@ -23,7 +24,7 @@ public:
 	Command* unregisterCommand (std::string name);
 	Command* unregisterCommand (Command *cmd);
 
-	int dispatch (UserCommand *userCmd);
+	int dispatch (UserCommand *userCmd, std::istream &is, std::ostream &os);
 private:
 	iash *m_parent;
 	std::map<std::string,Command*> m_registry;
