@@ -38,13 +38,6 @@
 
 namespace CrossLib
 {
-    //TERMINAL FUNCTIONS *************
-
-    /**
-     * @brief clearScreen: Clears the terminal screen.
-     */
-    void clearScreen();
-
     //FILESYSTEM ACCESS **************
 
     /**
