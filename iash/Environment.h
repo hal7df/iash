@@ -15,26 +15,25 @@ class Environment {
 public:
 	friend class iash;
 
-	Environment (std::string appName = "iash", bool loadFromFile = false);
+	Environment (const std::string appName = "iash");
 	virtual ~Environment ();
 
-	void load (std::string filename);
-	void save (std::string filename);
+	void set (const std::string &key, const std::string &value);
+	void set (const std::string &key, const bool value);
+	void set (const std::string &key, const int value);
+	void set (const std::string &key, const double value);
 
-	void set (std::string key, std::string value);
-	void set (std::string key, bool value);
-	void set (std::string key, int value);
-	void set (std::string key, double value);
+	const std::string& getString (const std::string &key) const;
+	bool getBool (const std::string &key) const;
+	int getInt (const std::string &key) const;
+	double getDouble (const std::string &key) const;
 
-	const std::string& getString (std::string key) const;
-	bool getBool (std::string key) const;
-	int getInt (std::string key) const;
-	double getDouble (std::string key) const;
-
-	void rm (std::string key);
+	void rm (const std::string &key);
 private:
-	void setProtected (std::string key, std::string value);
-	bool isBuiltinVar (std::string key) const;
+	void setProtected (const std::string &key, const std::string &value);
+	bool isBuiltinVar (const std::string &key) const;
+	static std::string convName (const std::string &key) const;
+
 	std::map<std::string,std::string> m_envMap;
 	std::vector<std::string> m_builtins;
 };
