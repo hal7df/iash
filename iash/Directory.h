@@ -13,23 +13,28 @@
 class Directory {
 public:
 	Directory();
-	Directory(std::string dir);
+	Directory(const std::string &dir);
 	virtual ~Directory();
 
-	std::string getAbsPath () const;
-	bool changeDirRel (std::string relPath);
-	bool changeDirAbs (std::string absPath);
-	std::string getPathToFileInDirectory (std::string filename);
-	int mkSubdir (std::string dirName);
+	bool isValid () const;
+	const std::string& getAbsPath () const;
+	bool changeDirRel (const std::string &relPath);
+	bool changeDirAbs (const std::string &absPath);
+	const char* getPathToFileInDirectory (const std::string &filename) const;
+	int mkSubdir (const std::string &dirName) const;
 
 	static int mkdir (const char *pathname);
 	static bool isDir (const char *pathname);
 	static bool isFile (const char *pathname);
-	static std::string getHomeDir ();
-	static std::string getConfigDir ();
-	static std::string getWorkingDir ();
+	static Directory getHomeDir ();
+	static Directory getConfigDir ();
+	static Directory getWorkingDir ();
 private:
+	std::string computeRelative (const std::string &relPath) const;
+	void ensureTrailingSlash ();
+
 	std::string m_dirpath;
+	bool m_valid;
 };
 
 #endif /* IASH_DIRECTORY_H_ */
