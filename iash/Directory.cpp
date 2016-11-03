@@ -29,7 +29,7 @@ Directory::Directory (const string &dir)
 
 	if (isDir(dir.c_str()))
 	{
-		m_dirpath = dir;
+		m_dirpath = handleSeparators(dir);
 		m_valid = true;
 	}
 	else m_valid = false;
@@ -60,7 +60,7 @@ bool Directory::changeDirAbs (const std::string &absPath)
 {
 	if (isDir(absPath.c_str()))
 	{
-		m_dirpath = absPath;
+		m_dirpath = handleSeparators(absPath);
 		ensureTrailingSlash();
 		return true;
 	}
@@ -75,6 +75,32 @@ const char* Directory::getPathToFileInDirectory (const string &filename) const
 int Directory::mkSubdir (const string &dirName) const
 {
 	return mkdir((m_dirpath + dirName).c_str());
+}
+
+string Directory::handleSeparators (const string &path)
+{
+	string newPath = path;
+	unsigned backslashPos;
+
+	while ((backslashPos = newPath.find('\\')) != string::npos)
+	{
+		newPath.replace(backslashPos, 1, "/");
+	}
+
+	return newPath;
+}
+
+const char* Directory::convToWindows (const string &path)
+{
+	string newPath = path;
+	unsigned slashPos;
+
+	while ((slashPos = newPath.find('/')) != string::npos)
+	{
+		newPath.replace(slashPos, 1, "\\");
+	}
+
+	return newPath.c_str();
 }
 
 string Directory::computeRelative (const string &relPath) const
@@ -115,7 +141,7 @@ void Directory::ensureTrailingSlash ()
 int Directory::mkdir (const char *pathname)
 {
 #ifdef __unix
-	return ::mkdir(pathname,0755);
+	return ::mkdir(handleSeparators(pathname).c_str(),0755);
 #elif __WIN32
 	return _mkdir(pathname);
 #endif
@@ -130,7 +156,7 @@ bool Directory::isDir (const char *pathname)
 
 	return S_ISDIR(st.st_mode);
 #elif __WIN32
-	return PathIsDirectory(pathname);
+	return PathIsDirectory(convToWindows(pathname));
 #endif
 }
 
@@ -143,7 +169,7 @@ bool Directory::isFile (const char *pathname)
 
     return S_ISREG(st.st_mode);
 #elif __WIN32
-    return PathFileExists(pathname);
+    return PathFileExists(convToWindows(pathname));
 #endif
 }
 
@@ -185,5 +211,5 @@ Directory Directory::getWorkingDir()
     path = string(buf);
     free(buf);
 
-    return path;
+    return Directory(path);
 }

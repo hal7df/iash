@@ -30,6 +30,8 @@ public:
 	static Directory getConfigDir ();
 	static Directory getWorkingDir ();
 private:
+	static std::string handleSeparators (const std::string &path);
+	static const char* convToWindows (const std::string &path);
 	std::string computeRelative (const std::string &relPath) const;
 	void ensureTrailingSlash ();
 
