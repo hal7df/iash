@@ -25,216 +25,115 @@
 #define IASH_H
 
 #define IASH_VERSION_MAJOR 0
-#define IASH_VERSION_MINOR 2
-#define IASH_VERSION_PATCH 1
+#define IASH_VERSION_MINOR 5
+#define IASH_VERSION_PATCH 0
 
 #include <iostream>
-#include <fstream>
-#include <sstream>
-
-#include <vector>
-#include <map>
-//#include <algorithm>
-
 #include <string>
 
-#include <cstdlib>
-#include <cctype>
-
-#include "crosslib.h"
-
-using namespace std;
+#include "Environment.h"
+#include "UserCommand.h"
+#include "Command.h"
+#include "CommandDispatcher.h"
+#include "Directory.h"
 
 class iash
 {
 public:
-    iash(string app_nm="iash", bool useNameInPrompt=true);
+	/**
+	 * Creates an iash shell object with the given application name (for use in
+	 * the prompt).
+	 */
+    iash(std::string app_nm="iash");
     ~iash();
 
-    // CONFIGURATION **********************************************************
+    //IASH INTERNAL OBJECT RETRIEVAL *******************************************
 
     /**
-     * @brief setAppName: Set the application name. This can be used
-     *                    on the prompt.
-     * @param app_nm: The name of the application.
+     * Gets the current Environment object for this shell instance.
+     *
+     * @return	a pointer to the current Environment for this shell
      */
-    void setAppName (string app_nm);
+    Environment* getEnv () const;
 
     /**
-     * @brief useAppNameInPrompt: Show the app name in the command
-     *                            prompt.
-     * @param name: Whether or not to use the app name in the command
-     *              prompt.
+     * Gets the current working directory for this shell. Note that this
+     * is NOT the same as the program's current working directory; this
+     * is never changed by iash. Internally, iash stores a reference to another
+     * directory that is specified by the current user to work in.
+     *
+     * @return	a pointer to a Directory object representing the shell's
+     * 			current working directory.
      */
-    void useAppNameInPrompt (bool name=true);
+    const Directory* getCwd () const;
 
-    // COMMAND LINE ***********************************************************
+    //COMMAND REGISTRATION INTERFACE *******************************************
 
     /**
-     * @brief getCmdLine: Clear the current shell contents and prompt a
-     *        new command line.
-     * @return: a vector containing all of the options and
-     *          arguments, including the command.
+     * Adds a Command instance to this shell's CommandDispatcher registry. This
+     * function is to be used by directly injecting dynamically allocated
+     * Command object pointers into the iash class (iash will handle the
+     * dynamic memory internally), for example:
+     * ~~~{cpp}
+     * iash shell ("myapp");
+     * shell.addCommand(new FooCommand());
+     * ~~~
+     * This should not be called more than once per each unique command; the
+     * CommandDispatcher will refuse to add the repeated command.
+     *
+     * @param cmd	a pointer to a dynamically allocated Command object
      */
-    vector<string> getCmdLine();
+    void addCommand (Command* cmd);
+
+    //SHELL INVOCATION *********************************************************
+    /**
+     * Runs the shell in interactive mode. This will print out a command
+     * prompt to stdout and read the user's commands in via stdin.
+     * <p>
+     * When running iash in interactive mode, this should be called directly in
+     * the return statement for main, i.e.:
+     * ~~~{cpp}
+     * return shell.runInteractive();
+     * ~~~
+     *
+     * @return	the exit status of the shell. Presently, this will always be
+     * 0.
+     */
+    int runInteractive ();
 
     /**
-     * @brief getLast: Get the last command line.
-     * @return: the vector containing the last command line.
+     * Executes the commands in the specified script and quits. Command I/O
+     * will be done from/to stdin/stdout unless otherwise specified by the
+     * script.
+     * <p>
+     * iash scripts are identified by having this line at the top of the file:
+     * ~~~
+     * #!iash@appname
+     * ~~~
+     * where `appname` is the configured name of the application. If the
+     * `@appname` specifier is missing, by default iash will refuse to run
+     * the script.
+     *
+     * @param fname the filename (absolute or relative to the application's
+     * 				current working directory) of the script to run.
+     * @return		the exit status of the last command to execute.
      */
-    vector<string> getLast() { return m_cmdLine; }
+    int runScript (const char *fname);
 
     /**
-     * @brief getOptions: Get the options from the last getCmdLine() call
-     * @return: all of the options passed at the commandline
+     * Executes the specified command and quits. Command I/O is done to/from
+     * stdin/stdout unless otherwise specified. All shell syntax known to iash
+     * is valid and will be properly handled by this function.
+     *
+     * @param cmd	a string containing the command to execute
+     * @return		the exit status of the command
      */
-    vector<string> getOptions() { return getOptions(m_cmdLine); }
-
-    /**
-     * @brief clear: Clear the command buffer.
-     */
-    void clear() { m_cmdLine.clear(); }
-
-    // ENVIRONMENT SYSTEM *****************************************************
-
-    /**
-     * @brief setEnv: Set internal environment variables
-     * @param name: The name of the variable
-     * @param value: The value of the variable
-     */
-    void setEnv (string name, string value);
-    void setEnv (string name, int value) { setEnv(name,to_string(value)); }
-    void setEnv (string name, float value) { setEnv(name,to_string(value)); }
-    void setEnv (string name, bool value);
-
-    /**
-     * @brief getEnv: Get internal environment variables
-     * @param name: The name of the variable
-     * @return: The variable
-     */
-    string getEnv_string (string name);
-    int getEnv_int (string name) { return stoi(getEnv_string(name)); }
-    float getEnv_float (string name) { return stof(getEnv_string(name)); }
-    bool getEnv_bool (string name);
-
-    /**
-     * @brief rmenv: Remove internal environment variables
-     * @param name: The name of the variable to remove
-     */
-    void rmenv (string name);
-
-    /**
-     * @brief saveEnv: Save the environment to file.
-     * @param filepath: The file to save to. If no file is passed,
-     *          the default path at $IASH_CONFIG_PATH/iashenv is used.
-     * @return: true on success, false on failure
-     */
-    bool saveEnv ();
-    bool saveEnv (string filepath);
-
-    /**
-     * @brief loadEnv: Loads the environment from file.
-     * @param filepath: The file to load from. If no path is passed,
-     *          the default path at $IASH_CONFIG_PATH/iashenv is used.
-     * @return: true on success, false on failure
-     */
-    bool loadEnv ();
-    bool loadEnv (string filepath);
-
-    // DIRECTORY MANAGER ******************************************************
-
-    /**
-     * @brief changeDir: Changes the current working directory (within iash)
-     *          based on path. It automatically determines if the path is
-     *          relative or absolute.
-     * @param path: The path to change to directory to.
-     * @return: true on succes, false on failure (path doesn't exist)
-     */
-    bool changeDir (string path);
-
-    /**
-     * @brief getDir: Gets the current working directory as maintained by iash.
-     * @return: The current working directory.
-     */
-    string getDir () { return getEnv_string("IASH_CWD"); }
-
-    /**
-     * @brief fileDelta: As iash changes directories internally, opening files
-     *          as if they were in the current directory will not work. Use
-     *          this function to get the actual path to the file.
-     * @param origPath: The path of the file as given relatively to the shell's
-     *          current working directory.
-     * @return: the absolute path to the file.
-     */
-
-    string fileDelta (string origPath);
-
-    // MISCELLANEOUS **********************************************************
-
-    /**
-     * @brief cmdNotFound: Prints a command not found message and clears the
-     *        command buffer.
-     */
-    void cmdNotFound();
-
-    /**
-     * @brief clearScreen: Clear the screen.
-     */
-    void clearScreen() { CrossLib::clearScreen(); }
-
+    int exec (std::string cmd);
 private:
-
-    /** PRIVATE METHODS  ******************************************************/
-
-    // COMMAND LINE ***********************************************************
-
-    /**
-     * @brief getOptions: Internal logic for getting options from a commandline
-     *          vector.
-     * @param cmd: The commandline vector to extract options from.
-     * @return
-     */
-    vector<string> getOptions(vector<string> cmd);
-
-    /**
-     * @brief parseCmdLine: Parses a raw string into a vector of commands and
-     *          arguments.
-     * @param raw: The raw string to parse
-     * @return: A vector containing the command (at index 0) and its arguments
-     *          and options (in sequential order, following the command)
-     */
-    vector<string> parseCmdLine(string raw);
-
-    /**
-     * @brief runInternal: Checks a commandline to see if it invokes iash
-     *          builtin methods, and runs those methods if so.
-     * @param cmdLine: The commandline to check.
-     * @return: If an internal command was run or not.
-     */
-    bool runInternal (vector<string> cmdLine);
-
-    // DEBUG CONSOLE **********************************************************
-
-    /**
-     * @brief debugConsole: Runs the debug console.
-     * @param cmd: The debug command
-     */
-    void debugConsole (vector<string> cmd);
-    void debugConsole ();
-    void cmdNotFound_dbg(string cmd);
-
-    // ENVIRONMENT ************************************************************
-
-    bool doesEnvVarExist (string name);
-    string convEnv (string name);
-    void updateAttached();
-
-    /** PRIVATE VARIABLES *****************************************************/
-
-    vector<string> m_cmdLine;
-    map<string,string> m_env;
-    string m_appName;
-    bool f_useAppNameInPrompt;
+    CommandDispatcher m_dispatcher;
+    Environment m_env;
+    Directory m_iashCwd;
+    std::string m_appName;
 };
 
 #endif //IASH_H
