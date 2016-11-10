@@ -70,7 +70,7 @@ Command* CommandDispatcher::unregisterCommand (Command *cmd)
 	return cmd;
 }
 
-int CommandDispatcher::dispatch (UserCommand *userCmd, istream &is, ostream &os)
+int CommandDispatcher::dispatch (UserCommand *userCmd)
 {
 	map<string,Command*>::iterator it;
 
@@ -81,10 +81,10 @@ int CommandDispatcher::dispatch (UserCommand *userCmd, istream &is, ostream &os)
 		int retVal;
 		if (!it->second->validate(userCmd))
 		{
-			it->second->showUsageMessage(os);
+			it->second->showUsageMessage(userCmd);
 			retVal = 1;
 		}
-		else retVal = it->second->run(userCmd, is, os);
+		else retVal = it->second->run(userCmd);
 
 		if (retVal == 127) retVal = 1;
 

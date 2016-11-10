@@ -10,9 +10,27 @@
 
 #include <string>
 
+/**
+ * Represents a directory on the filesystem. Intended to help with managing
+ * filesystem resources in a cross-platform manner.
+ *
+ * @since 0.5
+ */
 class Directory {
 public:
+	/**
+	 * Creates a Directory instance pointed at the application's current working
+	 * directory. Note that this is NOT the same as the iash current working
+	 * directory; this is actually held as a Directory instance internal to
+	 * iash.
+	 */
 	Directory();
+
+	/**
+	 * Creates a Directory instance pointed at the directory `dir`.
+	 *
+	 * @param dir	the directory path to create this Directory at
+	 */
 	Directory(const std::string &dir);
 	virtual ~Directory();
 

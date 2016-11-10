@@ -8,7 +8,8 @@
 #include "UserCommand.h"
 using namespace std;
 
-UserCommand::UserCommand (string inputCommand) : m_raw (inputCommand)
+UserCommand::UserCommand (string inputCommand, istream &stdin, ostream &stdout)
+		: m_raw (inputCommand), m_stdin(stdin), m_stdout(stdout)
 {
 	unsigned space, lastSpace;
 
@@ -46,7 +47,7 @@ vector<string> UserCommand::getArguments () const
 
 	for (unsigned cmd = 0; cmd < m_commandParts.size(); ++cmd)
 	{
-		if (m_commandParts[cmd].find('-') == string::npos)
+		if (m_commandParts[cmd].find('-') > 0)
 			args.push_back(m_commandParts[cmd]);
 	}
 
@@ -109,4 +110,14 @@ string UserCommand::getContextualArgument (string opt) const
 
 		return "";
 	}
+}
+
+istream& UserCommand::getStdin () const
+{
+	return m_stdin;
+}
+
+ostream& UserCommand::getStdout () const
+{
+	return m_stdout;
 }

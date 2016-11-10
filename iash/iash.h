@@ -37,14 +37,32 @@
 #include "CommandDispatcher.h"
 #include "Directory.h"
 
+/**
+ * The main shell class for iash.
+ * <p>
+ * This class provides an interface to register commands with the shell, and
+ * then execute those commands in a number of ways. It also provides an
+ * interface for commands to inspect (and, to an extent, modify) the current
+ * state of the shell.
+ * <p>
+ * While this class has always existed, its interface was completely rewritten
+ * in v0.5. Versions that are greater than or equal to v0.5 are not backwards-
+ * compatible with prior versions.
+ *
+ * @since 0.5
+ */
 class iash
 {
 public:
 	/**
 	 * Creates an iash shell object with the given application name (for use in
 	 * the prompt).
+	 *
+	 * @param app_nm	the name of the application, to be shown in prompts
+	 * 					and to check for in scripts
 	 */
     iash(std::string app_nm="iash");
+
     ~iash();
 
     //IASH INTERNAL OBJECT RETRIEVAL *******************************************
