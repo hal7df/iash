@@ -82,7 +82,7 @@ public:
 	 * Searches the command and alias registries and calls the appropriate
 	 * Command.
 	 *
-	 * @oaram userCmd	the user's input command
+	 * @param userCmd	the user's input command
 	 * @return			the return value of the @link Command::run @endlink
 	 * 					for the given command, or 127 if no command was found
 	 */

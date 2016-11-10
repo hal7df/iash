@@ -77,6 +77,16 @@ int Directory::mkSubdir (const string &dirName) const
 	return mkdir((m_dirpath + dirName).c_str());
 }
 
+bool Directory::dirExists (const string &dirName) const
+{
+	return Directory::isDir((m_dirpath + dirName).c_str());
+}
+
+bool Directory::fileExists (const string &filename) const
+{
+	return Directory::isFile((m_dirpath + filename).c_str());
+}
+
 string Directory::handleSeparators (const string &path)
 {
 	string newPath = path;
