@@ -139,7 +139,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to register and execute Commands in an iash shell. </p>
 <p>iash has an internal instance of this class, there is typically no need to instantiate it manually. </p>
-<p>iash does not provide direct access to this API through its own API, but commands can be registered through <a class="el" href="classiash.html#a6efda722555761d647166166f7f7cddd">iash::addCommand</a>.</p>
+<p>iash does not provide direct access to this API through its own API, but commands can be registered through <a class="el" href="classiash.html#a6efda722555761d647166166f7f7cddd" title="Adds a Command instance to this shell&#39;s CommandDispatcher registry. ">iash::addCommand</a>.</p>
 <dl class="section since"><dt>Since</dt><dd>0.5 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab1d43e7258910a48adc2e4d9af5ce74a"></a>
@@ -188,7 +188,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the return value of the <a class="el" href="class_command.html#a05729cc558e0f89c39c27dc1379c97f8">Command::run</a> for the given command, or 127 if no command was found </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the return value of the <a class="el" href="class_command.html#a05729cc558e0f89c39c27dc1379c97f8" title="Called when a command matching the current Command is issued. ">Command::run</a> for the given command, or 127 if no command was found </dd></dl>
 
 </div>
 </div>
@@ -207,7 +207,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Registers a given <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> with this <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> instance. </p>
-<p>This will call the <a class="el" href="class_command.html#ab9606d1fae2f68658344f404b658301e">Command::init</a> to set the parent shell and add the Comamnd's name and aliases to the command registry. </p>
+<p>This will call <a class="el" href="class_command.html#ab9606d1fae2f68658344f404b658301e" title="Sets the shell parent for this Command. ">Command::init</a> to set the parent shell and add the Comamnd's name and aliases to the command registry. </p>
 <p>This function is intended to be used directly with dynamic memory, like so: </p><div class="fragment"><div class="line"><a class="code" href="class_command_dispatcher.html">CommandDispatcher</a> disp (&amp;shell);</div><div class="line">disp.registerCommand(<span class="keyword">new</span> MyCommand());</div></div><!-- fragment --><p> The <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> will automatically free the allocated memory, so there is no need to somehow catch the pointer to the allocated memory. </p>
 <p>If a <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> instance with the same name and type is already registered with this class, this function will not add the new instance. If the classes must be replaced, the old one should be unregistered first.</p>
 <dl class="params"><dt>Parameters</dt><dd>

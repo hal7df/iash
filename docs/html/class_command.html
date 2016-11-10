@@ -125,19 +125,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a18df2d81039392daeb0b78c346a70537"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new Comamnd instance.  <a href="#a18df2d81039392daeb0b78c346a70537">More...</a><br /></td></tr>
 <tr class="separator:a18df2d81039392daeb0b78c346a70537"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9606d1fae2f68658344f404b658301e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command.html#ab9606d1fae2f68658344f404b658301e">init</a> (<a class="el" href="classiash.html">iash</a> *parent)</td></tr>
-<tr class="memdesc:ab9606d1fae2f68658344f404b658301e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the shell parent for this <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>.  <a href="#ab9606d1fae2f68658344f404b658301e">More...</a><br /></td></tr>
+<tr class="memdesc:ab9606d1fae2f68658344f404b658301e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the shell parent for this Command.  <a href="#ab9606d1fae2f68658344f404b658301e">More...</a><br /></td></tr>
 <tr class="separator:ab9606d1fae2f68658344f404b658301e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf2086e06e58788619eb53a27d0ec1e7"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command.html#adf2086e06e58788619eb53a27d0ec1e7">getName</a> () const =0</td></tr>
-<tr class="memdesc:adf2086e06e58788619eb53a27d0ec1e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of this <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> to be used in iash.  <a href="#adf2086e06e58788619eb53a27d0ec1e7">More...</a><br /></td></tr>
+<tr class="memdesc:adf2086e06e58788619eb53a27d0ec1e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of this Command to be used in iash.  <a href="#adf2086e06e58788619eb53a27d0ec1e7">More...</a><br /></td></tr>
 <tr class="separator:adf2086e06e58788619eb53a27d0ec1e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f67d84d005009d2be9044353897bbba"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command.html#a2f67d84d005009d2be9044353897bbba">getAliases</a> () const </td></tr>
-<tr class="memdesc:a2f67d84d005009d2be9044353897bbba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns all builtin aliases for this <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>.  <a href="#a2f67d84d005009d2be9044353897bbba">More...</a><br /></td></tr>
+<tr class="memdesc:a2f67d84d005009d2be9044353897bbba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns all builtin aliases for this Command.  <a href="#a2f67d84d005009d2be9044353897bbba">More...</a><br /></td></tr>
 <tr class="separator:a2f67d84d005009d2be9044353897bbba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f4f5394f77020dadedca1660040fd4b"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command.html#a6f4f5394f77020dadedca1660040fd4b">getAliasMapping</a> (const std::string alias) const </td></tr>
-<tr class="memdesc:a6f4f5394f77020dadedca1660040fd4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a given alias for this command into a fully-qualified command string (using the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>'s default name).  <a href="#a6f4f5394f77020dadedca1660040fd4b">More...</a><br /></td></tr>
+<tr class="memdesc:a6f4f5394f77020dadedca1660040fd4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a given alias for this command into a fully-qualified command string (using the Command's default name).  <a href="#a6f4f5394f77020dadedca1660040fd4b">More...</a><br /></td></tr>
 <tr class="separator:a6f4f5394f77020dadedca1660040fd4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05729cc558e0f89c39c27dc1379c97f8"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command.html#a05729cc558e0f89c39c27dc1379c97f8">run</a> (<a class="el" href="class_user_command.html">UserCommand</a> *cmd)=0</td></tr>
-<tr class="memdesc:a05729cc558e0f89c39c27dc1379c97f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a command matching the current <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> is issued.  <a href="#a05729cc558e0f89c39c27dc1379c97f8">More...</a><br /></td></tr>
+<tr class="memdesc:a05729cc558e0f89c39c27dc1379c97f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a command matching the current Command is issued.  <a href="#a05729cc558e0f89c39c27dc1379c97f8">More...</a><br /></td></tr>
 <tr class="separator:a05729cc558e0f89c39c27dc1379c97f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeccbc6bba93c9778807f27a80bacf8b3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command.html#aeccbc6bba93c9778807f27a80bacf8b3">showUsageMessage</a> (std::ostream &amp;os) const </td></tr>
 <tr class="memdesc:aeccbc6bba93c9778807f27a80bacf8b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a usage message to the specified output stream.  <a href="#aeccbc6bba93c9778807f27a80bacf8b3">More...</a><br /></td></tr>
@@ -154,16 +154,16 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract interface for a command registered with the shell. </p>
-<p>All commands in an iash application are descendants of <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>. When a user issues a command at the iash prompt, iash searches its registry for a command with the same name as the command the user entered. If it finds one, the shell executes that <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>'s <a class="el" href="class_command.html#a05729cc558e0f89c39c27dc1379c97f8">Command::run</a> function. The executed <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> then has access to the calling shell through the <code>m_parent</code> protected member variable. </p>
-<p><a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> provides a number of extra functions to aid in handling improper input, in addition to providing a mechanism for iash to recognize multiple command names for the same <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> (<a class="el" href="class_command.html#a2f67d84d005009d2be9044353897bbba">Command::getAliases</a> and <a class="el" href="class_command.html#a6f4f5394f77020dadedca1660040fd4b">Command::getAliasMapping</a>), however these do not need to be implemented by child classes of <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>. The only functions that children must have are: </p><ul>
+<p>All commands in an iash application are descendants of Command. When a user issues a command at the iash prompt, iash searches its registry for a command with the same name as the command the user entered. If it finds one, the shell executes that Command's <a class="el" href="class_command.html#a05729cc558e0f89c39c27dc1379c97f8" title="Called when a command matching the current Command is issued. ">Command::run</a> function. The executed <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> then has access to the calling shell through the <code>m_parent</code> protected member variable. </p>
+<p>Command provides a number of extra functions to aid in handling improper input, in addition to providing a mechanism for iash to recognize multiple command names for the same Command (<a class="el" href="class_command.html#a2f67d84d005009d2be9044353897bbba" title="Returns all builtin aliases for this Command. ">Command::getAliases</a> and <a class="el" href="class_command.html#a6f4f5394f77020dadedca1660040fd4b" title="Converts a given alias for this command into a fully-qualified command string (using the Command&#39;s de...">Command::getAliasMapping</a>), however these do not need to be implemented by child classes of Command. The only functions that children must have are: </p><ul>
 <li>
-<a class="el" href="class_command.html#adf2086e06e58788619eb53a27d0ec1e7">Command::getName</a> </li>
+<a class="el" href="class_command.html#adf2086e06e58788619eb53a27d0ec1e7" title="Returns the name of this Command to be used in iash. ">Command::getName</a> </li>
 <li>
-<a class="el" href="class_command.html#a05729cc558e0f89c39c27dc1379c97f8">Command::run</a> </li>
+<a class="el" href="class_command.html#a05729cc558e0f89c39c27dc1379c97f8" title="Called when a command matching the current Command is issued. ">Command::run</a> </li>
 </ul>
 <p>These functions are required for iash to be able to properly recognize and execute commands. </p>
-<p>Internally, iash stores instances of each registered <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>. As such, <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> subclasses can have additional member variables not specified by the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> interface. </p>
-<p>Note that, unlike bash and other popular system shells, a <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>'s name takes precedence over any aliases that any commands have configured. So, for example, if there is a command with name <code>ls</code>, and another command has an <code>ls=runKeylogger</code> alias configured, iash will still run <code>ls</code>. As the example indicates, this is done for security reasons. As of v0.5, there is currently no API for managing command defaults; Commands should be configured to run in their default configuration when they are invoked by the user with no arguments.</p>
+<p>Internally, iash stores instances of each registered Command. As such, Command subclasses can have additional member variables not specified by the Command interface. </p>
+<p>Note that, unlike bash and other popular system shells, a Command's name takes precedence over any aliases that any commands have configured. So, for example, if there is a command with name <code>ls</code>, and another command has an <code>ls=runKeylogger</code> alias configured, iash will still run <code>ls</code>. As the example indicates, this is done for security reasons. As of v0.5, there is currently no API for managing command defaults; Commands should be configured to run in their default configuration when they are invoked by the user with no arguments.</p>
 <dl class="section since"><dt>Since</dt><dd>0.5 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a18df2d81039392daeb0b78c346a70537"></a>
@@ -180,7 +180,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Creates a new Comamnd instance. </p>
-<p>Note that this does NOT fully initialize a <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> instance, the parent shell is only set upon registration of the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> with the shell. Assuming that no <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> functions are called prior to <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> registration, it is guaranteed that m_parent will point to the shell that owns the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>. </p>
+<p>Note that this does NOT fully initialize a Command instance, the parent shell is only set upon registration of the Command with the shell. Assuming that no Command functions are called prior to Command registration, it is guaranteed that m_parent will point to the shell that owns the Command. </p>
 
 </div>
 </div>
@@ -206,9 +206,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns all builtin aliases for this <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>. </p>
+<p>Returns all builtin aliases for this Command. </p>
 <p>Aliases are used to invoke commands after a user-entered command does not come up with any matches in the main name registry. For the moment, iash only supports basic aliasing, although a future revision will include the ability to match a certain pattern, such as <code>d?=d -n $1</code>, where wildcards can be used to preserve information in the alias.</p>
-<dl class="section return"><dt>Returns</dt><dd>a vector containing all of the builtin aliases for this <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>. By default, this returns an empty vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a vector containing all of the builtin aliases for this Command. By default, this returns an empty vector. </dd></dl>
 
 </div>
 </div>
@@ -234,7 +234,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Converts a given alias for this command into a fully-qualified command string (using the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>'s default name). </p>
+<p>Converts a given alias for this command into a fully-qualified command string (using the Command's default name). </p>
 <p>For the moment, this function is unused by iash, but when dynamic aliasing is supported (i.e. wildcards), this will be used to handle dynamic aliases.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -242,7 +242,7 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a string to replace the aliased text in the original command. This should begin with the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>'s name. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a string to replace the aliased text in the original command. This should begin with the Command's name. </dd></dl>
 
 </div>
 </div>
@@ -267,8 +267,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns the name of this <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> to be used in iash. </p>
-<p>This field is the first field iash looks at when determining which <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> to execute (if any) when a user inputs a command.</p>
+<p>Returns the name of this Command to be used in iash. </p>
+<p>This field is the first field iash looks at when determining which Command to execute (if any) when a user inputs a command.</p>
 <dl class="section return"><dt>Returns</dt><dd>the name of this <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> </dd></dl>
 
 </div>
@@ -287,11 +287,11 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets the shell parent for this <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>. </p>
+<p>Sets the shell parent for this Command. </p>
 <p>There is no need to override this function (and is thus not virtual).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">parent</td><td>a pointer to the iash shell to which this <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> is registered </td></tr>
+    <tr><td class="paramname">parent</td><td>a pointer to the iash shell to which this Command is registered </td></tr>
   </table>
   </dd>
 </dl>
@@ -320,8 +320,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Called when a command matching the current <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> is issued. </p>
-<p>This is conceptually equivalent to the <code>main</code> function of a C/C++ program: this is where execution begins when a <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> is called by the user. All of the information regarding the command issued by the user is stored in the object pointed to by cmd. </p>
+<p>Called when a command matching the current Command is issued. </p>
+<p>This is conceptually equivalent to the <code>main</code> function of a C/C++ program: this is where execution begins when a Command is called by the user. All of the information regarding the command issued by the user is stored in the object pointed to by cmd. </p>
 <p>Note that, unlike a normal C++ program, the client SHOULD NOT directly use cin or cout, but rather print to and read from the provided ostream and istream references in the <a class="el" href="class_user_command.html" title="Used to retain command arguments and the proper input and output streams for a command call...">UserCommand</a> passed into the function. This allows the user to make use of iash's I/O redirection capabilities. For the purposes of this function, the istream and ostream references in the provided <a class="el" href="class_user_command.html" title="Used to retain command arguments and the proper input and output streams for a command call...">UserCommand</a> are stdin and stdout. </p>
 <p>Return values of this function should respect <a href="http://www.tldp.org/LDP/abs/html/exitcodes.html">bash reserved exit statuses</a>. As of right now, the only exit code used by iash is 127 (to indicate command not found), but any time a function returns a reserved return value, iash will override it to 1.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -357,8 +357,8 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Prints a usage message to the specified output stream. </p>
-<p>This function is called automatically by iash if a prior call to <a class="el" href="class_command.html#ac41f3f897099556617e11b5b46a2644b">Command::validate</a> fails. The return value for this <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> call is then set to 1. </p>
-<p>By default, this prints "@link Command:getName @endlink: invalid use of
+<p>This function is called automatically by iash if a prior call to <a class="el" href="class_command.html#ac41f3f897099556617e11b5b46a2644b" title="Validates the command entered by the user. ">Command::validate</a> fails. The return value for this Command call is then set to 1. </p>
+<p>By default, this prints "Command#getName: invalid use of
 command".</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
