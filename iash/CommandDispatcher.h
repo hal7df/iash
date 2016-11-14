@@ -21,7 +21,7 @@
  * manually.
  * <p>
  * iash does not provide direct access to this API through its own API, but
- * commands can be registered through @link iash::addCommand @endlink.
+ * commands can be registered through iash#addCommand.
  *
  * @since 0.5
  */
@@ -37,8 +37,8 @@ public:
 
 	/**
 	 * Registers a given Command with this CommandDispatcher instance. This will
-	 * call the @link Command::init @endlink to set the parent shell and add the
-	 * Comamnd's name and aliases to the command registry.
+	 * call Command#init to set the parent shell and add the Comamnd's name and
+	 * aliases to the command registry.
 	 * <p>
 	 * This function is intended to be used directly with dynamic memory, like
 	 * so:
@@ -83,7 +83,7 @@ public:
 	 * Command.
 	 *
 	 * @param userCmd	the user's input command
-	 * @return			the return value of the @link Command::run @endlink
+	 * @return			the return value of the Command#run
 	 * 					for the given command, or 127 if no command was found
 	 */
 	int dispatch (UserCommand *userCmd);

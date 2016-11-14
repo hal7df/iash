@@ -5,12 +5,17 @@
 *.files
 *.user
 
-#Build files
+# Eclipse project files
+.project
+.cproject
+
+# Build files
 build/
 CMakeFiles/
 *.cmake
 CMakeCache.txt
 *Makefile
 *.a
+iashexample
 
 /Debug/
