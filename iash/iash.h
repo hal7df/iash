@@ -58,12 +58,10 @@ public:
 	 * Creates an iash shell object with the given application name (for use in
 	 * the prompt).
 	 *
-	 * @param app_nm	the name of the application, to be shown in prompts
+	 * @param appName	the name of the application, to be shown in prompts
 	 * 					and to check for in scripts
 	 */
-    iash(std::string app_nm="iash");
-
-    ~iash();
+    iash(std::string appName="iash");
 
     //IASH INTERNAL OBJECT RETRIEVAL *******************************************
 
@@ -148,6 +146,7 @@ public:
      */
     int exec (std::string cmd);
 private:
+
     CommandDispatcher m_dispatcher;
     Environment m_env;
     Directory m_iashCwd;
