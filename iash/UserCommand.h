@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "tools/Token.h"
 
 /**
  * Used to retain command arguments and the proper input and output streams for
@@ -26,7 +27,7 @@
 class UserCommand {
 public:
 	/**
-	 * Constructs a new UserCommand class with the given command, input, and
+	 * Constructs a new UserCommand object with the given command, input, and
 	 * output. This also invokes the command parser, parsing the user's command
 	 * into its components. (This does not parse out the command's options).
 	 *
@@ -34,8 +35,19 @@ public:
 	 * @param stdin			the stream to use as stdin for the command
 	 * @param stdout		the stream to use as stdout for the command
 	 */
-	UserCommand(std::string inputCommand, std::istream &stdin,
-				std::ostream &stdout);
+	UserCommand (std::string inputCommand, std::istream &stdin,
+				std::ostream *stdout);
+
+	/**
+	 * Constructs a new UserCommand object with the given command, input, and
+	 * output. This also invokes the command parser, parsing the user's command
+	 * into its components. (This does not parse out the command's options).
+	 *
+	 * @param inputCommand	the command the user input as a Token
+	 * @param stdin			the stream to use as stdin for the command
+	 * @param stdout		the stream to use as stdout for the command
+	 */
+	UserCommand (Token inputCommand, std::istream &stdin, std::ostream &stdout);
 	virtual ~UserCommand();
 
 	//COMMAND INFORMATION RETRIEVAL ********************************************
@@ -121,8 +133,8 @@ public:
 	 */
 	std::ostream& getStdout () const;
 private:
-	std::istream *m_stdin;
-	std::ostream *m_stdout;
+	std::istream &m_stdin;
+	std::ostream &m_stdout;
 	std::vector<std::string> m_commandParts;
 	std::string m_raw;
 };

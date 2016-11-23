@@ -9,32 +9,27 @@
 using namespace std;
 
 UserCommand::UserCommand (string inputCommand, istream &stdin, ostream &stdout)
-		: m_raw(inputCommand), m_stdin(&stdin), m_stdout(&stdout)
+		: m_raw(inputCommand), m_stdin(stdin), m_stdout(stdout)
 {
-	unsigned space, lastSpace;
+	Tokenizer despace (inputCommand);
 
-	lastSpace = 0;
-
-	do
+	for (Token token : despace.getTokens())
 	{
-		space = m_raw.find(' ', lastSpace);
+		token.finalize();
+		m_commandParts.push_back(token.getToken());
+	}
+}
 
-		if (lastSpace == 0 && space == string::npos)
-			m_commandParts.push_back(m_raw);
-		else if (space == string::npos)
-			m_commandParts.push_back(m_raw.substr(lastSpace));
-		else
-		{
-			while (m_raw[space - 1] == '\\')
-			{
-				m_raw.erase(m_raw.begin() + (space - 1));
-				space = m_raw.find(' ', space + 1);
-			}
+UserCommand::UserCommand (Token inputCommand, istream &stdin, ostream &stdout)
+	: m_raw(inputCommand.getToken), m_stdin(stdin), m_stdout(stdout)
+{
+	Tokenizer despace (inputCommand);
 
-			m_commandParts.push_back(m_raw.substr(lastSpace + 1, (space - lastSpace)));
-			lastSpace = space + 1;
-		}
-	} while (space != string::npos);
+	for (Token token : despace.getTokens())
+	{
+		token.finalize();
+		m_commandParts.push_back(token.getToken());
+	}
 }
 
 UserCommand::~UserCommand () {}
@@ -114,10 +109,10 @@ string UserCommand::getContextualArgument (string opt) const
 
 istream& UserCommand::getStdin () const
 {
-	return *m_stdin;
+	return m_stdin;
 }
 
 ostream& UserCommand::getStdout () const
 {
-	return *m_stdout;
+	return m_stdout;
 }

@@ -137,14 +137,14 @@ public:
     int runScript (const char *fname);
 
     /**
-     * Executes the specified command and quits. Command I/O is done to/from
-     * stdin/stdout unless otherwise specified. All shell syntax known to iash
-     * is valid and will be properly handled by this function.
+     * Executes the specified command and quits. This does not support I/O
+     * redirection; this will do all input and output from/to stdin/stdout.
+     * To run a command with I/O redirection, use exec(UserCommand*).
      *
      * @param cmd	a string containing the command to execute
      * @return		the exit status of the command
      */
-    int exec (std::string cmd);
+    int exec (std::string &cmd);
 
     /**
      * Executes the specified, already parsed command and quits. Command I/O is
@@ -153,7 +153,7 @@ public:
      * @param cmd	a UserCommand to execute
      * @return		the exit status of the command
      */
-    int exec (UserCommand cmd);
+    int exec (UserCommand *cmd);
 private:
     int run (std::istream& cmdin, bool showPrompt=false);
 

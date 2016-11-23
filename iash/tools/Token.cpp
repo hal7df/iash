@@ -75,6 +75,30 @@ bool Token::operator== (const Token& rhs) const
 	return m_token == rhs.m_token;
 }
 
+bool Token::isToken (const char delim) const
+{
+	return isToken(m_token, delim);
+}
+
+bool Token::isToken (const string &candidate, const char delim)
+{
+	size_t pos;
+	size_t begin = 0;
+	size_t end = candidate.length() - 1;
+
+	while (isWhitespace(candidate[begin])) ++begin;
+	while (isWhitespace(candidate[end])) --end;
+
+	pos = begin;
+
+	while ((pos = candidate.find(delim, pos + 1)) < end)
+	{
+		if (candidate[pos - 1] != '\\') return false;
+	}
+
+	return true;
+}
+
 bool Token::isWhitespace(const char c)
 {
 	return (c == ' ' || c == '\t' || c= '\n');

@@ -20,6 +20,9 @@ public:
 	const char getPrecedingDelimiter () const;
 	const char getFollowingDelimiter () const;
 
+	bool isToken (const char delim) const;
+	static bool isToken (const std::string &candidate, const char delim);
+
 	bool operator== (const Token& other) const;
 private:
 	static bool isWhitespace (const char c);

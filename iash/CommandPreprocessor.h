@@ -33,7 +33,11 @@ private:
 
 class SyntaxException : public std::runtime_error {
 public:
-	SyntaxException(std::string reason);
+	SyntaxException(const std::string &reason);
 };
+
+class FileNotFoundException : public std::runtime_error {
+	FileNotFoundException(const std::string &fname);
+}
 
 #endif /* IASH_COMMANDPREPROCESSOR_H_ */

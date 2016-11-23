@@ -49,17 +49,36 @@ int iash::runInteractive ()
 
 int iash::runScript (const char *fname)
 {
+	string filename = fname;
 
+	if (*(filename.begin()) != '/')
+		filename = m_iashCwd.getPathToFileInDirectory(fname);
+
+	ifstream fin (filename.c_str());
+
+	if (fin.is_open()) return run(fin);
+	else
+	{
+		cout << m_appName << ": " << fname << ": script could not be opened";
+		cout << endl;
+		return 1;
+	}
 }
 
-int iash::exec (string cmd)
+inline int iash::exec (string &cmd)
 {
-
+	return m_dispatcher.dispatch(&UserCommand(cmd, cin, cout));
 }
 
-int iash::run (istream& cmdin, bool showPrompt)
+inline int iash::exec (UserCommand *cmd)
+{
+	return m_dispatcher.dispatch(cmd);
+}
+
+int iash::run (istream &cmdin, bool showPrompt)
 {
 	string raw;
+	int returnCode = 0;
 
 	do
 	{

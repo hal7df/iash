@@ -16,17 +16,21 @@
 
 class Tokenizer {
 public:
-	Tokenizer(const std::string& raw);
-	Tokenizer(const std::string& raw, const char delim);
-	Tokenizer(const std::string& raw, const std::string& delims);
-	Tokenizer(const Token& raw);
-	Tokenizer(const Token& raw, const char delim);
-	Tokenizer(const Token& raw, const std::string& delims);
+	Tokenizer();
+	Tokenizer(const std::string &raw);
+	Tokenizer(const std::string &raw, const char delim);
+	Tokenizer(const std::string &raw, const std::string &delims);
+	Tokenizer(const Token &raw);
+	Tokenizer(const Token &raw, const char delim);
+	Tokenizer(const Token &raw, const std::string &delims);
+
+	void setSource (const std::string &raw);
+	void setDelims (const std::string &delims);
 
 	const std::vector<Token>& getTokens () const;
 	const Token& getToken (const size_t pos) const;
 
-	size_t indexOf (const Token& token, const size_t start = 0) const;
+	size_t indexOf (const Token &token, const size_t start = 0) const;
 private:
 	void limitDelims (const std::string &raw);
 	void tokenize (std::string raw);

@@ -8,6 +8,8 @@
 #include "Tokenizer.h"
 using namespace std;
 
+Tokenizer::Tokenizer() : m_delims(1, ' ') {}
+
 Tokenizer::Tokenizer(const string &raw) : m_delims(1, ' ')
 {
 	tokenize(raw);
@@ -39,6 +41,16 @@ Tokenizer::Tokenizer(const Token &raw, const string &delims) : m_delims(delims)
 {
 	limitDelims(raw.getToken());
 	tokenize(raw.getToken());
+}
+
+void Tokenizer::setSource (const string &raw)
+{
+	tokenize(raw);
+}
+
+void Tokenizer::setDelims (const string &delims)
+{
+	m_delims = delims;
 }
 
 const std::vector<Token>& Tokenizer::getTokens () const
