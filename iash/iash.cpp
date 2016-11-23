@@ -43,7 +43,8 @@ void iash::addCommand (Command *cmd)
 
 int iash::runInteractive ()
 {
-
+	run(cin, true);
+	return 0;
 }
 
 int iash::runScript (const char *fname)
@@ -51,7 +52,23 @@ int iash::runScript (const char *fname)
 
 }
 
-int iash::exec(string cmd)
+int iash::exec (string cmd)
 {
 
+}
+
+int iash::run (istream& cmdin, bool showPrompt)
+{
+	string raw;
+
+	do
+	{
+		if (showPrompt) cout << m_appName << "> ";
+		getline(cmdin, raw);
+
+		if (cmdin)
+		{
+
+		}
+	} while (cmdin);
 }

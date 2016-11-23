@@ -121,8 +121,8 @@ public:
 	 */
 	std::ostream& getStdout () const;
 private:
-	std::istream &m_stdin;
-	std::ostream &m_stdout;
+	std::istream *m_stdin;
+	std::ostream *m_stdout;
 	std::vector<std::string> m_commandParts;
 	std::string m_raw;
 };

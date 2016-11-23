@@ -145,7 +145,17 @@ public:
      * @return		the exit status of the command
      */
     int exec (std::string cmd);
+
+    /**
+     * Executes the specified, already parsed command and quits. Command I/O is
+     * done to/from the specified streams in the UserCommand object.
+     *
+     * @param cmd	a UserCommand to execute
+     * @return		the exit status of the command
+     */
+    int exec (UserCommand cmd);
 private:
+    int run (std::istream& cmdin, bool showPrompt=false);
 
     CommandDispatcher m_dispatcher;
     Environment m_env;

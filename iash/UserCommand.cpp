@@ -9,7 +9,7 @@
 using namespace std;
 
 UserCommand::UserCommand (string inputCommand, istream &stdin, ostream &stdout)
-		: m_raw (inputCommand), m_stdin(stdin), m_stdout(stdout)
+		: m_raw(inputCommand), m_stdin(&stdin), m_stdout(&stdout)
 {
 	unsigned space, lastSpace;
 
@@ -28,10 +28,10 @@ UserCommand::UserCommand (string inputCommand, istream &stdin, ostream &stdout)
 			while (m_raw[space - 1] == '\\')
 			{
 				m_raw.erase(m_raw.begin() + (space - 1));
-				m_raw.find(' ', space + 1);
+				space = m_raw.find(' ', space + 1);
 			}
 
-			m_commandParts.push_back(m_raw.substr(lastSpace, (space - lastSpace)));
+			m_commandParts.push_back(m_raw.substr(lastSpace + 1, (space - lastSpace)));
 			lastSpace = space + 1;
 		}
 	} while (space != string::npos);
@@ -114,10 +114,10 @@ string UserCommand::getContextualArgument (string opt) const
 
 istream& UserCommand::getStdin () const
 {
-	return m_stdin;
+	return *m_stdin;
 }
 
 ostream& UserCommand::getStdout () const
 {
-	return m_stdout;
+	return *m_stdout;
 }
