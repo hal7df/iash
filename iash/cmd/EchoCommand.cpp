@@ -15,5 +15,7 @@ virtual int run (UserCommand *cmd) {
 		os << *it;
 	}
 
+	os << endl;
+
 	return 0;
  }
