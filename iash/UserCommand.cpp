@@ -34,7 +34,10 @@ UserCommand::UserCommand (Token inputCommand, istream &stdin, ostream &stdout)
 
 UserCommand::~UserCommand () {}
 
-vector<string> UserCommand::getWholeCommand () const { return m_commandParts; }
+const vector<string>& UserCommand::getWholeCommand () const
+{
+	return m_commandParts;
+}
 
 vector<string> UserCommand::getArguments () const
 {

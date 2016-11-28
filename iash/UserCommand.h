@@ -58,7 +58,7 @@ public:
 	 *
 	 * @return	the entire command, including the command name, as a vector
 	 */
-	std::vector<std::string> getWholeCommand () const;
+	const std::vector<std::string>& getWholeCommand () const;
 
 	/**
 	 * Returns all arguments passed by the user that are not options/switches
