@@ -77,17 +77,41 @@ inline int iash::exec (UserCommand *cmd)
 
 int iash::run (istream &cmdin, bool showPrompt)
 {
+	CommandPreprocessor processor (this);
 	string raw;
 	int returnCode = 0;
 
-	do
+	if (showPrompt) cout << m_appName << "> ";
+
+	while (getline(cmdin, raw))
 	{
-		if (showPrompt) cout << m_appName << "> ";
-		getline(cmdin, raw);
-
-		if (cmdin)
+		//Run commands
+		try
 		{
+			vector<UserCommand> &commands = processor.process(raw);
 
+			for (UserCommand &cmd : commands)
+			{
+				returnCode = m_dispatcher.dispatch(&cmd);
+			}
 		}
-	} while (cmdin);
+		catch (SyntaxException &syne)
+		{
+			cout << "iash: " << syne.what() << endl;
+			processor.cleanup();
+		}
+		catch (FileNotFoundException &fnfe)
+		{
+			cout << "iash: " << fnfe.what() << endl;
+			processor.cleanup();
+		}
+
+		//Update environment
+		m_env.setProtected("?", to_string(returnCode));
+
+		if (m_iashCwd.getAbsPath() != m_env.getString("CWD"))
+			m_env.setProtected("CWD", m_iashCwd.getAbsPath());
+	}
+
+	return m_env.getInt("?");
 }

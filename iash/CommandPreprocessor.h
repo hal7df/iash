@@ -38,6 +38,6 @@ public:
 
 class FileNotFoundException : public std::runtime_error {
 	FileNotFoundException(const std::string &fname);
-}
+};
 
 #endif /* IASH_COMMANDPREPROCESSOR_H_ */

@@ -14,11 +14,11 @@ using namespace std;
 
 Environment::Environment (string appName)
 {
-	setProtected("IASH_APP_NAME", appName);
-	setProtected("CWD", Directory::getWorkingDir());
+	m_builtins = {"IASH_APP_NAME", "CWD", "?"};
 
-	m_builtins.push_back("IASH_APP_NAME");
-	m_builtins.push_back("CWD");
+	setProtected("IASH_APP_NAME", appName);
+	setProtected("CWD", (Directory::getWorkingDir()).getAbsPath());
+	setProtected("?", "0");
 }
 
 Environment::~Environment () {}
