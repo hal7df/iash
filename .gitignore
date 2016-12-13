@@ -8,6 +8,7 @@
 # Eclipse project files
 .project
 .cproject
+.settings/
 
 # Build files
 build/

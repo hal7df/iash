@@ -17,13 +17,14 @@
  */
 
 #include "iash.h"
+#include "EchoCommand.h"
 #include <fstream>
 using namespace std;
 
 iash::iash (string appName)
 	: m_appName(appName), m_dispatcher(this), m_env(appName), m_iashCwd()
 {
-
+	addCommand(new EchoCommand);
 }
 
 Environment* iash::getEnv () const
