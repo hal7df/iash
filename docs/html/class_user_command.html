@@ -48,6 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -72,6 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -120,12 +122,15 @@ $(document).ready(function(){initNavTree('class_user_command.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab7301167740a72b1005f222a1e39af13"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_command.html#ab7301167740a72b1005f222a1e39af13">UserCommand</a> (std::string inputCommand, std::istream &amp;stdin, std::ostream &amp;stdout)</td></tr>
-<tr class="memdesc:ab7301167740a72b1005f222a1e39af13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_user_command.html" title="Used to retain command arguments and the proper input and output streams for a command call...">UserCommand</a> class with the given command, input, and output.  <a href="#ab7301167740a72b1005f222a1e39af13">More...</a><br /></td></tr>
-<tr class="separator:ab7301167740a72b1005f222a1e39af13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd42407e9be8c88834363dc2a4a8e1e7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_command.html#acd42407e9be8c88834363dc2a4a8e1e7">getWholeCommand</a> () const </td></tr>
-<tr class="memdesc:acd42407e9be8c88834363dc2a4a8e1e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the entire command (including the command name), parsed into arguments as a vector.  <a href="#acd42407e9be8c88834363dc2a4a8e1e7">More...</a><br /></td></tr>
-<tr class="separator:acd42407e9be8c88834363dc2a4a8e1e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae598be7d8ef644f37f8837e205dff24f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_command.html#ae598be7d8ef644f37f8837e205dff24f">UserCommand</a> (std::string inputCommand, std::istream &amp;stdin, std::ostream *stdout)</td></tr>
+<tr class="memdesc:ae598be7d8ef644f37f8837e205dff24f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_user_command.html" title="Used to retain command arguments and the proper input and output streams for a command call...">UserCommand</a> object with the given command, input, and output.  <a href="#ae598be7d8ef644f37f8837e205dff24f">More...</a><br /></td></tr>
+<tr class="separator:ae598be7d8ef644f37f8837e205dff24f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5450f8b3fcadf3d371d33af9b9466d75"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_command.html#a5450f8b3fcadf3d371d33af9b9466d75">UserCommand</a> (<a class="el" href="class_token.html">Token</a> inputCommand, std::istream &amp;stdin, std::ostream &amp;stdout)</td></tr>
+<tr class="memdesc:a5450f8b3fcadf3d371d33af9b9466d75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_user_command.html" title="Used to retain command arguments and the proper input and output streams for a command call...">UserCommand</a> object with the given command, input, and output.  <a href="#a5450f8b3fcadf3d371d33af9b9466d75">More...</a><br /></td></tr>
+<tr class="separator:a5450f8b3fcadf3d371d33af9b9466d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abed711c3665e673e99fcc4a5074cd850"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_command.html#abed711c3665e673e99fcc4a5074cd850">getWholeCommand</a> () const </td></tr>
+<tr class="memdesc:abed711c3665e673e99fcc4a5074cd850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the entire command (including the command name), parsed into arguments as a vector.  <a href="#abed711c3665e673e99fcc4a5074cd850">More...</a><br /></td></tr>
+<tr class="separator:abed711c3665e673e99fcc4a5074cd850"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb69472ccb1a7e638fe2423ab4bc4540"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_command.html#acb69472ccb1a7e638fe2423ab4bc4540">getArguments</a> () const </td></tr>
 <tr class="memdesc:acb69472ccb1a7e638fe2423ab4bc4540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns all arguments passed by the user that are not options/switches (arguments identified with a <code>-</code> or <code>--</code> at the beginning).  <a href="#acb69472ccb1a7e638fe2423ab4bc4540">More...</a><br /></td></tr>
 <tr class="separator:acb69472ccb1a7e638fe2423ab4bc4540"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,10 +152,10 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Used to retain command arguments and the proper input and output streams for a command call. </p>
-<p>Note that, with the exception of <a class="el" href="class_user_command.html#acd42407e9be8c88834363dc2a4a8e1e7">UserCommand::getWholeCommand</a>, all of the functions that retrieve options or arguments from the user's command input iterate over the internal vector used to store it, and thus may slow down your program if they are called too often.</p>
+<p>Note that, with the exception of <a class="el" href="class_user_command.html#abed711c3665e673e99fcc4a5074cd850">UserCommand::getWholeCommand</a>, all of the functions that retrieve options or arguments from the user's command input iterate over the internal vector used to store it, and thus may slow down your program if they are called too often.</p>
 <dl class="section since"><dt>Since</dt><dd>0.5 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ab7301167740a72b1005f222a1e39af13"></a>
+<a class="anchor" id="ae598be7d8ef644f37f8837e205dff24f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -158,6 +163,49 @@ Public Member Functions</h2></td></tr>
           <td class="memname">UserCommand::UserCommand </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>inputCommand</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>stdin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::ostream *&#160;</td>
+          <td class="paramname"><em>stdout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="class_user_command.html" title="Used to retain command arguments and the proper input and output streams for a command call...">UserCommand</a> object with the given command, input, and output. </p>
+<p>This also invokes the command parser, parsing the user's command into its components. (This does not parse out the command's options).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inputCommand</td><td>the command the user input </td></tr>
+    <tr><td class="paramname">stdin</td><td>the stream to use as stdin for the command </td></tr>
+    <tr><td class="paramname">stdout</td><td>the stream to use as stdout for the command </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5450f8b3fcadf3d371d33af9b9466d75"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UserCommand::UserCommand </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_token.html">Token</a>&#160;</td>
           <td class="paramname"><em>inputCommand</em>, </td>
         </tr>
         <tr>
@@ -180,11 +228,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new <a class="el" href="class_user_command.html" title="Used to retain command arguments and the proper input and output streams for a command call...">UserCommand</a> class with the given command, input, and output. </p>
+<p>Constructs a new <a class="el" href="class_user_command.html" title="Used to retain command arguments and the proper input and output streams for a command call...">UserCommand</a> object with the given command, input, and output. </p>
 <p>This also invokes the command parser, parsing the user's command into its components. (This does not parse out the command's options).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">inputCommand</td><td>the command the user input </td></tr>
+    <tr><td class="paramname">inputCommand</td><td>the command the user input as a <a class="el" href="class_token.html" title="Represents a single unit of a command language. ">Token</a> </td></tr>
     <tr><td class="paramname">stdin</td><td>the stream to use as stdin for the command </td></tr>
     <tr><td class="paramname">stdout</td><td>the stream to use as stdout for the command </td></tr>
   </table>
@@ -321,12 +369,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="acd42407e9be8c88834363dc2a4a8e1e7"></a>
+<a class="anchor" id="abed711c3665e673e99fcc4a5074cd850"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt; string &gt; UserCommand::getWholeCommand </td>
+          <td class="memname">const vector&lt; string &gt; &amp; UserCommand::getWholeCommand </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>

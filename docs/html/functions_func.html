@@ -48,6 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -72,6 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li class="current"><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -91,8 +93,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_g"><span>g</span></a></li>
       <li><a href="#index_i"><span>i</span></a></li>
       <li><a href="#index_m"><span>m</span></a></li>
+      <li><a href="#index_o"><span>o</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
+      <li><a href="#index_t"><span>t</span></a></li>
       <li><a href="#index_u"><span>u</span></a></li>
       <li class="current"><a href="#index_v"><span>v</span></a></li>
     </ul>
@@ -170,7 +174,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="class_environment.html#a9a078b8c683e55f23f05427e0bb2a8e6">Environment</a>
 </li>
 <li>exec()
-: <a class="el" href="classiash.html#a315d0988da0ce2ef576c08d4d8d1ce90">iash</a>
+: <a class="el" href="classiash.html#a043911f2a2bf1d5c1cba490e40449318">iash</a>
 </li>
 </ul>
 
@@ -178,6 +182,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
 <li>fileExists()
 : <a class="el" href="class_directory.html#a92066f464a0c71c4aafd111ad2b849c6">Directory</a>
+</li>
+<li>finalize()
+: <a class="el" href="class_token.html#aca5dd0a0cfeb16b9d4538dd91323ab41">Token</a>
 </li>
 </ul>
 
@@ -205,13 +212,16 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="class_user_command.html#a12e74d2a4b3d12102eb6013ccd67cf3b">UserCommand</a>
 </li>
 <li>getCwd()
-: <a class="el" href="classiash.html#a91d6dba0de1d0d033a368a9e114c678d">iash</a>
+: <a class="el" href="classiash.html#a746c296a179670886b72c166db01c667">iash</a>
 </li>
 <li>getDouble()
 : <a class="el" href="class_environment.html#a43f7d699cee713b112177864dac31910">Environment</a>
 </li>
 <li>getEnv()
-: <a class="el" href="classiash.html#a29b614bf93dceccaa5c9339392333e15">iash</a>
+: <a class="el" href="classiash.html#a9e1336092bd07175e6c6f66133cafa45">iash</a>
+</li>
+<li>getFollowingDelimiter()
+: <a class="el" href="class_token.html#a2bcd55a8f1441557a3c1baaac69704b1">Token</a>
 </li>
 <li>getHomeDir()
 : <a class="el" href="class_directory.html#a43b45931e65f04a94f41ec7bf70fa91f">Directory</a>
@@ -228,6 +238,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>getPathToFileInDirectory()
 : <a class="el" href="class_directory.html#a4aad5b838b9a642c102ba7297355f12b">Directory</a>
 </li>
+<li>getPrecedingDelimiter()
+: <a class="el" href="class_token.html#a68d6595b2b9f3f76d0234828dcda9cae">Token</a>
+</li>
 <li>getStdin()
 : <a class="el" href="class_user_command.html#acfd600bee459c491aec760bd0fb7b42a">UserCommand</a>
 </li>
@@ -237,8 +250,15 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>getString()
 : <a class="el" href="class_environment.html#a1c7db4207d2840fd13c0139448225486">Environment</a>
 </li>
+<li>getToken()
+: <a class="el" href="class_token.html#af071856fbae6a564d41f9fe3306a5c0c">Token</a>
+, <a class="el" href="class_tokenizer.html#a94fc9906dac29f7bfc9b2a65573db81a">Tokenizer</a>
+</li>
+<li>getTokens()
+: <a class="el" href="class_tokenizer.html#a30005d44ec15a17f62dab64273849c50">Tokenizer</a>
+</li>
 <li>getWholeCommand()
-: <a class="el" href="class_user_command.html#acd42407e9be8c88834363dc2a4a8e1e7">UserCommand</a>
+: <a class="el" href="class_user_command.html#abed711c3665e673e99fcc4a5074cd850">UserCommand</a>
 </li>
 <li>getWorkingDir()
 : <a class="el" href="class_directory.html#aeac144ed8ba39d43e0caa198ee2c9d7b">Directory</a>
@@ -248,7 +268,10 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
 <li>iash()
-: <a class="el" href="classiash.html#a4e9e678a9dd4e3ad426051e69101f09f">iash</a>
+: <a class="el" href="classiash.html#a68dbda0ac8cbeaf3597cdca41ab506e4">iash</a>
+</li>
+<li>indexOf()
+: <a class="el" href="class_tokenizer.html#ac71b89c95ff330c0fe289d11e680ae1a">Tokenizer</a>
 </li>
 <li>init()
 : <a class="el" href="class_command.html#ab9606d1fae2f68658344f404b658301e">Command</a>
@@ -258,6 +281,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </li>
 <li>isFile()
 : <a class="el" href="class_directory.html#a962be54a6b20cd150b0503a4008ce998">Directory</a>
+</li>
+<li>isToken()
+: <a class="el" href="class_token.html#af586263730d675b4df5f5abf91bbc753">Token</a>
 </li>
 <li>isValid()
 : <a class="el" href="class_directory.html#a8661d1f7b5751fcf2bd98ce4890435fe">Directory</a>
@@ -271,6 +297,13 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </li>
 <li>mkSubdir()
 : <a class="el" href="class_directory.html#a9a18ea44301b4481d453b543004ef627">Directory</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
+<li>operator==()
+: <a class="el" href="class_token.html#a4b0d7419c692350d4b28b947956e7e82">Token</a>
 </li>
 </ul>
 
@@ -298,8 +331,27 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>set()
 : <a class="el" href="class_environment.html#aa8d8f7d755f9fdf54653256a8312b8fb">Environment</a>
 </li>
+<li>setDelims()
+: <a class="el" href="class_tokenizer.html#afead0213bf00a5e888b87ddf5f1df078">Tokenizer</a>
+</li>
+<li>setSource()
+: <a class="el" href="class_tokenizer.html#a885bd98a4f365c01d0e9c6c49de81f54">Tokenizer</a>
+</li>
 <li>showUsageMessage()
 : <a class="el" href="class_command.html#aeccbc6bba93c9778807f27a80bacf8b3">Command</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>Token()
+: <a class="el" href="class_token.html#a175d5e1a5ce7edb632d646f7f8eea5d4">Token</a>
+</li>
+<li>TokenizeException()
+: <a class="el" href="class_tokenize_exception.html#aecd3d00eb28499d51abab3d01216539a">TokenizeException</a>
+</li>
+<li>Tokenizer()
+: <a class="el" href="class_tokenizer.html#a2a6c04ea8c784f66bebcb6df7073769c">Tokenizer</a>
 </li>
 </ul>
 
@@ -309,7 +361,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="class_command_dispatcher.html#a29ea5aa3f5ff2a46af38dd3274ba0363">CommandDispatcher</a>
 </li>
 <li>UserCommand()
-: <a class="el" href="class_user_command.html#ab7301167740a72b1005f222a1e39af13">UserCommand</a>
+: <a class="el" href="class_user_command.html#ae598be7d8ef644f37f8837e205dff24f">UserCommand</a>
 </li>
 </ul>
 

@@ -48,6 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -72,6 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li class="current"><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -113,10 +115,16 @@ $(document).ready(function(){initNavTree('annotated.html','');});
 <table class="directory">
 <tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_command.html" target="_self">Command</a></td><td class="desc">Abstract interface for a command registered with the shell </td></tr>
 <tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_command_dispatcher.html" target="_self">CommandDispatcher</a></td><td class="desc">Class to register and execute Commands in an iash shell </td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_directory.html" target="_self">Directory</a></td><td class="desc">Represents a directory on the filesystem </td></tr>
-<tr id="row_3_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_environment.html" target="_self">Environment</a></td><td class="desc"><a class="el" href="class_environment.html" title="Environment variable manager for iash. ">Environment</a> variable manager for iash </td></tr>
-<tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classiash.html" target="_self">iash</a></td><td class="desc">The main shell class for iash </td></tr>
-<tr id="row_5_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_user_command.html" target="_self">UserCommand</a></td><td class="desc">Used to retain command arguments and the proper input and output streams for a command call </td></tr>
+<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_command_preprocessor.html" target="_self">CommandPreprocessor</a></td><td class="desc"></td></tr>
+<tr id="row_3_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_directory.html" target="_self">Directory</a></td><td class="desc">Represents a directory on the filesystem </td></tr>
+<tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_environment.html" target="_self">Environment</a></td><td class="desc"><a class="el" href="class_environment.html" title="Environment variable manager for iash. ">Environment</a> variable manager for iash </td></tr>
+<tr id="row_5_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_file_not_found_exception.html" target="_self">FileNotFoundException</a></td><td class="desc"></td></tr>
+<tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classiash.html" target="_self">iash</a></td><td class="desc">The main shell class for iash </td></tr>
+<tr id="row_7_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_syntax_exception.html" target="_self">SyntaxException</a></td><td class="desc"></td></tr>
+<tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_token.html" target="_self">Token</a></td><td class="desc">Represents a single unit of a command language </td></tr>
+<tr id="row_9_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_tokenize_exception.html" target="_self">TokenizeException</a></td><td class="desc">Thrown when the tokenizer encounters trouble tokenizing a string </td></tr>
+<tr id="row_10_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_tokenizer.html" target="_self">Tokenizer</a></td><td class="desc">Splits up a source string into Tokens based on the given delimiter(s) </td></tr>
+<tr id="row_11_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_user_command.html" target="_self">UserCommand</a></td><td class="desc">Used to retain command arguments and the proper input and output streams for a command call </td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->

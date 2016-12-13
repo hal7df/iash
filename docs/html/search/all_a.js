@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['unregistercommand',['unregisterCommand',['../class_command_dispatcher.html#a29ea5aa3f5ff2a46af38dd3274ba0363',1,'CommandDispatcher::unregisterCommand(std::string name)'],['../class_command_dispatcher.html#a48bad50e793b6f009240c87f56099d54',1,'CommandDispatcher::unregisterCommand(Command *cmd)']]],
-  ['usercommand',['UserCommand',['../class_user_command.html',1,'UserCommand'],['../class_user_command.html#ab7301167740a72b1005f222a1e39af13',1,'UserCommand::UserCommand()']]]
+  ['set',['set',['../class_environment.html#aa8d8f7d755f9fdf54653256a8312b8fb',1,'Environment::set(const std::string &amp;key, const std::string &amp;value)'],['../class_environment.html#acbb781022f97079728410988fc7c648a',1,'Environment::set(const std::string &amp;key, const bool value)'],['../class_environment.html#a0f5754851dd8e16c56af2e497e45f95b',1,'Environment::set(const std::string &amp;key, const int value)'],['../class_environment.html#a490ded7b70ff93c3327bc7cab195342f',1,'Environment::set(const std::string &amp;key, const double value)']]],
+  ['setdelims',['setDelims',['../class_tokenizer.html#afead0213bf00a5e888b87ddf5f1df078',1,'Tokenizer']]],
+  ['setsource',['setSource',['../class_tokenizer.html#a885bd98a4f365c01d0e9c6c49de81f54',1,'Tokenizer']]],
+  ['showusagemessage',['showUsageMessage',['../class_command.html#aeccbc6bba93c9778807f27a80bacf8b3',1,'Command']]],
+  ['syntaxexception',['SyntaxException',['../class_syntax_exception.html',1,'']]]
 ];
