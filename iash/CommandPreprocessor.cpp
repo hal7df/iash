@@ -138,6 +138,3 @@ vector<UserCommand>& CommandPreprocessor::getCommands () const
 
 SyntaxException::SyntaxException (const string &reason)
 	: runtime_error("syntax error: " + reason) {}
-
-FileNotFoundException::FileNotFoundException (const string &fname)
-	: runtime_error(fname + ": file not found") {}

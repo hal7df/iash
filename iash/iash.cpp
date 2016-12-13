@@ -95,6 +95,11 @@ int iash::run (istream &cmdin, bool showPrompt)
 				returnCode = m_dispatcher.dispatch(&cmd);
 			}
 		}
+		catch (TokenizeException &toke)
+		{
+			cout << "iash: " << toke.what() << endl;
+			processor.cleanup();
+		}
 		catch (SyntaxException &syne)
 		{
 			cout << "iash: " << syne.what() << endl;

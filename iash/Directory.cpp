@@ -223,3 +223,6 @@ Directory Directory::getWorkingDir()
 
     return Directory(path);
 }
+
+FileNotFoundException::FileNotFoundException (const string &fname)
+	: runtime_error(fname + ": file not found") {}

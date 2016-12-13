@@ -77,8 +77,8 @@ public:
 	 * Gets an absolute path to a file in the directory referred to by this
 	 * Directory.
 	 *
-	 * @param	the name of a file in the directory
-	 * @return	an absolute path to a file in this Directory
+	 * @param filename	the name of a file in the directory
+	 * @return			an absolute path to a file in this Directory
 	 */
 	const char* getPathToFileInDirectory (const std::string &filename) const;
 
@@ -171,6 +171,18 @@ private:
 
 	std::string m_dirpath;
 	bool m_valid;
+};
+
+/**
+ * Thrown when an iash component cannot find the requested file. This is caught
+ * by the iash shell.
+ */
+class FileNotFoundException : public std::runtime_error {
+public:
+	/**
+	 * Constructs a FileNotFoundException with the given filename.
+	 */
+	FileNotFoundException(const std::string &fname);
 };
 
 #endif /* IASH_DIRECTORY_H_ */
