@@ -5,7 +5,7 @@ var annotated_dup =
     [ "CommandPreprocessor", "class_command_preprocessor.html", "class_command_preprocessor" ],
     [ "Directory", "class_directory.html", "class_directory" ],
     [ "Environment", "class_environment.html", "class_environment" ],
-    [ "FileNotFoundException", "class_file_not_found_exception.html", null ],
+    [ "FileNotFoundException", "class_file_not_found_exception.html", "class_file_not_found_exception" ],
     [ "iash", "classiash.html", "classiash" ],
     [ "SyntaxException", "class_syntax_exception.html", "class_syntax_exception" ],
     [ "Token", "class_token.html", "class_token" ],

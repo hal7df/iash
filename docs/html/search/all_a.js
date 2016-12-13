@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['set',['set',['../class_environment.html#aa8d8f7d755f9fdf54653256a8312b8fb',1,'Environment::set(const std::string &amp;key, const std::string &amp;value)'],['../class_environment.html#acbb781022f97079728410988fc7c648a',1,'Environment::set(const std::string &amp;key, const bool value)'],['../class_environment.html#a0f5754851dd8e16c56af2e497e45f95b',1,'Environment::set(const std::string &amp;key, const int value)'],['../class_environment.html#a490ded7b70ff93c3327bc7cab195342f',1,'Environment::set(const std::string &amp;key, const double value)']]],
-  ['setdelims',['setDelims',['../class_tokenizer.html#afead0213bf00a5e888b87ddf5f1df078',1,'Tokenizer']]],
-  ['setsource',['setSource',['../class_tokenizer.html#a885bd98a4f365c01d0e9c6c49de81f54',1,'Tokenizer']]],
-  ['showusagemessage',['showUsageMessage',['../class_command.html#aeccbc6bba93c9778807f27a80bacf8b3',1,'Command']]],
-  ['syntaxexception',['SyntaxException',['../class_syntax_exception.html',1,'']]]
+  ['registercommand',['registerCommand',['../class_command_dispatcher.html#acf16ce3881024826c8cfce6cd625c87a',1,'CommandDispatcher']]],
+  ['rm',['rm',['../class_environment.html#a4fbd86433a63c7e5eead0f20ec28f0e7',1,'Environment']]],
+  ['run',['run',['../class_command.html#a05729cc558e0f89c39c27dc1379c97f8',1,'Command']]],
+  ['runinteractive',['runInteractive',['../classiash.html#ab7a1b381bc195c704ff3e800dd1e9928',1,'iash']]],
+  ['runscript',['runScript',['../classiash.html#a093e92a68355e77316ddf33f83b3a2bf',1,'iash']]]
 ];

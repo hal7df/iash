@@ -5,6 +5,7 @@ var searchData=
   ['getaliasmapping',['getAliasMapping',['../class_command.html#a6f4f5394f77020dadedca1660040fd4b',1,'Command']]],
   ['getarguments',['getArguments',['../class_user_command.html#acb69472ccb1a7e638fe2423ab4bc4540',1,'UserCommand']]],
   ['getbool',['getBool',['../class_environment.html#adcb72658e9cec47e89b96bfe01d6e77d',1,'Environment']]],
+  ['getcommands',['getCommands',['../class_command_preprocessor.html#a73ffa89323f341526f7a7d220113d0eb',1,'CommandPreprocessor']]],
   ['getconfigdir',['getConfigDir',['../class_directory.html#a9439ec9aa9f8f5aea3d9f1882b8ad167',1,'Directory']]],
   ['getcontextualargument',['getContextualArgument',['../class_user_command.html#a12e74d2a4b3d12102eb6013ccd67cf3b',1,'UserCommand::getContextualArgument(char opt) const '],['../class_user_command.html#a663b22f04b6cc4c0248104f3837040bf',1,'UserCommand::getContextualArgument(std::string opt) const ']]],
   ['getcwd',['getCwd',['../classiash.html#a746c296a179670886b72c166db01c667',1,'iash']]],

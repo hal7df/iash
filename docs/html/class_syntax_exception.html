@@ -114,27 +114,56 @@ $(document).ready(function(){initNavTree('class_syntax_exception.html','');});
 <div class="title">SyntaxException Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Thrown when the <a class="el" href="class_command_preprocessor.html" title="Processes raw input for iash and converts the input into UserCommands that can then be run by the Com...">CommandPreprocessor</a> encounters an iash syntax error.  
+ <a href="class_syntax_exception.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_command_preprocessor_8h_source.html">CommandPreprocessor.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for SyntaxException:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_syntax_exception__inherit__graph.png" border="0" usemap="#_syntax_exception_inherit__map" alt="Inheritance graph"/></div>
-<map name="_syntax_exception_inherit__map" id="_syntax_exception_inherit__map">
-</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for SyntaxException:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_syntax_exception__coll__graph.png" border="0" usemap="#_syntax_exception_coll__map" alt="Collaboration graph"/></div>
-<map name="_syntax_exception_coll__map" id="_syntax_exception_coll__map">
-</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a71abf46cf7c91fdc4f8de29486e2cb07"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a71abf46cf7c91fdc4f8de29486e2cb07"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SyntaxException</b> (const std::string &amp;reason)</td></tr>
+<tr class="memitem:a71abf46cf7c91fdc4f8de29486e2cb07"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_syntax_exception.html#a71abf46cf7c91fdc4f8de29486e2cb07">SyntaxException</a> (const std::string &amp;reason)</td></tr>
+<tr class="memdesc:a71abf46cf7c91fdc4f8de29486e2cb07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="class_syntax_exception.html" title="Thrown when the CommandPreprocessor encounters an iash syntax error. ">SyntaxException</a> with the given reason.  <a href="#a71abf46cf7c91fdc4f8de29486e2cb07">More...</a><br /></td></tr>
 <tr class="separator:a71abf46cf7c91fdc4f8de29486e2cb07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Thrown when the <a class="el" href="class_command_preprocessor.html" title="Processes raw input for iash and converts the input into UserCommands that can then be run by the Com...">CommandPreprocessor</a> encounters an iash syntax error. </p>
+<p>This is automatically caught by the iash shell. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a71abf46cf7c91fdc4f8de29486e2cb07"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SyntaxException::SyntaxException </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>reason</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="class_syntax_exception.html" title="Thrown when the CommandPreprocessor encounters an iash syntax error. ">SyntaxException</a> with the given reason. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reason</td><td>the syntax error </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>iash/<a class="el" href="_command_preprocessor_8h_source.html">CommandPreprocessor.h</a></li>
 <li>iash/CommandPreprocessor.cpp</li>
