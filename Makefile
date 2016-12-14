@@ -3,8 +3,8 @@
 # Where to find the sources
 LIB_SRCS = $(wildcard src/*.cpp) $(wildcard src/tools/*.cpp)
 BUILTIN_COMMANDS = $(wildcard src/cmd/*.cpp)
-EXAMPLE_SRCS = $(wildcard example/*.cpp)
-EXAMPLE_FILES = $(notdir EXAMPLE_SRCS)
+EXAMPLE_SRCS = $(wildcard examples/*.cpp)
+EXAMPLE_FILES = $(notdir $(EXAMPLE_SRCS))
 
 # Output directories
 BIN_ROOT = bin
@@ -27,17 +27,18 @@ AR = ar
 all: iash example
 
 iash: $(LIB_OBJS) $(BUILTIN_OBJS)
-	mkdirhier $(BIN_LIB)
+	mkdir -p $(BIN_LIB)
 	$(AR) rcs "$(BIN_LIB)/lib$@.a" $(wildcard $(BIN_OBJ)/*.o)
 	$(CXX) $(LIB_OBJS) $(BUILTIN_OBJS) -shared -o "$(BIN_LIB)/lib$@.so"
 
-examples: $(BIN_EXAMPLE)/$(EXAMPLE_FILES:.cpp=)
+example: $(BIN_EXAMPLE)/$(EXAMPLE_FILES:.cpp=)
 
 $(BIN_OBJ)/%.o: src/%.cpp
-	mkdirhier $(dir $@)
+	mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $< -o $@
 	
-$(BIN_EXAMPLE)/%: $(EXAMPLE_SRCS)/%.cpp iash
+$(BIN_EXAMPLE)/%: examples/%.cpp iash
+	mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -L$(BIN_LIB) -liash $< -o $@
 	
 clean:
