@@ -5,8 +5,8 @@
  *      Author: paul
  */
 
-#ifndef IASH_ENVIRONMENT_H_
-#define IASH_ENVIRONMENT_H_
+#ifndef SRC_ENVIRONMENT_H_
+#define SRC_ENVIRONMENT_H_
 
 #include <map>
 #include <vector>
@@ -133,4 +133,4 @@ private:
 	std::vector<std::string> m_builtins;
 };
 
-#endif /* IASH_ENVIRONMENT_H_ */
+#endif /* SRC_ENVIRONMENT_H_ */

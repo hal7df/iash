@@ -11,12 +11,7 @@
 .settings/
 
 # Build files
-build/
-CMakeFiles/
-*.cmake
-CMakeCache.txt
-*Makefile
-*.a
-iashexample
+bin/
 
-/Debug/
+# Doxygen config files
+Doxyfile

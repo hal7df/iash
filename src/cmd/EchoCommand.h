@@ -1,7 +1,7 @@
-#ifndef IASH_CMD_ECHOCOMMAND_H_
-#define IASH_CMD_ECHOCOMMAND_H_
+#ifndef SRC_CMD_ECHOCOMMAND_H_
+#define SRC_CMD_ECHOCOMMAND_H_
 
-#include "../Command.h"
+#include "../../src/Command.h"
 
 class EchoCommand :public Command{
 
@@ -12,4 +12,4 @@ private:
 
 };
 
-#endif /* IASH_CMD_ECHOCOMMAND_H_ */
+#endif /* SRC_CMD_ECHOCOMMAND_H_ */

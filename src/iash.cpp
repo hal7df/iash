@@ -16,9 +16,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "iash.h"
-#include "EchoCommand.h"
+#include "../src/iash.h"
+
 #include <fstream>
+
+#include "../src/cmd/EchoCommand.h"
 using namespace std;
 
 iash::iash (string appName)

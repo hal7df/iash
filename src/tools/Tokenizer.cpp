@@ -5,7 +5,7 @@
  *      Author: paul
  */
 
-#include "Tokenizer.h"
+#include "../../src/tools/Tokenizer.h"
 using namespace std;
 
 Tokenizer::Tokenizer() : m_delims(1, ' ') {}

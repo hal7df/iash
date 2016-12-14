@@ -31,11 +31,11 @@
 #include <iostream>
 #include <string>
 
-#include "Environment.h"
-#include "UserCommand.h"
-#include "Command.h"
-#include "CommandDispatcher.h"
-#include "Directory.h"
+#include "../src/Environment.h"
+#include "../src/UserCommand.h"
+#include "../src/Command.h"
+#include "../src/CommandDispatcher.h"
+#include "../src/Directory.h"
 
 /**
  * The main shell class for iash.

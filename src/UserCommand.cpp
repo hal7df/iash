@@ -5,7 +5,7 @@
  *      Author: paul
  */
 
-#include "UserCommand.h"
+#include "../src/UserCommand.h"
 using namespace std;
 
 UserCommand::UserCommand (string inputCommand, istream &stdin, ostream &stdout)

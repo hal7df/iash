@@ -5,8 +5,8 @@
  *      Author: paul
  */
 
-#ifndef IASH_TOOLS_TOKEN_H_
-#define IASH_TOOLS_TOKEN_H_
+#ifndef SRC_TOOLS_TOKEN_H_
+#define SRC_TOOLS_TOKEN_H_
 
 #include <string>
 
@@ -108,4 +108,4 @@ private:
 	char m_followingDelim;
 };
 
-#endif /* IASH_TOOLS_TOKEN_H_ */
+#endif /* SRC_TOOLS_TOKEN_H_ */

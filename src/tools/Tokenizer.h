@@ -5,14 +5,15 @@
  *      Author: paul
  */
 
-#ifndef IASH_TOOLS_TOKENIZER_H_
-#define IASH_TOOLS_TOKENIZER_H_
+#ifndef SRC_TOOLS_TOKENIZER_H_
+#define SRC_TOOLS_TOKENIZER_H_
 
 #include <string>
 #include <vector>
 #include <exception>
 #include <stdexcept>
-#include "Token.h"
+
+#include "../../src/tools/Token.h"
 
 /**
  * Splits up a source string into Tokens based on the given delimiter(s). This
@@ -155,4 +156,4 @@ public:
 	TokenizeException(const std::string &reason);
 };
 
-#endif /* IASH_TOOLS_TOKENIZER_H_ */
+#endif /* SRC_TOOLS_TOKENIZER_H_ */

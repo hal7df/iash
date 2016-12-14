@@ -5,8 +5,8 @@
  *      Author: paul
  */
 
-#ifndef IASH_DIRECTORY_H_
-#define IASH_DIRECTORY_H_
+#ifndef SRC_DIRECTORY_H_
+#define SRC_DIRECTORY_H_
 
 #include <string>
 
@@ -185,4 +185,4 @@ public:
 	FileNotFoundException(const std::string &fname);
 };
 
-#endif /* IASH_DIRECTORY_H_ */
+#endif /* SRC_DIRECTORY_H_ */

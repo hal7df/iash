@@ -5,16 +5,17 @@
  *      Author: paul
  */
 
-#ifndef IASH_COMMANDPREPROCESSOR_H_
-#define IASH_COMMANDPREPROCESSOR_H_
+#ifndef SRC_COMMANDPREPROCESSOR_H_
+#define SRC_COMMANDPREPROCESSOR_H_
 
 #include <string>
 #include <iostream>
 #include <vector>
 #include <stdexcept>
 #include <exception>
-#include "UserCommand.h"
-#include "iash.h"
+
+#include "../src/iash.h"
+#include "../src/UserCommand.h"
 
 /**
  * Processes raw input for iash and converts the input into UserCommands that
@@ -84,4 +85,4 @@ public:
 	SyntaxException(const std::string &reason);
 };
 
-#endif /* IASH_COMMANDPREPROCESSOR_H_ */
+#endif /* SRC_COMMANDPREPROCESSOR_H_ */

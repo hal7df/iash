@@ -5,7 +5,8 @@
  *      Author: paul
  */
 
-#include "CommandDispatcher.h"
+#include "../src/CommandDispatcher.h"
+
 #include <cassert>
 using namespace std;
 

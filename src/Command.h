@@ -5,14 +5,14 @@
  *      Author: paul
  */
 
-#ifndef IASH_COMMAND_H_
-#define IASH_COMMAND_H_
+#ifndef SRC_COMMAND_H_
+#define SRC_COMMAND_H_
 
-#include "iash.h"
-#include "UserCommand.h"
 #include <iostream>
 #include <string>
 #include <vector>
+#include "../src/iash.h"
+#include "../src/UserCommand.h"
 
 /**
  * Abstract interface for a command registered with the shell.
@@ -168,4 +168,4 @@ protected:
 	iash *m_parent;
 };
 
-#endif /* IASH_COMMAND_H_ */
+#endif /* SRC_COMMAND_H_ */

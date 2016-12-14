@@ -5,13 +5,14 @@
  *      Author: paul
  */
 
-#ifndef IASH_USERCOMMAND_H_
-#define IASH_USERCOMMAND_H_
+#ifndef SRC_USERCOMMAND_H_
+#define SRC_USERCOMMAND_H_
 
 #include <iostream>
 #include <string>
 #include <vector>
-#include "tools/Token.h"
+
+#include "../src/tools/Token.h"
 
 /**
  * Used to retain command arguments and the proper input and output streams for
@@ -139,4 +140,4 @@ private:
 	std::string m_raw;
 };
 
-#endif /* IASH_USERCOMMAND_H_ */
+#endif /* SRC_USERCOMMAND_H_ */

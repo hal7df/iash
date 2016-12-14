@@ -20,38 +20,17 @@
  */
 
 #include <iostream>
-#include "iash/iash.h"
+
+#include "../src/iash.h"
 using namespace std;
 
 int main ()
 {
-    int x;
-    vector<string> cmdLine;
-    vector<string> ops;
-    iash shell ("example",true);
+    iash shell ("example");
 
-    do {
-        cmdLine = shell.getCmdLine();
-        ops = shell.getOptions();
+    cout << "iash proof-of-concept" << endl;
+    cout << "This program does not register any additional commands to iash,";
+    cout << " it merely creates a shell and runs it in interactive mode.";
 
-        if (!cmdLine.empty() && cmdLine[0] != "exit")
-        {
-            cout<<endl<<"Command: "<<cmdLine[0]<<endl<<endl<<"Arguments:"<<endl;
-
-            for (x = 1; x < cmdLine.size(); x++)
-                cout<<cmdLine[x]<<endl;
-
-            cout<<endl<<"Options:"<<endl;
-
-            for (x = 0; x < ops.size(); x++)
-                cout<<ops[x]<<endl;
-
-            cout<<endl;
-        }
-
-    } while (cmdLine[0] != "exit");
-
-    cout<<"iash example exiting."<<endl;
-
-    return 0;
+    return shell.runInteractive();
 }

@@ -5,15 +5,15 @@
  *      Author: paul
  */
 
-#ifndef IASH_COMMANDDISPATCHER_H_
-#define IASH_COMMANDDISPATCHER_H_
+#ifndef SRC_COMMANDDISPATCHER_H_
+#define SRC_COMMANDDISPATCHER_H_
 
-#include "iash.h"
-#include "Command.h"
-#include "UserCommand.h"
 #include <string>
 #include <map>
 #include <iostream>
+#include "../src/Command.h"
+#include "../src/iash.h"
+#include "../src/UserCommand.h"
 
 /**
  * Class to register and execute Commands in an iash shell. iash has an internal
@@ -44,7 +44,7 @@ public:
 	 * so:
 	 * ~~~{cpp}
 	 * CommandDispatcher disp (&shell);
-	 * disp.registerCommand(new MyCommand());
+	 * disp.registerCommand(new MyCommand);
 	 * ~~~
 	 * The CommandDispatcher will automatically free the allocated memory, so
 	 * there is no need to somehow catch the pointer to the allocated memory.
@@ -93,4 +93,4 @@ private:
 	std::map<std::string,Command*> m_aliasRegistry;
 };
 
-#endif /* IASH_COMMANDDISPATCHER_H_ */
+#endif /* SRC_COMMANDDISPATCHER_H_ */

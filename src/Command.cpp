@@ -5,7 +5,7 @@
  *      Author: paul
  */
 
-#include "Command.h"
+#include "../src/Command.h"
 using namespace std;
 
 Command::Command() {

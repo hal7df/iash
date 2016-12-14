@@ -5,7 +5,8 @@
  *      Author: paul
  */
 
-#include "Directory.h"
+#include "../src/Directory.h"
+
 #include <cassert>
 
 #ifdef __unix

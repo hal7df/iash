@@ -5,7 +5,7 @@
  *      Author: paul
  */
 
-#include "Token.h"
+#include "../../src/tools/Token.h"
 using namespace std;
 
 Token::Token(const string& rawToken, const char precedingDelim,

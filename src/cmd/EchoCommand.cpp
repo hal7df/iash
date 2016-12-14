@@ -1,4 +1,4 @@
-#include "EchoCommand.h"
+#include "../../src/cmd/EchoCommand.h"
 using namespace std;
 
 
