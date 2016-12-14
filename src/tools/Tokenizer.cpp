@@ -139,7 +139,7 @@ void Tokenizer::tokenize(string raw)
 		m_tokens.push_back(Token(tmpToken, last, cur));
 
 		lastDelim = curDelim;
-	} while (curDelim != string::npos);
+	} while (curDelim < raw.length());
 }
 
 TokenizeException::TokenizeException(const string &reason)

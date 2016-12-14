@@ -37,7 +37,7 @@ vector<UserCommand>& CommandPreprocessor::process(const string& raw)
 	istream *stdinCand;
 	ostream *stdoutCand;
 	stringstream *pipeStream = nullptr;
-	const Token *commandToken;
+	const Token *commandToken = nullptr;
 
 	//Clear the previous set of commands and dynamic streams
 	cleanup();
