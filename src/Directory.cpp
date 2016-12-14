@@ -5,7 +5,7 @@
  *      Author: paul
  */
 
-#include "../src/Directory.h"
+#include "Directory.h"
 
 #include <cassert>
 

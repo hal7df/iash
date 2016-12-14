@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-#include "../src/tools/Token.h"
+#include "tools/Token.h"
 
 /**
  * Used to retain command arguments and the proper input and output streams for

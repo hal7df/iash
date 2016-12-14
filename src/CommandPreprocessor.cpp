@@ -5,13 +5,13 @@
  *      Author: paul
  */
 
-#include "../src/CommandPreprocessor.h"
+#include "CommandPreprocessor.h"
 
 #include <fstream>
 #include <sstream>
 
-#include "../src/tools/Token.h"
-#include "../src/tools/Tokenizer.h"
+#include "tools/Token.h"
+#include "tools/Tokenizer.h"
 using namespace std;
 
 CommandPreprocessor::CommandPreprocessor(iash *parent) : m_parent(parent) {}

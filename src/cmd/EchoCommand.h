@@ -1,7 +1,7 @@
 #ifndef SRC_CMD_ECHOCOMMAND_H_
 #define SRC_CMD_ECHOCOMMAND_H_
 
-#include "../../src/Command.h"
+#include "../Command.h"
 
 class EchoCommand :public Command{
 

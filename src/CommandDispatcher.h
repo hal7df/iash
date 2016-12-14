@@ -11,9 +11,9 @@
 #include <string>
 #include <map>
 #include <iostream>
-#include "../src/Command.h"
-#include "../src/iash.h"
-#include "../src/UserCommand.h"
+#include "Command.h"
+#include "iash.h"
+#include "UserCommand.h"
 
 /**
  * Class to register and execute Commands in an iash shell. iash has an internal

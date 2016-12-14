@@ -14,8 +14,8 @@
 #include <stdexcept>
 #include <exception>
 
-#include "../src/iash.h"
-#include "../src/UserCommand.h"
+#include "iash.h"
+#include "UserCommand.h"
 
 /**
  * Processes raw input for iash and converts the input into UserCommands that

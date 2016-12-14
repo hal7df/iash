@@ -5,13 +5,13 @@
  *      Author: paul
  */
 
-#include "../src/Environment.h"
+#include "Environment.h"
 
 #include <string>
 #include <cctype>
 #include <cassert>
 
-#include "../src/Directory.h"
+#include "Directory.h"
 using namespace std;
 
 Environment::Environment (string appName)

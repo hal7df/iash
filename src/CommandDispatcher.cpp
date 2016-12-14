@@ -5,7 +5,7 @@
  *      Author: paul
  */
 
-#include "../src/CommandDispatcher.h"
+#include "CommandDispatcher.h"
 
 #include <cassert>
 using namespace std;
@@ -82,7 +82,7 @@ int CommandDispatcher::dispatch (UserCommand *userCmd)
 		int retVal;
 		if (!it->second->validate(userCmd))
 		{
-			it->second->showUsageMessage(userCmd);
+			it->second->showUsageMessage(userCmd->getStdout());
 			retVal = 1;
 		}
 		else retVal = it->second->run(userCmd);
