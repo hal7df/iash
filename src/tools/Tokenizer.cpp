@@ -113,7 +113,9 @@ void Tokenizer::tokenize(string raw)
 		}
 
 		//Get the token
-		tmpToken = raw.substr(lastDelim + 1, (curDelim - (lastDelim + 1)));
+		if (lastDelim > 0)
+			tmpToken = raw.substr(lastDelim + 1, (curDelim - (lastDelim + 1)));
+		else tmpToken = raw.substr(0, (curDelim - (lastDelim  + 1)));
 
 		//Remove any escapes for delimiters in this token
 		for (size_t i = 0; i < (tmpToken.length() - 1); ++i)

@@ -85,6 +85,8 @@ int iash::run (istream &cmdin, bool showPrompt)
 	string raw;
 	int returnCode = 0;
 
+	if (showPrompt) cout << m_appName << "> ";
+
 	while (getline(cmdin, raw))
 	{
 		//Run commands
@@ -118,9 +120,10 @@ int iash::run (istream &cmdin, bool showPrompt)
 
 		if (m_iashCwd.getAbsPath() != m_env.getString("CWD"))
 			m_env.setProtected("CWD", m_iashCwd.getAbsPath());
+
+		if (showPrompt) cout << m_appName << "> ";
 	}
 
-	if (showPrompt) cout << m_appName << "> ";
 
 	return m_env.getInt("?");
 }

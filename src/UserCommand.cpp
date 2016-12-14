@@ -24,6 +24,7 @@ UserCommand::UserCommand (const string &inputCommand, istream &stdin, ostream &s
 UserCommand::UserCommand (const Token &inputCommand, istream &stdin, ostream &stdout)
 	: m_stdin(stdin), m_stdout(stdout), m_raw(inputCommand.getToken())
 {
+	cout << m_raw << endl;
 	Tokenizer despace (inputCommand);
 
 	for (Token token : despace.getTokens())
