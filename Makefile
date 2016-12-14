@@ -16,9 +16,10 @@ BIN_EXAMPLE = $(BIN_ROOT)/example
 LIB_OBJS = $(LIB_SRCS:src/%.cpp=$(BIN_OBJ)/%.o)
 BUILTIN_OBJS = $(BUILTIN_COMMANDS:src/%.cpp=$(BIN_OBJ)/%.o)
 
-# Executables
+# Executables and flags
 CXX = g++
 CXXFLAGS = -Wall -Werror -pedantic --std=c++11
+OPTIMIZATION = -O1
 LIBFLAGS = -c -fpic
 AR = ar
 
@@ -35,11 +36,11 @@ example: $(BIN_EXAMPLE)/$(EXAMPLE_FILES:.cpp=)
 
 $(BIN_OBJ)/%.o: src/%.cpp
 	mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $< -o $@
+	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(OPTIMIZATION) $< -o $@
 	
 $(BIN_EXAMPLE)/%: examples/%.cpp iash
 	mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -L$(BIN_LIB) -liash $< -o $@
+	$(CXX) $(CXXFLAGS) $(OPTIMIZATION) -L$(abspath $(BIN_LIB)) $< -o $@ -liash
 	
 clean:
 	rm -vrf $(BIN_ROOT)

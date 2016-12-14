@@ -8,6 +8,7 @@
 #include "Directory.h"
 
 #include <cassert>
+#include <iostream>
 
 #ifdef __unix
     #include <sys/stat.h>
@@ -93,8 +94,9 @@ string Directory::handleSeparators (const string &path)
 	string newPath = path;
 	unsigned backslashPos;
 
-	while ((backslashPos = newPath.find('\\')) != string::npos)
+	while ((backslashPos = newPath.find('\\')) != static_cast<unsigned>(string::npos))
 	{
+		cout << backslashPos << ' ' << string::npos << endl;
 		newPath.replace(backslashPos, 1, "/");
 	}
 

@@ -31,6 +31,7 @@ int main ()
     cout << "iash proof-of-concept" << endl;
     cout << "This program does not register any additional commands to iash,";
     cout << " it merely creates a shell and runs it in interactive mode.";
+    cout << endl;
 
     return shell.runInteractive();
 }
