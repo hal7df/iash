@@ -127,7 +127,7 @@ public:
 private:
 	void setProtected (const std::string &key, const std::string &value);
 	bool isBuiltinVar (const std::string &key) const;
-	static std::string convName (const std::string &key) const;
+	static std::string convName (const std::string &key);
 
 	std::map<std::string,std::string> m_envMap;
 	std::vector<std::string> m_builtins;

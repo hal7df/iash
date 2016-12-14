@@ -6,6 +6,9 @@
  */
 
 #include "CommandDispatcher.h"
+#include "iash.h"
+#include "Command.h"
+#include "UserCommand.h"
 
 #include <cassert>
 using namespace std;
@@ -37,7 +40,7 @@ Command* CommandDispatcher::unregisterCommand (string name)
 
 	assert(pos != m_registry.end());
 
-	Command *v = *pos;
+	Command *v = pos->second;
 	m_registry.erase(pos);
 
 	for (map<string,Command*>::iterator it = m_aliasRegistry.begin(); it != m_aliasRegistry.end(); ++it)

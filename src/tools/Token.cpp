@@ -101,5 +101,5 @@ bool Token::isToken (const string &candidate, const char delim)
 
 bool Token::isWhitespace(const char c)
 {
-	return (c == ' ' || c == '\t' || c= '\n');
+	return (c == ' ' || c == '\t' || c == '\n');
 }

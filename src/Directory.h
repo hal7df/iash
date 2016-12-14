@@ -9,6 +9,8 @@
 #define SRC_DIRECTORY_H_
 
 #include <string>
+#include <exception>
+#include <stdexcept>
 
 /**
  * Represents a directory on the filesystem. Intended to help with managing

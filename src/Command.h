@@ -11,8 +11,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "iash.h"
-#include "UserCommand.h"
+
+class iash;
+class UserCommand;
 
 /**
  * Abstract interface for a command registered with the shell.

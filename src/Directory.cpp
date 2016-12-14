@@ -209,9 +209,8 @@ Directory Directory::getConfigDir()
 
 Directory Directory::getWorkingDir()
 {
-#ifdef __unix
-    char* buf;
-    string path;
+	char* buf;
+	string path;
 
 #ifdef __unix
     buf = getcwd(NULL,0);

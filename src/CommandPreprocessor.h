@@ -14,8 +14,8 @@
 #include <stdexcept>
 #include <exception>
 
-#include "iash.h"
-#include "UserCommand.h"
+class iash;
+class UserCommand;
 
 /**
  * Processes raw input for iash and converts the input into UserCommands that
@@ -51,7 +51,7 @@ public:
 	 * @return	a reference to a vector of the UserCommands contained in the
 	 * 			raw command string.
 	 */
-	std::vector<UserCommand>& getCommands () const;
+	std::vector<UserCommand>& getCommands ();
 
 	/**
 	 * Cleans up stream objects that were opened on the last call to process.

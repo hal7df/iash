@@ -18,16 +18,18 @@
 
 #include "iash.h"
 #include "cmd/EchoCommand.h"
+#include "tools/Tokenizer.h"
+#include "CommandPreprocessor.h"
 #include <fstream>
 using namespace std;
 
-iash::iash (string appName)
-	: m_appName(appName), m_dispatcher(this), m_env(appName), m_iashCwd()
+iash::iash (const string &appName)
+	: m_dispatcher(this), m_env(appName), m_iashCwd(), m_appName(appName)
 {
 	addCommand(new EchoCommand);
 }
 
-Environment* iash::getEnv () const
+Environment* iash::getEnv ()
 {
 	return &m_env;
 }
@@ -68,7 +70,8 @@ int iash::runScript (const char *fname)
 
 inline int iash::exec (string &cmd)
 {
-	return m_dispatcher.dispatch(&UserCommand(cmd, cin, cout));
+	UserCommand uCmd (cmd, cin, cout);
+	return m_dispatcher.dispatch(&uCmd);
 }
 
 inline int iash::exec (UserCommand *cmd)

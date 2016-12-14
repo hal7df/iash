@@ -2,6 +2,7 @@
 #define SRC_CMD_ECHOCOMMAND_H_
 
 #include "../Command.h"
+#include "../UserCommand.h"
 
 class EchoCommand :public Command{
 

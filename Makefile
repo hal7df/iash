@@ -4,25 +4,38 @@
 LIB_SRCS = $(wildcard src/*.cpp) $(wildcard src/tools/*.cpp)
 BUILTIN_COMMANDS = $(wildcard src/cmd/*.cpp)
 EXAMPLE_SRCS = $(wildcard example/*.cpp)
+EXAMPLE_FILES = $(notdir EXAMPLE_SRCS)
 
 # Output directories
-BIN_ROOT = bin/
+BIN_ROOT = bin
+BIN_OBJ = $(BIN_ROOT)/obj
 BIN_LIB = $(BIN_ROOT)/lib
 BIN_EXAMPLE = $(BIN_ROOT)/example
 
+# Output objects
+LIB_OBJS = $(LIB_SRCS:src/%.cpp=$(BIN_OBJ)/%.o)
+BUILTIN_OBJS = $(BUILTIN_COMMANDS:src/%.cpp=$(BIN_OBJ)/%.o)
+
+# Executables
 CXX = g++
 CXXFLAGS = -Wall -Werror -pedantic --std=c++11
 LIBFLAGS = -c -fpic
+AR = ar
 
 .PHONY: clean
 
 all: iash example
 
-iash: $(LIB_SRCS) $(BUILTIN_COMMANDS)
-	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $^ -o "lib$@.o"
-	$(CXX) -shared -o "lib$@.so" "lib$@.o"
+iash: $(LIB_OBJS) $(BUILTIN_OBJS)
+	mkdirhier $(BIN_LIB)
+	$(AR) rcs "$(BIN_LIB)/lib$@.a" $(wildcard $(BIN_OBJ)/*.o)
+	$(CXX) $(LIB_OBJS) $(BUILTIN_OBJS) -shared -o "$(BIN_LIB)/lib$@.so"
 
-examples: $(BIN_EXAMPLE)/$(notdir EXAMPLE_SRCS:.cpp=)
+examples: $(BIN_EXAMPLE)/$(EXAMPLE_FILES:.cpp=)
+
+$(BIN_OBJ)/%.o: src/%.cpp
+	mkdirhier $(dir $@)
+	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $< -o $@
 	
 $(BIN_EXAMPLE)/%: $(EXAMPLE_SRCS)/%.cpp iash
 	$(CXX) $(CXXFLAGS) -L$(BIN_LIB) -liash $< -o $@

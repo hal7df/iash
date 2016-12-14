@@ -36,8 +36,8 @@ public:
 	 * @param stdin			the stream to use as stdin for the command
 	 * @param stdout		the stream to use as stdout for the command
 	 */
-	UserCommand (std::string inputCommand, std::istream &stdin,
-				std::ostream *stdout);
+	UserCommand (const std::string &inputCommand, std::istream &stdin,
+				std::ostream &stdout);
 
 	/**
 	 * Constructs a new UserCommand object with the given command, input, and
@@ -48,7 +48,7 @@ public:
 	 * @param stdin			the stream to use as stdin for the command
 	 * @param stdout		the stream to use as stdout for the command
 	 */
-	UserCommand (Token inputCommand, std::istream &stdin, std::ostream &stdout);
+	UserCommand (const Token &inputCommand, std::istream &stdin, std::ostream &stdout);
 	virtual ~UserCommand();
 
 	//COMMAND INFORMATION RETRIEVAL ********************************************

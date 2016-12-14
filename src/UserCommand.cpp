@@ -6,10 +6,11 @@
  */
 
 #include "UserCommand.h"
+#include "tools/Tokenizer.h"
 using namespace std;
 
-UserCommand::UserCommand (string inputCommand, istream &stdin, ostream &stdout)
-		: m_raw(inputCommand), m_stdin(stdin), m_stdout(stdout)
+UserCommand::UserCommand (const string &inputCommand, istream &stdin, ostream &stdout)
+		: m_stdin(stdin), m_stdout(stdout), m_raw(inputCommand)
 {
 	Tokenizer despace (inputCommand);
 
@@ -20,8 +21,8 @@ UserCommand::UserCommand (string inputCommand, istream &stdin, ostream &stdout)
 	}
 }
 
-UserCommand::UserCommand (Token inputCommand, istream &stdin, ostream &stdout)
-	: m_raw(inputCommand.getToken), m_stdin(stdin), m_stdout(stdout)
+UserCommand::UserCommand (const Token &inputCommand, istream &stdin, ostream &stdout)
+	: m_stdin(stdin), m_stdout(stdout), m_raw(inputCommand.getToken())
 {
 	Tokenizer despace (inputCommand);
 

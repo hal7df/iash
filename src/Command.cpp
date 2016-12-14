@@ -6,6 +6,8 @@
  */
 
 #include "Command.h"
+#include "iash.h"
+#include "UserCommand.h"
 using namespace std;
 
 Command::Command() {
@@ -23,7 +25,7 @@ void Command::init (iash *parent)
 
 vector<string> Command::getAliases() const
 {
-	return vector<string>;
+	return vector<string>();
 }
 
 string Command::getAliasMapping (string alias) const

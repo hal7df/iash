@@ -11,9 +11,10 @@
 #include <string>
 #include <map>
 #include <iostream>
-#include "Command.h"
-#include "iash.h"
-#include "UserCommand.h"
+
+class iash;
+class Command;
+class UserCommand;
 
 /**
  * Class to register and execute Commands in an iash shell. iash has an internal

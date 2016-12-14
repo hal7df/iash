@@ -32,10 +32,11 @@
 #include <string>
 
 #include "Environment.h"
-#include "UserCommand.h"
-#include "Command.h"
 #include "CommandDispatcher.h"
 #include "Directory.h"
+
+class Command;
+class UserCommand;
 
 /**
  * The main shell class for iash.
@@ -61,7 +62,7 @@ public:
 	 * @param appName	the name of the application, to be shown in prompts
 	 * 					and to check for in scripts
 	 */
-    iash(std::string appName="iash");
+    iash(const std::string &appName="iash");
 
     //IASH INTERNAL OBJECT RETRIEVAL *******************************************
 
@@ -70,7 +71,7 @@ public:
      *
      * @return	a pointer to the current Environment for this shell
      */
-    Environment* getEnv () const;
+    Environment* getEnv ();
 
     /**
      * Gets the current working directory for this shell. Note that this

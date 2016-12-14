@@ -6,12 +6,14 @@
  */
 
 #include "CommandPreprocessor.h"
+#include "iash.h"
+#include "UserCommand.h"
+#include "tools/Token.h"
+#include "tools/Tokenizer.h"
 
 #include <fstream>
 #include <sstream>
 
-#include "tools/Token.h"
-#include "tools/Tokenizer.h"
 using namespace std;
 
 CommandPreprocessor::CommandPreprocessor(iash *parent) : m_parent(parent) {}
@@ -126,14 +128,14 @@ vector<UserCommand>& CommandPreprocessor::process(const string& raw)
 			}
 		}
 
-		m_allCommands.push_back(UserCommand(*commandToken, stdinCand, stdoutCand));
+		m_allCommands.push_back(UserCommand(*commandToken, *stdinCand, *stdoutCand));
 	}
 
 
 	return m_allCommands;
 }
 
-vector<UserCommand>& CommandPreprocessor::getCommands () const
+vector<UserCommand>& CommandPreprocessor::getCommands ()
 {
 	return m_allCommands;
 }

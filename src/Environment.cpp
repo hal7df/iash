@@ -6,12 +6,12 @@
  */
 
 #include "Environment.h"
+#include "Directory.h"
 
 #include <string>
 #include <cctype>
 #include <cassert>
 
-#include "Directory.h"
 using namespace std;
 
 Environment::Environment (string appName)
@@ -53,11 +53,7 @@ const string& Environment::getString (const string &key) const
 {
 	assert(key.find(' ') == string::npos);
 
-	try {
-		return m_envMap.at(convName(key));
-	} catch (out_of_range &noKey) {
-		return "";
-	}
+	return m_envMap.at(convName(key));
 }
 
 bool Environment::getBool (const string &key) const
@@ -112,11 +108,11 @@ bool Environment::isBuiltinVar (const string &key) const
 	return false;
 }
 
-string Environment::convName (const string &key) const
+string Environment::convName (const string &key)
 {
 	string keyInCaps = key;
 
-	for (int i = 0; i < key.length(); ++i)
+	for (size_t i = 0; i < key.length(); ++i)
 		keyInCaps[i] = toupper(key[i]);
 
 	return keyInCaps;

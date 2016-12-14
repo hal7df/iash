@@ -83,7 +83,7 @@ void Tokenizer::limitDelims (const string &raw)
 
 void Tokenizer::tokenize(string raw)
 {
-	size_t curDelim, lastDelim, lastDelimOfType, candidate;
+	size_t curDelim, lastDelim;
 	bool foundDelim;
 	string tmpToken;
 	char last, cur;
