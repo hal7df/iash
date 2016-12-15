@@ -108,7 +108,7 @@ const char* Directory::convToWindows (const string &path)
 	string newPath = path;
 	unsigned slashPos;
 
-	while ((slashPos = newPath.find('/')) != string::npos)
+	while ((slashPos = newPath.find('/')) != static_cast<unsigned>(string::npos))
 	{
 		newPath.replace(slashPos, 1, "\\");
 	}
@@ -130,7 +130,7 @@ string Directory::computeRelative (const string &relPath) const
 	}
 	else curPath = m_dirpath;
 
-	while ((curSearchPos = relPath.find('/', firstSearchPos)) != string::npos)
+	while ((curSearchPos = relPath.find('/', firstSearchPos)) != static_cast<unsigned>(string::npos))
 	{
 		curPathEl = relPath.substr(firstSearchPos, (curSearchPos - firstSearchPos));
 

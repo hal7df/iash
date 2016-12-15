@@ -18,6 +18,7 @@
 
 #include "iash.h"
 #include "cmd/EchoCommand.h"
+#include "cmd/PwdCommand.h"
 #include "tools/Tokenizer.h"
 #include "CommandPreprocessor.h"
 #include <fstream>
