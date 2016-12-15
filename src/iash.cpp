@@ -27,6 +27,7 @@ iash::iash (const string &appName)
 	: m_dispatcher(this), m_env(appName), m_iashCwd(), m_appName(appName)
 {
 	addCommand(new EchoCommand);
+	addCommand(new PwdCommand);
 }
 
 Environment* iash::getEnv ()
