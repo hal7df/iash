@@ -18,6 +18,7 @@
 
 #include "iash.h"
 #include "cmd/EchoCommand.h"
+#include "cmd/ExitCommand.h"
 #include "cmd/PwdCommand.h"
 #include "tools/Tokenizer.h"
 #include "CommandPreprocessor.h"
@@ -28,6 +29,7 @@ iash::iash (const string &appName)
 	: m_dispatcher(this), m_env(appName), m_iashCwd(), m_appName(appName)
 {
 	addCommand(new EchoCommand);
+	addCommand(new ExitCommand);
 	addCommand(new PwdCommand);
 }
 
@@ -87,9 +89,11 @@ int iash::run (istream &cmdin, bool showPrompt)
 	string raw;
 	int returnCode = 0;
 
+	m_exitFlag = false;
+
 	if (showPrompt) cout << m_appName << "> ";
 
-	while (getline(cmdin, raw))
+	while (!m_exitFlag && getline(cmdin, raw))
 	{
 		//Run commands
 		try
@@ -99,22 +103,22 @@ int iash::run (istream &cmdin, bool showPrompt)
 			for (UserCommand &cmd : commands)
 			{
 				returnCode = m_dispatcher.dispatch(&cmd);
+
+				//Stop running commands if exit was called
+				if (m_exitFlag) break;
 			}
 		}
 		catch (TokenizeException &toke)
 		{
 			cout << "iash: " << toke.what() << endl;
-			processor.cleanup();
 		}
 		catch (SyntaxException &syne)
 		{
 			cout << "iash: " << syne.what() << endl;
-			processor.cleanup();
 		}
 		catch (FileNotFoundException &fnfe)
 		{
 			cout << "iash: " << fnfe.what() << endl;
-			processor.cleanup();
 		}
 
 		//Update environment
@@ -123,9 +127,13 @@ int iash::run (istream &cmdin, bool showPrompt)
 		if (m_iashCwd.getAbsPath() != m_env.getString("CWD"))
 			m_env.setProtected("CWD", m_iashCwd.getAbsPath());
 
-		if (showPrompt) cout << m_appName << "> ";
+		if (showPrompt && !m_exitFlag) cout << m_appName << "> ";
 	}
 
-
 	return m_env.getInt("?");
+}
+
+void iash::exitShell()
+{
+	m_exitFlag = true;
 }

@@ -54,6 +54,7 @@ class UserCommand;
  */
 class iash
 {
+	friend class ExitCommand;
 public:
 	/**
 	 * Creates an iash shell object with the given application name (for use in
@@ -157,11 +158,13 @@ public:
     int exec (UserCommand *cmd);
 private:
     int run (std::istream& cmdin, bool showPrompt=false);
+    void exitShell ();
 
     CommandDispatcher m_dispatcher;
     Environment m_env;
     Directory m_iashCwd;
     std::string m_appName;
+    bool m_exitFlag;
 };
 
 #endif //IASH_H
