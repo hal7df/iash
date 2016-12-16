@@ -121,7 +121,7 @@ void Tokenizer::tokenize(string raw)
 		else tmpToken = raw.substr(0, (curDelim - lastDelim));
 
 		//Remove any escapes for delimiters in this token
-		for (size_t i = 0; i < (tmpToken.length() - 1); ++i)
+		for (size_t i = 0; i < (tmpToken.length() - 1) && (tmpToken.length() > 0); ++i)
 		{
 			if (tmpToken[i] == '\\')
 			{

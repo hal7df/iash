@@ -34,7 +34,7 @@ const string& Token::finalize ()
 		m_token.erase(m_token.end() - 1);
 
 	//Remove any remaining backslashes
-	for (size_t i = 0; i < (m_token.length() - 1); ++i)
+	for (size_t i = 0; (i < (m_token.length() - 1)) && (m_token.length() > 0); ++i)
 	{
 		if (m_token[i] == '\\')
 		{
