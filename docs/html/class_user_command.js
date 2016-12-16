@@ -1,7 +1,7 @@
 var class_user_command =
 [
-    [ "UserCommand", "class_user_command.html#ae598be7d8ef644f37f8837e205dff24f", null ],
-    [ "UserCommand", "class_user_command.html#a5450f8b3fcadf3d371d33af9b9466d75", null ],
+    [ "UserCommand", "class_user_command.html#a6e7b20183ea36aaa306ac0b5f777c097", null ],
+    [ "UserCommand", "class_user_command.html#a285eafa6390e1ccff6dfbcc59ba4d426", null ],
     [ "~UserCommand", "class_user_command.html#a4f2c785c0fe6bdeb3899f7c088b616e1", null ],
     [ "getArguments", "class_user_command.html#acb69472ccb1a7e638fe2423ab4bc4540", null ],
     [ "getContextualArgument", "class_user_command.html#a12e74d2a4b3d12102eb6013ccd67cf3b", null ],

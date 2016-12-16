@@ -122,12 +122,12 @@ $(document).ready(function(){initNavTree('class_user_command.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae598be7d8ef644f37f8837e205dff24f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_command.html#ae598be7d8ef644f37f8837e205dff24f">UserCommand</a> (std::string inputCommand, std::istream &amp;stdin, std::ostream *stdout)</td></tr>
-<tr class="memdesc:ae598be7d8ef644f37f8837e205dff24f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_user_command.html" title="Used to retain command arguments and the proper input and output streams for a command call...">UserCommand</a> object with the given command, input, and output.  <a href="#ae598be7d8ef644f37f8837e205dff24f">More...</a><br /></td></tr>
-<tr class="separator:ae598be7d8ef644f37f8837e205dff24f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5450f8b3fcadf3d371d33af9b9466d75"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_command.html#a5450f8b3fcadf3d371d33af9b9466d75">UserCommand</a> (<a class="el" href="class_token.html">Token</a> inputCommand, std::istream &amp;stdin, std::ostream &amp;stdout)</td></tr>
-<tr class="memdesc:a5450f8b3fcadf3d371d33af9b9466d75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_user_command.html" title="Used to retain command arguments and the proper input and output streams for a command call...">UserCommand</a> object with the given command, input, and output.  <a href="#a5450f8b3fcadf3d371d33af9b9466d75">More...</a><br /></td></tr>
-<tr class="separator:a5450f8b3fcadf3d371d33af9b9466d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e7b20183ea36aaa306ac0b5f777c097"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_command.html#a6e7b20183ea36aaa306ac0b5f777c097">UserCommand</a> (const std::string &amp;inputCommand, std::istream &amp;stdin, std::ostream &amp;stdout)</td></tr>
+<tr class="memdesc:a6e7b20183ea36aaa306ac0b5f777c097"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_user_command.html" title="Used to retain command arguments and the proper input and output streams for a command call...">UserCommand</a> object with the given command, input, and output.  <a href="#a6e7b20183ea36aaa306ac0b5f777c097">More...</a><br /></td></tr>
+<tr class="separator:a6e7b20183ea36aaa306ac0b5f777c097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a285eafa6390e1ccff6dfbcc59ba4d426"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_command.html#a285eafa6390e1ccff6dfbcc59ba4d426">UserCommand</a> (const <a class="el" href="class_token.html">Token</a> &amp;inputCommand, std::istream &amp;stdin, std::ostream &amp;stdout)</td></tr>
+<tr class="memdesc:a285eafa6390e1ccff6dfbcc59ba4d426"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_user_command.html" title="Used to retain command arguments and the proper input and output streams for a command call...">UserCommand</a> object with the given command, input, and output.  <a href="#a285eafa6390e1ccff6dfbcc59ba4d426">More...</a><br /></td></tr>
+<tr class="separator:a285eafa6390e1ccff6dfbcc59ba4d426"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abed711c3665e673e99fcc4a5074cd850"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_command.html#abed711c3665e673e99fcc4a5074cd850">getWholeCommand</a> () const </td></tr>
 <tr class="memdesc:abed711c3665e673e99fcc4a5074cd850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the entire command (including the command name), parsed into arguments as a vector.  <a href="#abed711c3665e673e99fcc4a5074cd850">More...</a><br /></td></tr>
 <tr class="separator:abed711c3665e673e99fcc4a5074cd850"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,14 +155,14 @@ Public Member Functions</h2></td></tr>
 <p>Note that, with the exception of <a class="el" href="class_user_command.html#abed711c3665e673e99fcc4a5074cd850">UserCommand::getWholeCommand</a>, all of the functions that retrieve options or arguments from the user's command input iterate over the internal vector used to store it, and thus may slow down your program if they are called too often.</p>
 <dl class="section since"><dt>Since</dt><dd>0.5 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ae598be7d8ef644f37f8837e205dff24f"></a>
+<a class="anchor" id="a6e7b20183ea36aaa306ac0b5f777c097"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">UserCommand::UserCommand </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>inputCommand</em>, </td>
         </tr>
         <tr>
@@ -174,7 +174,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::ostream *&#160;</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
           <td class="paramname"><em>stdout</em>&#160;</td>
         </tr>
         <tr>
@@ -198,14 +198,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5450f8b3fcadf3d371d33af9b9466d75"></a>
+<a class="anchor" id="a285eafa6390e1ccff6dfbcc59ba4d426"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">UserCommand::UserCommand </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_token.html">Token</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_token.html">Token</a> &amp;&#160;</td>
           <td class="paramname"><em>inputCommand</em>, </td>
         </tr>
         <tr>
@@ -388,8 +388,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>iash/<a class="el" href="_user_command_8h_source.html">UserCommand.h</a></li>
-<li>iash/UserCommand.cpp</li>
+<li>src/<a class="el" href="_user_command_8h_source.html">UserCommand.h</a></li>
+<li>src/UserCommand.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
