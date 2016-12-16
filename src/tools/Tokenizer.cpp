@@ -6,6 +6,7 @@
  */
 
 #include "Tokenizer.h"
+#include <iostream>
 using namespace std;
 
 Tokenizer::Tokenizer() : m_delims(1, ' ') {}
@@ -39,7 +40,6 @@ Tokenizer::Tokenizer(const Token &raw, const char delim) : m_delims(1, delim)
 
 Tokenizer::Tokenizer(const Token &raw, const string &delims) : m_delims(delims)
 {
-	limitDelims(raw.getToken());
 	tokenize(raw.getToken());
 }
 
@@ -89,13 +89,14 @@ void Tokenizer::tokenize(string raw)
 	char last, cur;
 
 	lastDelim = 0;
+	limitDelims(raw);
 
 	do
 	{
 		foundDelim = false;
 
 		//Find the next delimiter
-		for (curDelim = lastDelim; curDelim < raw.length() && !foundDelim; ++curDelim)
+		for (curDelim = (lastDelim + 1); curDelim < raw.length(); ++curDelim)
 		{
 			if (raw[curDelim] == '\"')
 			{
@@ -110,6 +111,8 @@ void Tokenizer::tokenize(string raw)
 				if (raw[curDelim] == c && raw[curDelim - 1] != '\\')
 					foundDelim = true;
 			}
+
+			if (foundDelim) break;
 		}
 
 		//Get the token
