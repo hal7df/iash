@@ -69,7 +69,6 @@ vector<UserCommand>& CommandPreprocessor::process(const string& raw)
 			stdoutCand = pipeStream;
 		}
 
-
 		for (const Token &ioToken : parse.getTokens())
 		{
 			//If the token is the command call

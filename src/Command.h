@@ -8,12 +8,12 @@
 #ifndef SRC_COMMAND_H_
 #define SRC_COMMAND_H_
 
+#include "UserCommand.h"
 #include <iostream>
 #include <string>
 #include <vector>
 
 class iash;
-class UserCommand;
 
 /**
  * Abstract interface for a command registered with the shell.

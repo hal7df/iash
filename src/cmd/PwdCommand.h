@@ -9,7 +9,7 @@
 #define SRC_CMD_PWDCOMMAND_H_
 
 #include "../Command.h"
-#include "../UserCommand.h"
+#include "../iash.h"
 
 class PwdCommand :public Command{
 
