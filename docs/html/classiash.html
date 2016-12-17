@@ -135,6 +135,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6efda722555761d647166166f7f7cddd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classiash.html#a6efda722555761d647166166f7f7cddd">addCommand</a> (<a class="el" href="class_command.html">Command</a> *cmd)</td></tr>
 <tr class="memdesc:a6efda722555761d647166166f7f7cddd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> instance to this shell's <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> registry.  <a href="#a6efda722555761d647166166f7f7cddd">More...</a><br /></td></tr>
 <tr class="separator:a6efda722555761d647166166f7f7cddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00f433e2bc5b0eb19341aa70b01253b5"><td class="memTemplParams" colspan="2">template&lt;typename ExtCommand &gt; </td></tr>
+<tr class="memitem:a00f433e2bc5b0eb19341aa70b01253b5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classiash.html#a00f433e2bc5b0eb19341aa70b01253b5">addCommand</a> ()</td></tr>
+<tr class="memdesc:a00f433e2bc5b0eb19341aa70b01253b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> instance of the given type to this shell's <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> registry.  <a href="#a00f433e2bc5b0eb19341aa70b01253b5">More...</a><br /></td></tr>
+<tr class="separator:a00f433e2bc5b0eb19341aa70b01253b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af815bbccc5084f4bf0d1af35329dc8a0"><td class="memTemplParams" colspan="2">template&lt;typename ExtCommand , typename CommandParam &gt; </td></tr>
+<tr class="memitem:af815bbccc5084f4bf0d1af35329dc8a0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classiash.html#af815bbccc5084f4bf0d1af35329dc8a0">addCommand</a> (CommandParam initParam)</td></tr>
+<tr class="memdesc:af815bbccc5084f4bf0d1af35329dc8a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> instance of the given type to this shell's <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> registry with the given initialization argument.  <a href="#af815bbccc5084f4bf0d1af35329dc8a0">More...</a><br /></td></tr>
+<tr class="separator:af815bbccc5084f4bf0d1af35329dc8a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7a1b381bc195c704ff3e800dd1e9928"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classiash.html#ab7a1b381bc195c704ff3e800dd1e9928">runInteractive</a> ()</td></tr>
 <tr class="memdesc:ab7a1b381bc195c704ff3e800dd1e9928"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the shell in interactive mode.  <a href="#ab7a1b381bc195c704ff3e800dd1e9928">More...</a><br /></td></tr>
 <tr class="separator:ab7a1b381bc195c704ff3e800dd1e9928"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -200,10 +208,87 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ExitCommand</b></td>
 </div><div class="memdoc">
 
 <p>Adds a <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> instance to this shell's <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> registry. </p>
-<p>This function is to be used by directly injecting dynamically allocated <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> object pointers into the iash class (iash will handle the dynamic memory internally), for example: </p><div class="fragment"><div class="line"><a class="code" href="classiash.html">iash</a> shell (<span class="stringliteral">&quot;myapp&quot;</span>);</div><div class="line">shell.addCommand(<span class="keyword">new</span> FooCommand());</div></div><!-- fragment --><p> This should not be called more than once per each unique command; the <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> will refuse to add the repeated command.</p>
+<p>This function is to be used by directly injecting dynamically allocated <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> object pointers into the iash class (iash will handle the dynamic memory internally), for example: </p><div class="fragment"><div class="line"><a class="code" href="classiash.html">iash</a> shell (<span class="stringliteral">&quot;myapp&quot;</span>);</div><div class="line">shell.addCommand(<span class="keyword">new</span> FooCommand());</div></div><!-- fragment --><p> This should not be called more than once per each unique command; the <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> will refuse to add the repeated command. </p>
+<p>It is not recommended that commands are registered in this way. Please use the templated <a class="el" href="classiash.html#a00f433e2bc5b0eb19341aa70b01253b5" title="Adds a Command instance of the given type to this shell&#39;s CommandDispatcher registry. ">iash::addCommand()</a> instead.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cmd</td><td>a pointer to a dynamically allocated <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> object </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a00f433e2bc5b0eb19341aa70b01253b5"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ExtCommand &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void iash::addCommand </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> instance of the given type to this shell's <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> registry. </p>
+<p>This function will internally allocate an object of the given <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> type dynamically. </p><div class="fragment"><div class="line"><a class="code" href="classiash.html">iash</a> shell (<span class="stringliteral">&quot;myapp&quot;</span>);</div><div class="line">shell.addCommand&lt;FooCommand&gt;();</div></div><!-- fragment --><p> This should not be called more than once per each unique command; the <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> will refuse to add the repeated command.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ExtCommand</td><td>the type of the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> to register with the shell </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af815bbccc5084f4bf0d1af35329dc8a0"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ExtCommand , typename CommandParam &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void iash::addCommand </td>
+          <td>(</td>
+          <td class="paramtype">CommandParam&#160;</td>
+          <td class="paramname"><em>initParam</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> instance of the given type to this shell's <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> registry with the given initialization argument. </p>
+<p>This function will internally allocate an object of the given <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> type dynamically. </p><div class="fragment"><div class="line"><a class="code" href="classiash.html">iash</a> shell (<span class="stringliteral">&quot;myapp&quot;</span>);</div><div class="line">shell.addCommand&lt;FooCommand&gt;(<span class="stringliteral">&quot;foo&quot;</span>);</div></div><!-- fragment --><p> This should not be called more than once per each unique command; the <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> will refuse to add the repeated command.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ExtCommand</td><td>the type of the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> to register with the shell </td></tr>
+    <tr><td class="paramname">CommandParam</td><td>the type of the initialization argument for the ExtCommand constructor </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">initParam</td><td>the initialization parameter to pass to the ExtCommand constructor </td></tr>
   </table>
   </dd>
 </dl>

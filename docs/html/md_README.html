@@ -107,6 +107,10 @@ $(document).ready(function(){initNavTree('md_README.html','');});
 <h1>Download</h1>
 <p><em>iash does not currently have a system package build.</em></p>
 <p>See the <a href="https://github.com/hal7df/iash/releases">Releases</a> page.</p>
+<h1>Building</h1>
+<p>iash is presently only known to build on Linux (Mac support coming soon, it could possibly build on Windows, but this is not known). From the root of the project directory, run: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make all</div></div><!-- fragment --><p> After iash has finished building, <code>bin/</code> will contain all of the built files. Built examples can be found in <code>bin/example/</code>, library files can be found in <code>bin/lib/</code>, and individual object files can be found in <code>bin/obj/</code>.</p>
+<h1>Running</h1>
+<p>To run the basic example, do the following from the project root: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;export LD_LIBRARY_PATH=$PWD/bin/lib:$LD_LIBRARY_PATH</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;bin/example/basic</div></div><!-- fragment --><p> (For the moment, we dynamically link the example, since this is the only linking option that appears to work. Examples will be statically linked in the future).</p>
 <h1>Posting Issues</h1>
 <p>Before you post an issue to the issue tracker, please read the <a href="https://github.com/hal7df/iash/wiki/Issue-Tracker">rules</a>.</p>
 <h1>Help</h1>
