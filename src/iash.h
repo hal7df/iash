@@ -98,10 +98,53 @@ public:
      * ~~~
      * This should not be called more than once per each unique command; the
      * CommandDispatcher will refuse to add the repeated command.
+     * <p>
+     * It is not recommended that commands are registered in this way. Please
+     * use the templated iash#addCommand() instead.
      *
      * @param cmd	a pointer to a dynamically allocated Command object
      */
     void addCommand (Command* cmd);
+
+    /**
+     * Adds a Command instance of the given type to this shell's
+	 * CommandDispatcher registry. This function will internally allocate an
+	 * object of the given Command type dynamically.
+	 * ~~~{cpp}
+	 * iash shell ("myapp");
+	 * shell.addCommand<FooCommand>();
+	 * ~~~
+	 * This should not be called more than once per each unique command; the
+	 * CommandDispatcher will refuse to add the repeated command.
+	 *
+	 * @tparam ExtCommand	the type of the Command to register with the shell
+     */
+    template <typename ExtCommand>
+    void addCommand () { m_dispatcher.registerCommand<ExtCommand>(); }
+
+    /**
+     * Adds a Command instance of the given type to this shell's
+     * CommandDispatcher registry with the given initialization argument. This
+     * function will internally allocate an object of the given Command type
+     * dynamically.
+     * ~~~{cpp}
+     * iash shell ("myapp");
+     * shell.addCommand<FooCommand>("foo");
+     * ~~~
+     * This should not be called more than once per each unique command; the
+     * CommandDispatcher will refuse to add the repeated command.
+     *
+     * @tparam ExtCommand	the type of the Command to register with the shell
+     * @tparam CommandParam	the type of the initialization argument for the
+	 * 						ExtCommand constructor
+	 * @param initParam		the initialization parameter to pass to the
+	 * 						ExtCommand constructor
+     */
+    template <typename ExtCommand, typename CommandParam>
+    void addCommand(CommandParam initParam)
+    {
+    	m_dispatcher.registerCommand<ExtCommand>(initParam);
+    }
 
     //SHELL INVOCATION *********************************************************
     /**

@@ -28,9 +28,9 @@ using namespace std;
 iash::iash (const string &appName)
 	: m_dispatcher(this), m_env(appName), m_iashCwd(), m_appName(appName)
 {
-	addCommand(new EchoCommand);
-	addCommand(new ExitCommand);
-	addCommand(new PwdCommand);
+	addCommand<EchoCommand>();
+	addCommand<ExitCommand>();
+	addCommand<PwdCommand>();
 }
 
 Environment* iash::getEnv ()

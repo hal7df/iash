@@ -38,10 +38,10 @@ public:
 
 	/**
 	 * Registers a given Command with this CommandDispatcher instance. This will
-	 * call Command#init to set the parent shell and add the Comamnd's name and
+	 * call Command#init to set the parent shell and add the Command's name and
 	 * aliases to the command registry.
 	 * <p>
-	 * This function is intended to be used directly with dynamic memory, like
+	 * This function requires a dynamically allocated Command, passed like
 	 * so:
 	 * ~~~{cpp}
 	 * CommandDispatcher disp (&shell);
@@ -53,10 +53,58 @@ public:
 	 * If a Command instance with the same name and type is already registered
 	 * with this class, this function will not add the new instance. If the
 	 * classes must be replaced, the old one should be unregistered first.
+	 * <p>
+	 * This is not the recommended method to use when registering commands.
+	 * CommandDispatcher#registerCommand() should be used instead.
 	 *
 	 * @param cmd	a dynamically allocated Command object to register
 	 */
 	void registerCommand (Command *cmd);
+
+	/**
+	 * Registers the given Command type with this CommandDispatcher instance.
+	 * This function will allocate the memory for the Command internally; all
+	 * the client must do is provide the type:
+	 * ~~~{cpp}
+	 * CommandDispatcher disp (&shell);
+	 * disp.registerCommand<MyCommand>();
+	 * ~~~
+	 * If a Command instance of the same type is already registered with this
+	 * class, this function will not add the new instance. If the classes must
+	 * be replaced, the old one should be unregistered first.
+	 *
+	 * @tparam ExtCommand	the Command type to register
+	 */
+	template <typename ExtCommand>
+	void registerCommand () { registerCommand(new ExtCommand); }
+
+	/**
+	 * Registers the given Command type with this CommandDispatcher instance.
+	 * This function will allocate the memory for the Command internally; all
+	 * the client must do is provide the type and constructor parameter:
+	 * ~~~{cpp}
+	 * CommandDispatcher disp (&shell);
+	 * disp.registerCommand<MyCommand>(4);
+	 * ~~~
+	 * Note that iash only supports passing one parameter to the constructor.
+	 * If you need to pass more than one parameter, then use
+	 * CommandDispatcher#registerCommand(Command*) instead.
+	 * <p>
+	 * If a Command instance of the same type is already registered with this
+	 * class, this function will not add the Command to the registry. If the
+	 * Command classes must be replaced, the old one should be unregistered
+	 * first.
+	 *
+	 * @tparam ExtCommand	the Command type to register
+	 * @tparam CommandParam	the type of the variable/object being passed into
+	 * 						the ExtCommand constructor
+	 * @param initParam		the ExtCommand's constructor argument
+	 */
+	template <typename ExtCommand, typename CommandParam>
+	void registerCommand (CommandParam initParam)
+	{
+		registerCommand(new ExtCommand(initParam));
+	}
 
 	/**
 	 * Removes the command with the given name from the registry, and removes
