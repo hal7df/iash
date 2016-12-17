@@ -128,15 +128,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acf16ce3881024826c8cfce6cd625c87a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_dispatcher.html#acf16ce3881024826c8cfce6cd625c87a">registerCommand</a> (<a class="el" href="class_command.html">Command</a> *cmd)</td></tr>
 <tr class="memdesc:acf16ce3881024826c8cfce6cd625c87a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a given <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> with this <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> instance.  <a href="#acf16ce3881024826c8cfce6cd625c87a">More...</a><br /></td></tr>
 <tr class="separator:acf16ce3881024826c8cfce6cd625c87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29ea5aa3f5ff2a46af38dd3274ba0363"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_command.html">Command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_dispatcher.html#a29ea5aa3f5ff2a46af38dd3274ba0363">unregisterCommand</a> (std::string name)</td></tr>
-<tr class="memdesc:a29ea5aa3f5ff2a46af38dd3274ba0363"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the command with the given name from the registry, and removes any of its registered aliases.  <a href="#a29ea5aa3f5ff2a46af38dd3274ba0363">More...</a><br /></td></tr>
-<tr class="separator:a29ea5aa3f5ff2a46af38dd3274ba0363"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48bad50e793b6f009240c87f56099d54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_command.html">Command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_dispatcher.html#a48bad50e793b6f009240c87f56099d54">unregisterCommand</a> (<a class="el" href="class_command.html">Command</a> *cmd)</td></tr>
-<tr class="memdesc:a48bad50e793b6f009240c87f56099d54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the command at the given memory address.  <a href="#a48bad50e793b6f009240c87f56099d54">More...</a><br /></td></tr>
-<tr class="separator:a48bad50e793b6f009240c87f56099d54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fcf8d973bdcb9b9541285a069f1a02e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_dispatcher.html#a6fcf8d973bdcb9b9541285a069f1a02e">dispatch</a> (<a class="el" href="class_user_command.html">UserCommand</a> *userCmd)</td></tr>
-<tr class="memdesc:a6fcf8d973bdcb9b9541285a069f1a02e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches the command and alias registries and calls the appropriate <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>.  <a href="#a6fcf8d973bdcb9b9541285a069f1a02e">More...</a><br /></td></tr>
-<tr class="separator:a6fcf8d973bdcb9b9541285a069f1a02e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a888212818139aa39a89fb5d212873e77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_command.html">Command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_dispatcher.html#a888212818139aa39a89fb5d212873e77">unregisterCommand</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:a888212818139aa39a89fb5d212873e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the command with the given name from the registry, and removes any of its registered aliases.  <a href="#a888212818139aa39a89fb5d212873e77">More...</a><br /></td></tr>
+<tr class="separator:a888212818139aa39a89fb5d212873e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ea20e1d022f736d2ae42c132e9e2b47"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_command.html">Command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_dispatcher.html#a8ea20e1d022f736d2ae42c132e9e2b47">unregisterCommand</a> (const <a class="el" href="class_command.html">Command</a> *cmd)</td></tr>
+<tr class="memdesc:a8ea20e1d022f736d2ae42c132e9e2b47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the command at the given memory address.  <a href="#a8ea20e1d022f736d2ae42c132e9e2b47">More...</a><br /></td></tr>
+<tr class="separator:a8ea20e1d022f736d2ae42c132e9e2b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a28c8347747039cee679510454c874f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_dispatcher.html#a6a28c8347747039cee679510454c874f">dispatch</a> (const <a class="el" href="class_user_command.html">UserCommand</a> *userCmd)</td></tr>
+<tr class="memdesc:a6a28c8347747039cee679510454c874f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches the command and alias registries and calls the appropriate <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>.  <a href="#a6a28c8347747039cee679510454c874f">More...</a><br /></td></tr>
+<tr class="separator:a6a28c8347747039cee679510454c874f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to register and execute Commands in an iash shell. </p>
@@ -169,14 +169,14 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a6fcf8d973bdcb9b9541285a069f1a02e"></a>
+<a class="anchor" id="a6a28c8347747039cee679510454c874f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int CommandDispatcher::dispatch </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_user_command.html">UserCommand</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_user_command.html">UserCommand</a> *&#160;</td>
           <td class="paramname"><em>userCmd</em></td><td>)</td>
           <td></td>
         </tr>
@@ -190,7 +190,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the return value of the <a class="el" href="class_command.html#a05729cc558e0f89c39c27dc1379c97f8" title="Called when a command matching the current Command is issued. ">Command::run</a> for the given command, or 127 if no command was found </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the return value of the <a class="el" href="class_command.html#a9a60f79f5b058c644a53d9fbc917a761" title="Called when a command matching the current Command is issued. ">Command::run</a> for the given command, or 127 if no command was found </dd></dl>
 
 </div>
 </div>
@@ -221,14 +221,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a29ea5aa3f5ff2a46af38dd3274ba0363"></a>
+<a class="anchor" id="a888212818139aa39a89fb5d212873e77"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_command.html">Command</a>* CommandDispatcher::unregisterCommand </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
         </tr>
@@ -247,14 +247,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a48bad50e793b6f009240c87f56099d54"></a>
+<a class="anchor" id="a8ea20e1d022f736d2ae42c132e9e2b47"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_command.html">Command</a> * CommandDispatcher::unregisterCommand </td>
+          <td class="memname">const <a class="el" href="class_command.html">Command</a> * CommandDispatcher::unregisterCommand </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_command.html">Command</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_command.html">Command</a> *&#160;</td>
           <td class="paramname"><em>cmd</em></td><td>)</td>
           <td></td>
         </tr>

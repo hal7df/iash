@@ -125,12 +125,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a306eacc99f244a144df3eb1c1ccb13aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_preprocessor.html#a306eacc99f244a144df3eb1c1ccb13aa">CommandPreprocessor</a> (<a class="el" href="classiash.html">iash</a> *parent)</td></tr>
 <tr class="memdesc:a306eacc99f244a144df3eb1c1ccb13aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="class_command_preprocessor.html" title="Processes raw input for iash and converts the input into UserCommands that can then be run by the Com...">CommandPreprocessor</a> for the given shell.  <a href="#a306eacc99f244a144df3eb1c1ccb13aa">More...</a><br /></td></tr>
 <tr class="separator:a306eacc99f244a144df3eb1c1ccb13aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5975a898cc7556273f7ce2fde51a536d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_user_command.html">UserCommand</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_preprocessor.html#a5975a898cc7556273f7ce2fde51a536d">process</a> (const std::string &amp;raw)</td></tr>
-<tr class="memdesc:a5975a898cc7556273f7ce2fde51a536d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes the raw input string and converts it into a vector of UserCommands that can be passed to the <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a>.  <a href="#a5975a898cc7556273f7ce2fde51a536d">More...</a><br /></td></tr>
-<tr class="separator:a5975a898cc7556273f7ce2fde51a536d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d76927e2ba9e111d3dfb007cac62e59"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_user_command.html">UserCommand</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_preprocessor.html#a2d76927e2ba9e111d3dfb007cac62e59">getCommands</a> ()</td></tr>
-<tr class="memdesc:a2d76927e2ba9e111d3dfb007cac62e59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the UserCommands that were parsed from the last call to process.  <a href="#a2d76927e2ba9e111d3dfb007cac62e59">More...</a><br /></td></tr>
-<tr class="separator:a2d76927e2ba9e111d3dfb007cac62e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f5d0a03cd46302488111960cb5652ff"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="class_user_command.html">UserCommand</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_preprocessor.html#a0f5d0a03cd46302488111960cb5652ff">process</a> (const std::string &amp;raw)</td></tr>
+<tr class="memdesc:a0f5d0a03cd46302488111960cb5652ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes the raw input string and converts it into a vector of UserCommands that can be passed to the <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a>.  <a href="#a0f5d0a03cd46302488111960cb5652ff">More...</a><br /></td></tr>
+<tr class="separator:a0f5d0a03cd46302488111960cb5652ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10b258d61f03f4271aefbc16240798e8"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="class_user_command.html">UserCommand</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_preprocessor.html#a10b258d61f03f4271aefbc16240798e8">getCommands</a> () const </td></tr>
+<tr class="memdesc:a10b258d61f03f4271aefbc16240798e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the UserCommands that were parsed from the last call to process.  <a href="#a10b258d61f03f4271aefbc16240798e8">More...</a><br /></td></tr>
+<tr class="separator:a10b258d61f03f4271aefbc16240798e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a041316e2ad6891b213ae160fbc9dd028"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_preprocessor.html#a041316e2ad6891b213ae160fbc9dd028">cleanup</a> ()</td></tr>
 <tr class="memdesc:a041316e2ad6891b213ae160fbc9dd028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleans up stream objects that were opened on the last call to process.  <a href="#a041316e2ad6891b213ae160fbc9dd028">More...</a><br /></td></tr>
 <tr class="separator:a041316e2ad6891b213ae160fbc9dd028"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,19 +180,19 @@ Public Member Functions</h2></td></tr>
 
 <p>Cleans up stream objects that were opened on the last call to process. </p>
 <p>In order to implement I/O redirection, <a class="el" href="class_command_preprocessor.html" title="Processes raw input for iash and converts the input into UserCommands that can then be run by the Com...">CommandPreprocessor</a> dynamically opens I/O streams when the user wants them redirected from/to file or another command. As such, it is necessary to clean up the streams after the commands have finished. </p>
-<p>This is called automatically by <a class="el" href="class_command_preprocessor.html#a5975a898cc7556273f7ce2fde51a536d" title="Takes the raw input string and converts it into a vector of UserCommands that can be passed to the Co...">process()</a>. </p>
+<p>This is called automatically by <a class="el" href="class_command_preprocessor.html#a0f5d0a03cd46302488111960cb5652ff" title="Takes the raw input string and converts it into a vector of UserCommands that can be passed to the Co...">process()</a>. </p>
 
 </div>
 </div>
-<a class="anchor" id="a2d76927e2ba9e111d3dfb007cac62e59"></a>
+<a class="anchor" id="a10b258d61f03f4271aefbc16240798e8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt; <a class="el" href="class_user_command.html">UserCommand</a> &gt; &amp; CommandPreprocessor::getCommands </td>
+          <td class="memname">const vector&lt; <a class="el" href="class_user_command.html">UserCommand</a> &gt; &amp; CommandPreprocessor::getCommands </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -202,12 +202,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5975a898cc7556273f7ce2fde51a536d"></a>
+<a class="anchor" id="a0f5d0a03cd46302488111960cb5652ff"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt; <a class="el" href="class_user_command.html">UserCommand</a> &gt; &amp; CommandPreprocessor::process </td>
+          <td class="memname">const vector&lt; <a class="el" href="class_user_command.html">UserCommand</a> &gt; &amp; CommandPreprocessor::process </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>raw</em></td><td>)</td>
