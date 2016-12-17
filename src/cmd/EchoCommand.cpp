@@ -2,11 +2,11 @@
 using namespace std;
 
 
-std::string EchoCommand::getName () const {
+const std::string EchoCommand::getName () const {
 	return "echo";
 }
 
-int EchoCommand::run (UserCommand *cmd) {
+int EchoCommand::run (const UserCommand *cmd) {
 	ostream &os = cmd->getStdout();
 
 	const vector<string> &args = cmd->getWholeCommand();

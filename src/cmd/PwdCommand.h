@@ -14,8 +14,8 @@
 class PwdCommand :public Command{
 
 public:
-	virtual std::string getName () const;
-	virtual int run (UserCommand *cmd);
+	virtual const std::string getName () const;
+	virtual int run (const UserCommand *cmd);
 private:
 
 };

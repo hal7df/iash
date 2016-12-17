@@ -28,7 +28,7 @@ vector<string> Command::getAliases() const
 	return vector<string>();
 }
 
-string Command::getAliasMapping (string alias) const
+const string Command::getAliasMapping (const string& alias) const
 {
 	return getName();
 }
@@ -38,7 +38,7 @@ void Command::showUsageMessage (ostream &os) const
 	os << getName() << ": invalid use of command" << endl;
 }
 
-bool Command::validate (UserCommand *cmd) const
+bool Command::validate (const UserCommand *cmd) const
 {
 	return true;
 }

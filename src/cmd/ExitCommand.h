@@ -15,8 +15,8 @@ public:
 	ExitCommand() {}
 	virtual ~ExitCommand() {}
 
-	virtual std::string getName () const;
-	virtual int run (UserCommand *cmd);
+	virtual const std::string getName () const;
+	virtual int run (const UserCommand *cmd);
 };
 
 #endif /* SRC_CMD_EXITCOMMAND_H_ */

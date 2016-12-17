@@ -11,12 +11,12 @@
 #include <iostream>
 using namespace std;
 
-string ExitCommand::getName() const
+const string ExitCommand::getName() const
 {
 	return "exit";
 }
 
-int ExitCommand::run(UserCommand *cmd)
+int ExitCommand::run(const UserCommand *cmd)
 {
 	m_parent->exitShell();
 

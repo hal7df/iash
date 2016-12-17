@@ -67,7 +67,7 @@ public:
 	 * @param name	the name of the Command to unregister
 	 * @return		a pointer to the unregistered Command object
 	 */
-	Command* unregisterCommand (std::string name);
+	Command* unregisterCommand (const std::string& name);
 
 	/**
 	 * Removes the command at the given memory address. Note that, since
@@ -77,7 +77,7 @@ public:
 	 * @param cmd	a pointer to the Command to unregister
 	 * @return		a pointer to the unregistered Command object
 	 */
-	Command* unregisterCommand (Command *cmd);
+	const Command* unregisterCommand (const Command *cmd);
 
 	/**
 	 * Searches the command and alias registries and calls the appropriate
@@ -87,7 +87,7 @@ public:
 	 * @return			the return value of the Command#run
 	 * 					for the given command, or 127 if no command was found
 	 */
-	int dispatch (UserCommand *userCmd);
+	int dispatch (const UserCommand *userCmd);
 private:
 	iash *m_parent;
 	std::map<std::string,Command*> m_registry;

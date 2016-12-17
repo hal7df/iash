@@ -98,9 +98,9 @@ int iash::run (istream &cmdin, bool showPrompt)
 		//Run commands
 		try
 		{
-			vector<UserCommand> &commands = processor.process(raw);
+			const vector<UserCommand> &commands = processor.process(raw);
 
-			for (UserCommand &cmd : commands)
+			for (const UserCommand &cmd : commands)
 			{
 				returnCode = m_dispatcher.dispatch(&cmd);
 

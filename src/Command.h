@@ -86,7 +86,7 @@ public:
 	 *
 	 * @return	the name of this Command
 	 */
-	virtual std::string getName () const = 0;
+	virtual const std::string getName () const = 0;
 
 	/**
 	 * Returns all builtin aliases for this %Command. Aliases are used to invoke
@@ -111,7 +111,7 @@ public:
 	 * @return		a string to replace the aliased text in the original
 	 *				command. This should begin with the %Command's name.
 	 */
-	virtual std::string getAliasMapping (const std::string alias) const;
+	virtual const std::string getAliasMapping (const std::string &alias) const;
 
 	/**
 	 * Called when a command matching the current %Command is issued.
@@ -138,7 +138,7 @@ public:
 	 * 				and stdin/stdout for this command execution
 	 * @return		an exit status
 	 */
-	virtual int run (UserCommand *cmd) = 0;
+	virtual int run (const UserCommand *cmd) = 0;
 
 	/**
 	 * Prints a usage message to the specified output stream. This function is
@@ -164,7 +164,7 @@ public:
 	 * @param cmd	a pointer to the UserCommand containing
 	 * @return		if the command is valid or not.
 	 */
-	virtual bool validate (UserCommand *cmd) const;
+	virtual bool validate (const UserCommand *cmd) const;
 protected:
 	iash *m_parent;
 };

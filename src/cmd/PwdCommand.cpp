@@ -8,11 +8,11 @@
 #include "PwdCommand.h"
 using namespace std;
 
-string PwdCommand::getName () const {
+const string PwdCommand::getName () const {
 	return "pwd";
 }
 
-int PwdCommand::run (UserCommand *cmd) {
+int PwdCommand::run (const UserCommand *cmd) {
 	ostream &os = cmd->getStdout();
 
 	os << m_parent->getCwd()->getAbsPath() << endl;

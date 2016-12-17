@@ -32,7 +32,7 @@ void CommandPreprocessor::cleanup ()
 	m_dynamicStreams.clear();
 }
 
-vector<UserCommand>& CommandPreprocessor::process(const string& raw)
+const vector<UserCommand>& CommandPreprocessor::process(const string& raw)
 {
 	istream *stdinCand;
 	ostream *stdoutCand;
@@ -134,7 +134,7 @@ vector<UserCommand>& CommandPreprocessor::process(const string& raw)
 	return m_allCommands;
 }
 
-vector<UserCommand>& CommandPreprocessor::getCommands ()
+const vector<UserCommand>& CommandPreprocessor::getCommands () const
 {
 	return m_allCommands;
 }

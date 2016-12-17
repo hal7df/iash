@@ -34,7 +34,7 @@ void CommandDispatcher::registerCommand (Command *cmd)
 	}
 }
 
-Command* CommandDispatcher::unregisterCommand (string name)
+Command* CommandDispatcher::unregisterCommand (const string &name)
 {
 	map<string,Command*>::iterator pos = m_registry.find(name);
 
@@ -51,7 +51,7 @@ Command* CommandDispatcher::unregisterCommand (string name)
 	return v;
 }
 
-Command* CommandDispatcher::unregisterCommand (Command *cmd)
+const Command* CommandDispatcher::unregisterCommand (const Command *cmd)
 {
 	bool commandExists = false;
 
@@ -74,7 +74,7 @@ Command* CommandDispatcher::unregisterCommand (Command *cmd)
 	return cmd;
 }
 
-int CommandDispatcher::dispatch (UserCommand *userCmd)
+int CommandDispatcher::dispatch (const UserCommand *userCmd)
 {
 	map<string,Command*>::iterator it;
 

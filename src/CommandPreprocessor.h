@@ -43,7 +43,7 @@ public:
 	 * @return		a reference to a vector of the UserCommands contained in
 	 * 				the raw command string.
 	 */
-	std::vector<UserCommand>& process (const std::string& raw);
+	const std::vector<UserCommand>& process (const std::string& raw);
 
 	/**
 	 * Gets the UserCommands that were parsed from the last call to process.
@@ -51,7 +51,7 @@ public:
 	 * @return	a reference to a vector of the UserCommands contained in the
 	 * 			raw command string.
 	 */
-	std::vector<UserCommand>& getCommands ();
+	const std::vector<UserCommand>& getCommands () const;
 
 	/**
 	 * Cleans up stream objects that were opened on the last call to process.
