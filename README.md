@@ -14,4 +14,4 @@ Before you post an issue to the issue tracker, please read the [rules](https://g
 
 # Help
 
-See the [wiki](https://github.com/hal7df/iash/wiki).
+See the [docs](https://hal7df.github.io/iash/docs/html).
