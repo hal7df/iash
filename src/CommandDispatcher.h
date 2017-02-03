@@ -73,37 +73,15 @@ public:
 	 * class, this function will not add the new instance. If the classes must
 	 * be replaced, the old one should be unregistered first.
 	 *
+	 * @param args			the arguments to pass to the constructor
 	 * @tparam ExtCommand	the Command type to register
+	 * @tparam Args			the types of the arguments to pass to the Command
+	 * 						constructor
 	 */
-	template <typename ExtCommand>
-	void registerCommand () { registerCommand(new ExtCommand); }
-
-	/**
-	 * Registers the given Command type with this CommandDispatcher instance.
-	 * This function will allocate the memory for the Command internally; all
-	 * the client must do is provide the type and constructor parameter:
-	 * ~~~{cpp}
-	 * CommandDispatcher disp (&shell);
-	 * disp.registerCommand<MyCommand>(4);
-	 * ~~~
-	 * Note that iash only supports passing one parameter to the constructor.
-	 * If you need to pass more than one parameter, then use
-	 * CommandDispatcher#registerCommand(Command*) instead.
-	 * <p>
-	 * If a Command instance of the same type is already registered with this
-	 * class, this function will not add the Command to the registry. If the
-	 * Command classes must be replaced, the old one should be unregistered
-	 * first.
-	 *
-	 * @tparam ExtCommand	the Command type to register
-	 * @tparam CommandParam	the type of the variable/object being passed into
-	 * 						the ExtCommand constructor
-	 * @param initParam		the ExtCommand's constructor argument
-	 */
-	template <typename ExtCommand, typename CommandParam>
-	void registerCommand (CommandParam initParam)
+	template <typename ExtCommand, typename Args...>
+	void registerCommand (Args&&... args)
 	{
-		registerCommand(new ExtCommand(initParam));
+		registerCommand(new ExtCommand(std::forward(args)...));
 	}
 
 	/**

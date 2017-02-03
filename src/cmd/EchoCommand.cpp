@@ -13,6 +13,8 @@ int EchoCommand::run (const UserCommand *cmd) {
 
 	for(auto it = ++(args.begin()); it != args.end(); ++it) {
 		os << *it;
+
+		if (it != args.end()) os << ' ';
 	}
 
 	os << endl;

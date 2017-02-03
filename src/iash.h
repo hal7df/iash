@@ -117,33 +117,16 @@ public:
 	 * This should not be called more than once per each unique command; the
 	 * CommandDispatcher will refuse to add the repeated command.
 	 *
+	 * @param args			the arguments to pass to the Command subclass'
+	 *						constructor
 	 * @tparam ExtCommand	the type of the Command to register with the shell
+	 * @tparam Args			the types of the arguments to pass to the
+	 *						Command subclass constructor
      */
-    template <typename ExtCommand>
-    void addCommand () { m_dispatcher.registerCommand<ExtCommand>(); }
-
-    /**
-     * Adds a Command instance of the given type to this shell's
-     * CommandDispatcher registry with the given initialization argument. This
-     * function will internally allocate an object of the given Command type
-     * dynamically.
-     * ~~~{cpp}
-     * iash shell ("myapp");
-     * shell.addCommand<FooCommand>("foo");
-     * ~~~
-     * This should not be called more than once per each unique command; the
-     * CommandDispatcher will refuse to add the repeated command.
-     *
-     * @tparam ExtCommand	the type of the Command to register with the shell
-     * @tparam CommandParam	the type of the initialization argument for the
-	 * 						ExtCommand constructor
-	 * @param initParam		the initialization parameter to pass to the
-	 * 						ExtCommand constructor
-     */
-    template <typename ExtCommand, typename CommandParam>
-    void addCommand(CommandParam initParam)
+    template <typename ExtCommand, typename Args...>
+    void addCommand (Args&&... args)
     {
-    	m_dispatcher.registerCommand<ExtCommand>(initParam);
+    	m_dispatcher.registerCommand<ExtCommand>(std::forward(args)...);
     }
 
     //SHELL INVOCATION *********************************************************
