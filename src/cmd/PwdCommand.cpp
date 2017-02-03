@@ -6,6 +6,7 @@
  */
 
 #include "PwdCommand.h"
+#include "../iash.h"
 using namespace std;
 
 const string PwdCommand::getName () const {
