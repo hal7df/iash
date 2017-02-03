@@ -11,6 +11,7 @@
 #include <string>
 #include <map>
 #include <iostream>
+#include <utility>
 
 class iash;
 class Command;
