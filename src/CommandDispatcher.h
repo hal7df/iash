@@ -79,7 +79,7 @@ public:
 	 * @tparam Args			the types of the arguments to pass to the Command
 	 * 						constructor
 	 */
-	template <typename ExtCommand, typename Args...>
+	template <typename ExtCommand, typename... Args>
 	void registerCommand (Args&&... args)
 	{
 		registerCommand(new ExtCommand(std::forward(args)...));

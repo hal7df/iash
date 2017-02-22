@@ -30,6 +30,7 @@
 
 #include <iostream>
 #include <string>
+#include <utility>
 
 #include "Environment.h"
 #include "CommandDispatcher.h"
@@ -123,7 +124,7 @@ public:
 	 * @tparam Args			the types of the arguments to pass to the
 	 *						Command subclass constructor
      */
-    template <typename ExtCommand, typename Args...>
+    template <typename ExtCommand, typename... Args>
     void addCommand (Args&&... args)
     {
     	m_dispatcher.registerCommand<ExtCommand>(std::forward(args)...);
