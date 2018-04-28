@@ -1,46 +1,71 @@
 # Handwritten makefile for iash
 
 # Where to find the sources
-LIB_SRCS = $(wildcard src/*.cpp) $(wildcard src/tools/*.cpp)
-BUILTIN_COMMANDS = $(wildcard src/cmd/*.cpp)
+LIB_SRCS = $(wildcard *.cpp) $(wildcard tools/*.cpp)
+BUILTIN_COMMANDS = $(wildcard cmd/*.cpp)
 EXAMPLE_SRCS = $(wildcard examples/*.cpp)
 EXAMPLE_FILES = $(notdir $(EXAMPLE_SRCS))
 
 # Output directories
 BIN_ROOT = bin
 BIN_OBJ = $(BIN_ROOT)/obj
-BIN_LIB = $(BIN_ROOT)/lib
+BIN_LIB = $(BIN_ROOT)
 BIN_EXAMPLE = $(BIN_ROOT)/example
 
 # Output objects
-LIB_OBJS = $(LIB_SRCS:src/%.cpp=$(BIN_OBJ)/%.o)
-BUILTIN_OBJS = $(BUILTIN_COMMANDS:src/%.cpp=$(BIN_OBJ)/%.o)
+LIB_OBJS = $(addprefix $(BIN_OBJ)/, $(LIB_SRCS:%.cpp=%.o))
+BUILTIN_OBJS = $(addprefix $(BIN_OBJ)/, $(BUILTIN_COMMANDS:%.cpp=%.o))
+STATIC_LIB = $(BIN_LIB)/libiash.a
+DYNAMIC_LIB = $(BIN_LIB)/libiash.so
+EXAMPLES = $(addprefix $(BIN_EXAMPLE)/, $(EXAMPLE_FILES:%.cpp=%))
 
 # Executables and flags
 CXX = g++
 CXXFLAGS = -Wall -Werror -pedantic --std=c++11
-OPTIMIZATION = -O1
-LIBFLAGS = -c -fpic
+OPTIMIZATION = -O2
+LIBFLAGS = 
+EXEC_LINKFLAGS = 
+EXEC_LINKLIBS = 
 AR = ar
+MKDIR = mkdir -p
 
-.PHONY: clean
+.PHONY: clean all static dynamic example static-example dynamic-example
 
-all: iash example
+all: static
 
-iash: $(LIB_OBJS) $(BUILTIN_OBJS)
-	mkdir -p $(BIN_LIB)
-	$(AR) rcs "$(BIN_LIB)/lib$@.a" $(wildcard $(BIN_OBJ)/*.o)
-	$(CXX) $(LIB_OBJS) $(BUILTIN_OBJS) -shared -o "$(BIN_LIB)/lib$@.so"
+debug: OPTIMIZATION = -g
+debug: static static-example
 
-example: $(BIN_EXAMPLE)/$(EXAMPLE_FILES:.cpp=)
+static: LINKFLAGS += $(STATIC_LIB)
+static: $(STATIC_LIB)
 
-$(BIN_OBJ)/%.o: src/%.cpp
+dynamic: LIBFLAGS += -fpic
+dynamic: LINKFLAGS += -L$(abspath $(BIN_LIB)) -liash
+dynamic: $(DYNAMIC_LIB)
+
+$(STATIC_LIB): $(LIB_OBJS) $(BUILTIN_OBJS)
+	$(MKDIR) $(BIN_LIB)
+	$(AR) rcs "$@" $(LIB_OBJS) $(BUILTIN_OBJS)
+
+$(DYNAMIC_LIB): $(LIB_OBJS) $(BUILTIN_OBJS)
+	$(MKDIR) $(BIN_LIB)
+	$(CXX) $(LIB_OBJS) $(BUILTIN_OBJS) -shared -o "$@" 
+
+$(BIN_OBJ)/%.o: %.cpp
 	mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(OPTIMIZATION) $< -o $@
+	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(OPTIMIZATION) -c $< -o $@
+
+example: static-exmaple
+
+static-example: EXEC_LINKLIBS += $(STATIC_LIB)
+static-example: $(STATIC_LIB) $(EXAMPLES)
+
+dynamic-example: EXEC_LINKFLAGS += -L$(abspath $(BIN_LIB)) -liash
+dynamic-example: $(DYNAMIC_LIB) $(EXAMPLES)
 	
-$(BIN_EXAMPLE)/%: examples/%.cpp iash
+$(BIN_EXAMPLE)/%: examples/%.cpp
 	mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) $(OPTIMIZATION) -L$(abspath $(BIN_LIB)) $< -o $@ -liash
+	$(CXX) $(CXXFLAGS) $(OPTIMIZATION) -I ./ $< $(EXEC_LINKLIBS) -o $@ $(EXEC_LINKFLAGS)
 	
 clean:
 	rm -vrf $(BIN_ROOT)

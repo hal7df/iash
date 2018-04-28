@@ -13,7 +13,7 @@
 #include <exception>
 #include <stdexcept>
 
-#include "../../src/tools/Token.h"
+#include "Token.h"
 
 /**
  * Splits up a source string into Tokens based on the given delimiter(s). This

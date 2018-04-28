@@ -21,7 +21,7 @@
 
 #include <iostream>
 
-#include "../src/iash.h"
+#include "iash.h"
 using namespace std;
 
 int main ()
