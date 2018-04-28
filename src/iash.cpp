@@ -104,6 +104,11 @@ int iash::run (istream &cmdin, bool showPrompt)
 			{
 				returnCode = m_dispatcher.dispatch(&cmd);
 
+                                if (returnCode == 127) {
+                                    cout << "iash: command not found: ";
+                                    cout << cmd.getWholeCommand()[0] << endl;
+                                }
+
 				//Stop running commands if exit was called
 				if (m_exitFlag) break;
 			}
