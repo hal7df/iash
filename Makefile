@@ -1,4 +1,12 @@
-# Handwritten makefile for iash
+# QUICKSTART:
+# * `make static` (default): build a statically-linked library in bin/
+# * `make shared`: build a dynamically-linked library in bin/i
+# * `make all`: builds the static and static-example targets
+# * `make debug`: same as `make all` but with debugging flags set
+# * `make example`, `make static-example`: build all example programs and link them 
+# 	statically.
+# * `make dynamic-example`: build all example programs and link them dynamically.
+# 	Be sure to run `make dynamic` first (for the same reason as above).
 
 # Where to find the sources
 LIB_SRCS = $(wildcard *.cpp) $(wildcard tools/*.cpp)
@@ -18,54 +26,53 @@ BUILTIN_OBJS = $(addprefix $(BIN_OBJ)/, $(BUILTIN_COMMANDS:%.cpp=%.o))
 STATIC_LIB = $(BIN_LIB)/libiash.a
 DYNAMIC_LIB = $(BIN_LIB)/libiash.so
 EXAMPLES = $(addprefix $(BIN_EXAMPLE)/, $(EXAMPLE_FILES:%.cpp=%))
+EXAMPLE_PREREQ = 
 
 # Executables and flags
 CXX = g++
 CXXFLAGS = -Wall -Werror -pedantic --std=c++11
 OPTIMIZATION = -O2
 LIBFLAGS = 
-EXEC_LINKFLAGS = 
-EXEC_LINKLIBS = 
+EXAMPLE_LINKFLAGS = -L$(abspath $(BIN_LIB)) -liash
 AR = ar
 MKDIR = mkdir -p
 
 .PHONY: clean all static dynamic example static-example dynamic-example
 
-all: static
-
-debug: OPTIMIZATION = -g
-debug: static static-example
-
-static: LINKFLAGS += $(STATIC_LIB)
 static: $(STATIC_LIB)
 
 dynamic: LIBFLAGS += -fpic
-dynamic: LINKFLAGS += -L$(abspath $(BIN_LIB)) -liash
 dynamic: $(DYNAMIC_LIB)
 
+debug: OPTIMIZATION = -g
+debug: all
+
+all: static static-example
+
 $(STATIC_LIB): $(LIB_OBJS) $(BUILTIN_OBJS)
-	$(MKDIR) $(BIN_LIB)
 	$(AR) rcs "$@" $(LIB_OBJS) $(BUILTIN_OBJS)
 
 $(DYNAMIC_LIB): $(LIB_OBJS) $(BUILTIN_OBJS)
-	$(MKDIR) $(BIN_LIB)
 	$(CXX) $(LIB_OBJS) $(BUILTIN_OBJS) -shared -o "$@" 
 
-$(BIN_OBJ)/%.o: %.cpp
-	mkdir -p $(dir $@)
+$(BIN_OBJ)/%.o: %.cpp 
+	@$(MKDIR) $(dir $@)
 	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(OPTIMIZATION) -c $< -o $@
 
-example: static-exmaple
+example: static-example
 
-static-example: EXEC_LINKLIBS += $(STATIC_LIB)
-static-example: $(STATIC_LIB) $(EXAMPLES)
+static-example: $(addsuffix .static, $(EXAMPLES))
 
-dynamic-example: EXEC_LINKFLAGS += -L$(abspath $(BIN_LIB)) -liash
-dynamic-example: $(DYNAMIC_LIB) $(EXAMPLES)
+dynamic-example: $(addsuffix .dynamic, $(EXAMPLES))
 	
-$(BIN_EXAMPLE)/%: examples/%.cpp
-	mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) $(OPTIMIZATION) -I ./ $< $(EXEC_LINKLIBS) -o $@ $(EXEC_LINKFLAGS)
+$(BIN_EXAMPLE)/%.static: examples/%.cpp static | $(BIN_EXAMPLE) 
+	$(CXX) $(CXXFLAGS) $(OPTIMIZATION) -I ./ $< $(STATIC_LIB) -o $@
 	
+$(BIN_EXAMPLE)/%.dynamic: examples/%.cpp dynamic | $(BIN_EXAMPLE)
+	$(CXX) $(CXXFLAGS) $(OPTIMIZATION) -I ./ $< -o $@ $(EXAMPLE_LINKFLAGS)
+
+$(BIN_EXAMPLE):
+	@$(MKDIR) $@
+
 clean:
 	rm -vrf $(BIN_ROOT)

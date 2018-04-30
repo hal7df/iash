@@ -13,22 +13,45 @@ See the [Releases](https://github.com/hal7df/iash/releases) page.
 iash is presently only known to build on Linux (Mac support coming soon,
 it could possibly build on Windows, but this is not known).
 From the root of the project directory, run:
+
 ```
-make all
+make
 ```
-After iash has finished building, `bin/` will contain all of the built files.
-Built examples can be found in `bin/example/`, library files can be found
-in `bin/lib/`, and individual object files can be found in `bin/obj/`.
+This will build iash as a static library, located in bin/libiash.a. To build
+a dynamic library instead, run:
+```
+make dynamic
+```
+After iash has finished building, you will find either libiash.a or libiash.so
+under `bin/`.
+
+## Building examples
+
+To build all examples and link them statically, run:
+```
+make static-example
+```
+Similarly, to build all examples and link them dynamically, run:
+```
+make dynamic-example
+```
+After the examples have finished building, you can find them in `bin/example`,
+with the suffix `.static` or `.dynamic` depending on what linking method you
+chose.
 
 # Running
 
-To run the basic example, do the following from the project root:
+To run any example, you can just call the executable in the `bin/example`
+directory:
+```
+bin/example/basic.static
+```
+If you linked the examples dynamically, you will have to set the 
+`LD_LIBRARY_PATH` environment variable before running the executable:
 ```
 export LD_LIBRARY_PATH=$PWD/bin/lib:$LD_LIBRARY_PATH
-bin/example/basic
+bin/example/basic.dynamic
 ```
-(For the moment, we dynamically link the example, since this is the only linking
-option that appears to work. Examples will be statically linked in the future).
 
 # Posting Issues
 
