@@ -4,18 +4,10 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>iash: src/Environment.h Source File</title>
+<title>iash: Environment.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-  $(window).load(resizeHeight);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -75,20 +67,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('_environment_8h_source.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -110,22 +88,18 @@ $(document).ready(function(){initNavTree('_environment_8h_source.html','');});
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Environment.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *  Created on: Oct 10, 2016</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *      Author: paul</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> */</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef SRC_ENVIRONMENT_H_</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define SRC_ENVIRONMENT_H_</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_environment.html">   33</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_environment.html">Environment</a> {</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classiash.html">iash</a>;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_environment.html#a9a078b8c683e55f23f05427e0bb2a8e6">Environment</a> (<span class="keyword">const</span> std::string appName = <span class="stringliteral">&quot;iash&quot;</span>);</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_environment.html">Environment</a> ();</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <span class="keyword">set</span> (<span class="keyword">const</span> std::string &amp;key, <span class="keyword">const</span> std::string &amp;value);</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> <span class="keyword">set</span> (<span class="keyword">const</span> std::string &amp;key, <span class="keyword">const</span> <span class="keywordtype">bool</span> value);</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> <span class="keyword">set</span> (<span class="keyword">const</span> std::string &amp;key, <span class="keyword">const</span> <span class="keywordtype">int</span> value);</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> <span class="keyword">set</span> (<span class="keyword">const</span> std::string &amp;key, <span class="keyword">const</span> <span class="keywordtype">double</span> value);</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">const</span> std::string&amp; <a class="code" href="class_environment.html#a1c7db4207d2840fd13c0139448225486">getString</a> (<span class="keyword">const</span> std::string &amp;key) <span class="keyword">const</span>;</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_environment.html#adcb72658e9cec47e89b96bfe01d6e77d">getBool</a> (<span class="keyword">const</span> std::string &amp;key) <span class="keyword">const</span>;</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_environment.html#a7c2a62505c9d2e5b66276fbf13ec06f1">getInt</a> (<span class="keyword">const</span> std::string &amp;key) <span class="keyword">const</span>;</div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_environment.html#a43f7d699cee713b112177864dac31910">getDouble</a> (<span class="keyword">const</span> std::string &amp;key) <span class="keyword">const</span>;</div><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_environment.html#a4fbd86433a63c7e5eead0f20ec28f0e7">rm</a> (<span class="keyword">const</span> std::string &amp;key);</div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> setProtected (<span class="keyword">const</span> std::string &amp;key, <span class="keyword">const</span> std::string &amp;value);</div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">bool</span> isBuiltinVar (<span class="keyword">const</span> std::string &amp;key) <span class="keyword">const</span>;</div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keyword">static</span> std::string convName (<span class="keyword">const</span> std::string &amp;key);</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    std::map&lt;std::string,std::string&gt; m_envMap;</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    std::vector&lt;std::string&gt; m_builtins;</div><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;};</div><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SRC_ENVIRONMENT_H_ */</span><span class="preprocessor"></span></div><div class="ttc" id="class_environment_html_a1c7db4207d2840fd13c0139448225486"><div class="ttname"><a href="class_environment.html#a1c7db4207d2840fd13c0139448225486">Environment::getString</a></div><div class="ttdeci">const std::string &amp; getString(const std::string &amp;key) const </div><div class="ttdoc">Gets the environment variable key as a string. </div><div class="ttdef"><b>Definition:</b> Environment.cpp:52</div></div>
 <div class="ttc" id="class_environment_html"><div class="ttname"><a href="class_environment.html">Environment</a></div><div class="ttdoc">Environment variable manager for iash. </div><div class="ttdef"><b>Definition:</b> Environment.h:33</div></div>
-<div class="ttc" id="classiash_html"><div class="ttname"><a href="classiash.html">iash</a></div><div class="ttdoc">The main shell class for iash. </div><div class="ttdef"><b>Definition:</b> iash.h:55</div></div>
+<div class="ttc" id="classiash_html"><div class="ttname"><a href="classiash.html">iash</a></div><div class="ttdoc">The main shell class for iash. </div><div class="ttdef"><b>Definition:</b> iash.h:56</div></div>
 <div class="ttc" id="class_environment_html_adcb72658e9cec47e89b96bfe01d6e77d"><div class="ttname"><a href="class_environment.html#adcb72658e9cec47e89b96bfe01d6e77d">Environment::getBool</a></div><div class="ttdeci">bool getBool(const std::string &amp;key) const </div><div class="ttdoc">Gets the environment variable key as a boolean value. </div><div class="ttdef"><b>Definition:</b> Environment.cpp:59</div></div>
 <div class="ttc" id="class_environment_html_a43f7d699cee713b112177864dac31910"><div class="ttname"><a href="class_environment.html#a43f7d699cee713b112177864dac31910">Environment::getDouble</a></div><div class="ttdeci">double getDouble(const std::string &amp;key) const </div><div class="ttdoc">Gets the environment variable key as a floating-point value. </div><div class="ttdef"><b>Definition:</b> Environment.cpp:77</div></div>
 <div class="ttc" id="class_environment_html_a4fbd86433a63c7e5eead0f20ec28f0e7"><div class="ttname"><a href="class_environment.html#a4fbd86433a63c7e5eead0f20ec28f0e7">Environment::rm</a></div><div class="ttdeci">void rm(const std::string &amp;key)</div><div class="ttdoc">Removes the environment variable key. </div><div class="ttdef"><b>Definition:</b> Environment.cpp:86</div></div>
 <div class="ttc" id="class_environment_html_a7c2a62505c9d2e5b66276fbf13ec06f1"><div class="ttname"><a href="class_environment.html#a7c2a62505c9d2e5b66276fbf13ec06f1">Environment::getInt</a></div><div class="ttdeci">int getInt(const std::string &amp;key) const </div><div class="ttdoc">Gets the environment variable key as an integer. </div><div class="ttdef"><b>Definition:</b> Environment.cpp:68</div></div>
 <div class="ttc" id="class_environment_html_a9a078b8c683e55f23f05427e0bb2a8e6"><div class="ttname"><a href="class_environment.html#a9a078b8c683e55f23f05427e0bb2a8e6">Environment::Environment</a></div><div class="ttdeci">Environment(const std::string appName=&quot;iash&quot;)</div><div class="ttdoc">Creates an Environment instance with the given application name. </div><div class="ttdef"><b>Definition:</b> Environment.cpp:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>Environment.h</b></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
 </body>
 </html>

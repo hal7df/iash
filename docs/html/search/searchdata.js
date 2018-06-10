@@ -1,8 +1,8 @@
 var indexSectionsWithContent =
 {
-  0: "acdefgimoprstuv",
-  1: "cdefistu",
-  2: "acdefgimoprstuv",
+  0: "acdefgimprsuv",
+  1: "cdefisu",
+  2: "acdefgimprsuv",
   3: "i"
 };
 

@@ -8,14 +8,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-  $(window).load(resizeHeight);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -77,21 +69,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('classiash.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -106,6 +83,7 @@ $(document).ready(function(){initNavTree('classiash.html','');});
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">iash Member List</div>  </div>
@@ -115,25 +93,21 @@ $(document).ready(function(){initNavTree('classiash.html','');});
 <p>This is the complete list of members for <a class="el" href="classiash.html">iash</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="classiash.html#a6efda722555761d647166166f7f7cddd">addCommand</a>(Command *cmd)</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classiash.html#a00f433e2bc5b0eb19341aa70b01253b5">addCommand</a>()</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classiash.html#af815bbccc5084f4bf0d1af35329dc8a0">addCommand</a>(CommandParam initParam)</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classiash.html#a043911f2a2bf1d5c1cba490e40449318">exec</a>(std::string &amp;cmd)</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classiash.html#a0ed3e21a4531a45340782f1343416255">exec</a>(UserCommand *cmd)</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>ExitCommand</b> (defined in <a class="el" href="classiash.html">iash</a>)</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"><span class="mlabel">friend</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classiash.html#a746c296a179670886b72c166db01c667">getCwd</a>() const </td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classiash.html#a3827898885e44d53392469ba0088d8d4">getEnv</a>()</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classiash.html#a387a766c64c180824a1a634a4fa0c99b">iash</a>(const std::string &amp;appName=&quot;iash&quot;)</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classiash.html#ab7a1b381bc195c704ff3e800dd1e9928">runInteractive</a>()</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classiash.html#a093e92a68355e77316ddf33f83b3a2bf">runScript</a>(const char *fname)</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classiash.html#a0b53fe8c8970bec818d6dd065a9a38df">addCommand</a>(Args &amp;&amp;...args)</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classiash.html#a043911f2a2bf1d5c1cba490e40449318">exec</a>(std::string &amp;cmd)</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classiash.html#a0ed3e21a4531a45340782f1343416255">exec</a>(UserCommand *cmd)</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>ExitCommand</b> (defined in <a class="el" href="classiash.html">iash</a>)</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"><span class="mlabel">friend</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classiash.html#a746c296a179670886b72c166db01c667">getCwd</a>() const </td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classiash.html#a3827898885e44d53392469ba0088d8d4">getEnv</a>()</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classiash.html#a387a766c64c180824a1a634a4fa0c99b">iash</a>(const std::string &amp;appName=&quot;iash&quot;)</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classiash.html#ab7a1b381bc195c704ff3e800dd1e9928">runInteractive</a>()</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classiash.html#a093e92a68355e77316ddf33f83b3a2bf">runScript</a>(const char *fname)</td><td class="entry"><a class="el" href="classiash.html">iash</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
 </body>
 </html>

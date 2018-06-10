@@ -8,14 +8,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-  $(window).load(resizeHeight);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,21 +61,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('md_README.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -98,6 +75,7 @@ $(document).ready(function(){initNavTree('md_README.html','');});
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">iash </div>  </div>
@@ -108,22 +86,21 @@ $(document).ready(function(){initNavTree('md_README.html','');});
 <p><em>iash does not currently have a system package build.</em></p>
 <p>See the <a href="https://github.com/hal7df/iash/releases">Releases</a> page.</p>
 <h1>Building</h1>
-<p>iash is presently only known to build on Linux (Mac support coming soon, it could possibly build on Windows, but this is not known). From the root of the project directory, run: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make all</div></div><!-- fragment --><p> After iash has finished building, <code>bin/</code> will contain all of the built files. Built examples can be found in <code>bin/example/</code>, library files can be found in <code>bin/lib/</code>, and individual object files can be found in <code>bin/obj/</code>.</p>
+<p>iash is presently only known to build on Linux (Mac support coming soon, it could possibly build on Windows, but this is not known). From the root of the project directory, run:</p>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make</div></div><!-- fragment --><p> This will build iash as a static library, located in bin/libiash.a. To build a dynamic library instead, run: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make dynamic</div></div><!-- fragment --><p> After iash has finished building, you will find either libiash.a or libiash.so under <code>bin/</code>.</p>
+<h2>Building examples</h2>
+<p>To build all examples and link them statically, run: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make static-example</div></div><!-- fragment --><p> Similarly, to build all examples and link them dynamically, run: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make dynamic-example</div></div><!-- fragment --><p> After the examples have finished building, you can find them in <code>bin/example</code>, with the suffix <code>.static</code> or <code>.dynamic</code> depending on what linking method you chose.</p>
 <h1>Running</h1>
-<p>To run the basic example, do the following from the project root: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;export LD_LIBRARY_PATH=$PWD/bin/lib:$LD_LIBRARY_PATH</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;bin/example/basic</div></div><!-- fragment --><p> (For the moment, we dynamically link the example, since this is the only linking option that appears to work. Examples will be statically linked in the future).</p>
-<h1>Posting Issues</h1>
+<p>To run any example, you can just call the executable in the <code>bin/example</code> directory: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;bin/example/basic.static</div></div><!-- fragment --><p> If you linked the examples dynamically, you will have to set the <code>LD_LIBRARY_PATH</code> environment variable before running the executable: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;export LD_LIBRARY_PATH=$PWD/bin/lib:$LD_LIBRARY_PATH</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;bin/example/basic.dynamic</div></div><!-- fragment --><h1>Posting Issues</h1>
 <p>Before you post an issue to the issue tracker, please read the <a href="https://github.com/hal7df/iash/wiki/Issue-Tracker">rules</a>.</p>
 <h1>Help</h1>
 <p>See the <a href="https://hal7df.github.io/iash/docs/html">docs</a>. </p>
 </div></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
 </body>
 </html>

@@ -11,18 +11,14 @@ var searchData=
   ['getcwd',['getCwd',['../classiash.html#a746c296a179670886b72c166db01c667',1,'iash']]],
   ['getdouble',['getDouble',['../class_environment.html#a43f7d699cee713b112177864dac31910',1,'Environment']]],
   ['getenv',['getEnv',['../classiash.html#a3827898885e44d53392469ba0088d8d4',1,'iash']]],
-  ['getfollowingdelimiter',['getFollowingDelimiter',['../class_token.html#a2bcd55a8f1441557a3c1baaac69704b1',1,'Token']]],
   ['gethomedir',['getHomeDir',['../class_directory.html#a43b45931e65f04a94f41ec7bf70fa91f',1,'Directory']]],
   ['getint',['getInt',['../class_environment.html#a7c2a62505c9d2e5b66276fbf13ec06f1',1,'Environment']]],
   ['getname',['getName',['../class_command.html#a597bb7b99c65d1097d344b81ba19dfce',1,'Command']]],
   ['getoptions',['getOptions',['../class_user_command.html#a8e9c1ee621d52eb7a14a8133b3f597eb',1,'UserCommand']]],
   ['getpathtofileindirectory',['getPathToFileInDirectory',['../class_directory.html#a4aad5b838b9a642c102ba7297355f12b',1,'Directory']]],
-  ['getprecedingdelimiter',['getPrecedingDelimiter',['../class_token.html#a68d6595b2b9f3f76d0234828dcda9cae',1,'Token']]],
   ['getstdin',['getStdin',['../class_user_command.html#acfd600bee459c491aec760bd0fb7b42a',1,'UserCommand']]],
   ['getstdout',['getStdout',['../class_user_command.html#af2e5b401c5577f2571ac5dd7743c5e1b',1,'UserCommand']]],
   ['getstring',['getString',['../class_environment.html#a1c7db4207d2840fd13c0139448225486',1,'Environment']]],
-  ['gettoken',['getToken',['../class_token.html#af071856fbae6a564d41f9fe3306a5c0c',1,'Token::getToken()'],['../class_tokenizer.html#a94fc9906dac29f7bfc9b2a65573db81a',1,'Tokenizer::getToken()']]],
-  ['gettokens',['getTokens',['../class_tokenizer.html#a30005d44ec15a17f62dab64273849c50',1,'Tokenizer']]],
   ['getwholecommand',['getWholeCommand',['../class_user_command.html#abed711c3665e673e99fcc4a5074cd850',1,'UserCommand']]],
   ['getworkingdir',['getWorkingDir',['../class_directory.html#aeac144ed8ba39d43e0caa198ee2c9d7b',1,'Directory']]]
 ];

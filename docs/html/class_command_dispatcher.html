@@ -8,14 +8,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-  $(window).load(resizeHeight);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -77,21 +69,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('class_command_dispatcher.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -106,6 +83,7 @@ $(document).ready(function(){initNavTree('class_command_dispatcher.html','');});
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -128,14 +106,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acf16ce3881024826c8cfce6cd625c87a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_dispatcher.html#acf16ce3881024826c8cfce6cd625c87a">registerCommand</a> (<a class="el" href="class_command.html">Command</a> *cmd)</td></tr>
 <tr class="memdesc:acf16ce3881024826c8cfce6cd625c87a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a given <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> with this <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> instance.  <a href="#acf16ce3881024826c8cfce6cd625c87a">More...</a><br /></td></tr>
 <tr class="separator:acf16ce3881024826c8cfce6cd625c87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5eaf38a5f36aff4246789b6595d3016a"><td class="memTemplParams" colspan="2">template&lt;typename ExtCommand &gt; </td></tr>
-<tr class="memitem:a5eaf38a5f36aff4246789b6595d3016a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_command_dispatcher.html#a5eaf38a5f36aff4246789b6595d3016a">registerCommand</a> ()</td></tr>
-<tr class="memdesc:a5eaf38a5f36aff4246789b6595d3016a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers the given <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> type with this <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> instance.  <a href="#a5eaf38a5f36aff4246789b6595d3016a">More...</a><br /></td></tr>
-<tr class="separator:a5eaf38a5f36aff4246789b6595d3016a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebb3d2723c8757493c73238c4afa6ec3"><td class="memTemplParams" colspan="2">template&lt;typename ExtCommand , typename CommandParam &gt; </td></tr>
-<tr class="memitem:aebb3d2723c8757493c73238c4afa6ec3"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_command_dispatcher.html#aebb3d2723c8757493c73238c4afa6ec3">registerCommand</a> (CommandParam initParam)</td></tr>
-<tr class="memdesc:aebb3d2723c8757493c73238c4afa6ec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers the given <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> type with this <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> instance.  <a href="#aebb3d2723c8757493c73238c4afa6ec3">More...</a><br /></td></tr>
-<tr class="separator:aebb3d2723c8757493c73238c4afa6ec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3e552f360e11c90fd84dfe0553a4abf"><td class="memTemplParams" colspan="2">template&lt;typename ExtCommand , typename... Args&gt; </td></tr>
+<tr class="memitem:ad3e552f360e11c90fd84dfe0553a4abf"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_command_dispatcher.html#ad3e552f360e11c90fd84dfe0553a4abf">registerCommand</a> (Args &amp;&amp;...args)</td></tr>
+<tr class="memdesc:ad3e552f360e11c90fd84dfe0553a4abf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers the given <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> type with this <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> instance.  <a href="#ad3e552f360e11c90fd84dfe0553a4abf">More...</a><br /></td></tr>
+<tr class="separator:ad3e552f360e11c90fd84dfe0553a4abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a888212818139aa39a89fb5d212873e77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_command.html">Command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_dispatcher.html#a888212818139aa39a89fb5d212873e77">unregisterCommand</a> (const std::string &amp;name)</td></tr>
 <tr class="memdesc:a888212818139aa39a89fb5d212873e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the command with the given name from the registry, and removes any of its registered aliases.  <a href="#a888212818139aa39a89fb5d212873e77">More...</a><br /></td></tr>
 <tr class="separator:a888212818139aa39a89fb5d212873e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,7 +194,7 @@ Public Member Functions</h2></td></tr>
 <p>This will call <a class="el" href="class_command.html#ab9606d1fae2f68658344f404b658301e" title="Sets the shell parent for this Command. ">Command::init</a> to set the parent shell and add the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>'s name and aliases to the command registry. </p>
 <p>This function requires a dynamically allocated <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a>, passed like so: </p><div class="fragment"><div class="line"><a class="code" href="class_command_dispatcher.html">CommandDispatcher</a> disp (&amp;shell);</div><div class="line">disp.registerCommand(<span class="keyword">new</span> MyCommand);</div></div><!-- fragment --><p> The <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> will automatically free the allocated memory, so there is no need to somehow catch the pointer to the allocated memory. </p>
 <p>If a <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> instance with the same name and type is already registered with this class, this function will not add the new instance. If the classes must be replaced, the old one should be unregistered first. </p>
-<p>This is not the recommended method to use when registering commands. <a class="el" href="class_command_dispatcher.html#a5eaf38a5f36aff4246789b6595d3016a" title="Registers the given Command type with this CommandDispatcher instance. ">CommandDispatcher::registerCommand()</a> should be used instead.</p>
+<p>This is not the recommended method to use when registering commands. <a class="el" href="class_command_dispatcher.html#acf16ce3881024826c8cfce6cd625c87a" title="Registers a given Command with this CommandDispatcher instance. ">CommandDispatcher::registerCommand()</a> should be used instead.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cmd</td><td>a dynamically allocated <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> object to register </td></tr>
@@ -230,11 +204,11 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5eaf38a5f36aff4246789b6595d3016a"></a>
+<a class="anchor" id="ad3e552f360e11c90fd84dfe0553a4abf"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename ExtCommand &gt; </div>
+template&lt;typename ExtCommand , typename... Args&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -242,7 +216,8 @@ template&lt;typename ExtCommand &gt; </div>
         <tr>
           <td class="memname">void CommandDispatcher::registerCommand </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -255,52 +230,16 @@ template&lt;typename ExtCommand &gt; </div>
 
 <p>Registers the given <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> type with this <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> instance. </p>
 <p>This function will allocate the memory for the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> internally; all the client must do is provide the type: </p><div class="fragment"><div class="line"><a class="code" href="class_command_dispatcher.html">CommandDispatcher</a> disp (&amp;shell);</div><div class="line">disp.registerCommand&lt;MyCommand&gt;();</div></div><!-- fragment --><p> If a <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> instance of the same type is already registered with this class, this function will not add the new instance. If the classes must be replaced, the old one should be unregistered first.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">ExtCommand</td><td>the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> type to register </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="aebb3d2723c8757493c73238c4afa6ec3"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename ExtCommand , typename CommandParam &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CommandDispatcher::registerCommand </td>
-          <td>(</td>
-          <td class="paramtype">CommandParam&#160;</td>
-          <td class="paramname"><em>initParam</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Registers the given <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> type with this <a class="el" href="class_command_dispatcher.html" title="Class to register and execute Commands in an iash shell. ">CommandDispatcher</a> instance. </p>
-<p>This function will allocate the memory for the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> internally; all the client must do is provide the type and constructor parameter: </p><div class="fragment"><div class="line"><a class="code" href="class_command_dispatcher.html">CommandDispatcher</a> disp (&amp;shell);</div><div class="line">disp.registerCommand&lt;MyCommand&gt;(4);</div></div><!-- fragment --><p> Note that iash only supports passing one parameter to the constructor. If you need to pass more than one parameter, then use <a class="el" href="class_command_dispatcher.html#acf16ce3881024826c8cfce6cd625c87a" title="Registers a given Command with this CommandDispatcher instance. ">CommandDispatcher::registerCommand(Command*)</a> instead. </p>
-<p>If a <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> instance of the same type is already registered with this class, this function will not add the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> to the registry. If the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> classes must be replaced, the old one should be unregistered first.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">ExtCommand</td><td>the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> type to register </td></tr>
-    <tr><td class="paramname">CommandParam</td><td>the type of the variable/object being passed into the ExtCommand constructor </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">initParam</td><td>the ExtCommand's constructor argument </td></tr>
+    <tr><td class="paramname">args</td><td>the arguments to pass to the constructor </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ExtCommand</td><td>the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> type to register </td></tr>
+    <tr><td class="paramname">Args</td><td>the types of the arguments to pass to the <a class="el" href="class_command.html" title="Abstract interface for a command registered with the shell. ">Command</a> constructor </td></tr>
   </table>
   </dd>
 </dl>
@@ -360,19 +299,15 @@ template&lt;typename ExtCommand , typename CommandParam &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="_command_dispatcher_8h_source.html">CommandDispatcher.h</a></li>
-<li>src/CommandDispatcher.cpp</li>
+<li><a class="el" href="_command_dispatcher_8h_source.html">CommandDispatcher.h</a></li>
+<li>CommandDispatcher.cpp</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="class_command_dispatcher.html">CommandDispatcher</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
 </body>
 </html>

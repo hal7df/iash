@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['set',['set',['../class_environment.html#aa8d8f7d755f9fdf54653256a8312b8fb',1,'Environment::set(const std::string &amp;key, const std::string &amp;value)'],['../class_environment.html#acbb781022f97079728410988fc7c648a',1,'Environment::set(const std::string &amp;key, const bool value)'],['../class_environment.html#a0f5754851dd8e16c56af2e497e45f95b',1,'Environment::set(const std::string &amp;key, const int value)'],['../class_environment.html#a490ded7b70ff93c3327bc7cab195342f',1,'Environment::set(const std::string &amp;key, const double value)']]],
-  ['setdelims',['setDelims',['../class_tokenizer.html#afead0213bf00a5e888b87ddf5f1df078',1,'Tokenizer']]],
-  ['setsource',['setSource',['../class_tokenizer.html#a885bd98a4f365c01d0e9c6c49de81f54',1,'Tokenizer']]],
-  ['showusagemessage',['showUsageMessage',['../class_command.html#aeccbc6bba93c9778807f27a80bacf8b3',1,'Command']]],
-  ['syntaxexception',['SyntaxException',['../class_syntax_exception.html#a71abf46cf7c91fdc4f8de29486e2cb07',1,'SyntaxException']]]
+  ['unregistercommand',['unregisterCommand',['../class_command_dispatcher.html#a888212818139aa39a89fb5d212873e77',1,'CommandDispatcher::unregisterCommand(const std::string &amp;name)'],['../class_command_dispatcher.html#a8ea20e1d022f736d2ae42c132e9e2b47',1,'CommandDispatcher::unregisterCommand(const Command *cmd)']]],
+  ['usercommand',['UserCommand',['../class_user_command.html#a6e7b20183ea36aaa306ac0b5f777c097',1,'UserCommand::UserCommand(const std::string &amp;inputCommand, std::istream &amp;stdin, std::ostream &amp;stdout)'],['../class_user_command.html#a285eafa6390e1ccff6dfbcc59ba4d426',1,'UserCommand::UserCommand(const Token &amp;inputCommand, std::istream &amp;stdin, std::ostream &amp;stdout)']]]
 ];
