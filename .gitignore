@@ -15,3 +15,5 @@ bin/
 
 # Doxygen config files
 docs/
+docs
+Doxygen.bak
