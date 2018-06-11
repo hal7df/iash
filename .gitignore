@@ -14,4 +14,4 @@
 bin/
 
 # Doxygen config files
-Doxyfile
+docs/
