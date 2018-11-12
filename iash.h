@@ -127,7 +127,7 @@ public:
     template <typename ExtCommand, typename... Args>
     void addCommand (Args&&... args)
     {
-    	m_dispatcher.registerCommand<ExtCommand>(std::forward(args)...);
+    	m_dispatcher.registerCommand<ExtCommand>(std::forward<Args>(args)...);
     }
 
     //SHELL INVOCATION *********************************************************

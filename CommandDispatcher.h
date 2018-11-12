@@ -82,7 +82,7 @@ public:
 	template <typename ExtCommand, typename... Args>
 	void registerCommand (Args&&... args)
 	{
-		registerCommand(new ExtCommand(std::forward(args)...));
+		registerCommand(new ExtCommand(std::forward<Args>(args)...));
 	}
 
 	/**
