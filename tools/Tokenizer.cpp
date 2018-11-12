@@ -7,6 +7,7 @@
 
 #include "Tokenizer.h"
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 Tokenizer::Tokenizer() : m_delims(1, ' ') {}
@@ -116,9 +117,14 @@ void Tokenizer::tokenize(string raw)
 		}
 
 		//Get the token
-		if (lastDelim > 0)
-			tmpToken = raw.substr(lastDelim + 1, (curDelim - lastDelim));
-		else tmpToken = raw.substr(0, (curDelim - lastDelim));
+		{
+			size_t tmpLast = lastDelim;
+
+			if (find(m_delims.begin(), m_delims.end(), raw[tmpLast]) != m_delims.end())
+				++tmpLast;
+
+			tmpToken = raw.substr(tmpLast, (curDelim - tmpLast));
+		}
 
 		//Remove any escapes for delimiters in this token
 		for (size_t i = 0; i < (tmpToken.length() - 1) && (tmpToken.length() > 0); ++i)
