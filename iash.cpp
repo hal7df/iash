@@ -102,6 +102,11 @@ int iash::run (istream &cmdin, bool showPrompt)
 
 			for (const UserCommand &cmd : commands)
 			{
+				if (cmd.getWholeCommand().size() == 1 && 
+				    cmd.getWholeCommand()[0].empty()) {
+				    continue;
+				}
+
 				returnCode = m_dispatcher.dispatch(&cmd);
 
                                 if (returnCode == 127) {
