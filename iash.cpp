@@ -20,6 +20,7 @@
 #include "cmd/EchoCommand.h"
 #include "cmd/ExitCommand.h"
 #include "cmd/PwdCommand.h"
+#include "cmd/ClearCommand.h"
 #include "tools/Tokenizer.h"
 #include "CommandPreprocessor.h"
 #include <fstream>
@@ -31,6 +32,7 @@ iash::iash (const string &appName)
 	addCommand<EchoCommand>();
 	addCommand<ExitCommand>();
 	addCommand<PwdCommand>();
+	addCommand<ClearCommand>();
 }
 
 Environment* iash::getEnv ()

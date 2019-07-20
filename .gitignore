@@ -1,4 +1,4 @@
-#Qt project files
+# Qt project files
 *.includes
 *.creator
 *.config
@@ -17,3 +17,6 @@ bin/
 docs/
 docs
 Doxygen.bak
+
+# VSCode settings files
+.vscode/
