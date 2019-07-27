@@ -169,7 +169,9 @@ bool Directory::isDir (const char *pathname)
 
 	return S_ISDIR(st.st_mode);
 #elif __WIN32
-	return PathIsDirectory(convToWindows(pathname));
+        DWORD fAttrib = GetFileAttributes(convToWindows(pathname));
+
+        return (fAttrib != INVALID_FILE_ATTRIBUTES && (fAttrib & FILE_ATTRIBUTE_DIRECTORY));
 #endif
 }
 
@@ -182,7 +184,9 @@ bool Directory::isFile (const char *pathname)
 
     return S_ISREG(st.st_mode);
 #elif __WIN32
-    return PathFileExists(convToWindows(pathname));
+        DWORD fAttrib = GetFileAttributes(convToWindows(pathname));
+
+        return (fAttrib != INVALID_FILE_ATTRIBUTES && !(fAttrib & FILE_ATTRIBUTE_DIRECTORY));
 #endif
 }
 
