@@ -16,6 +16,7 @@
 #elif __WIN32
 	#include <windows.h>
 	#include <direct.h>
+        #include <cstring>
 #endif
 
 using namespace std;
@@ -205,6 +206,11 @@ Directory Directory::getConfigDir()
     return Directory(string(getenv("HOME")) + "/.config/");
 #elif __WIN32
     OSVERSIONINFO version;
+
+    memset(&version, 0, sizeof(OSVERSIONINFO));
+    version.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+
+    GetVersionEx(&version);
 
     if (version.dwMajorVersion >= 6)
         return Directory(string(getenv("LOCALAPPDATA")));
