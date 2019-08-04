@@ -8,6 +8,9 @@
 # * `make dynamic-example`: build all example programs and link them dynamically.
 # 	Be sure to run `make dynamic` first (for the same reason as above).
 
+# Project root (Fix for Windows compilation)
+PROJ_ROOT = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+
 # Where to find the sources
 LIB_SRCS = $(wildcard *.cpp) $(wildcard tools/*.cpp)
 BUILTIN_COMMANDS = $(wildcard cmd/*.cpp)
@@ -66,10 +69,10 @@ static-example: $(addsuffix .static, $(EXAMPLES))
 dynamic-example: $(addsuffix .dynamic, $(EXAMPLES))
 	
 $(BIN_EXAMPLE)/%.static: examples/%.cpp static | $(BIN_EXAMPLE) 
-	$(CXX) $(CXXFLAGS) $(OPTIMIZATION) -I ./ $< $(STATIC_LIB) -o $@
+	$(CXX) $(CXXFLAGS) $(OPTIMIZATION) -I $(PROJ_ROOT) $< $(STATIC_LIB) -o $@
 	
 $(BIN_EXAMPLE)/%.dynamic: examples/%.cpp dynamic | $(BIN_EXAMPLE)
-	$(CXX) $(CXXFLAGS) $(OPTIMIZATION) -I ./ $< -o $@ $(EXAMPLE_LINKFLAGS)
+	$(CXX) $(CXXFLAGS) $(OPTIMIZATION) -I $(PROJ_ROOT) $< -o $@ $(EXAMPLE_LINKFLAGS)
 
 $(BIN_EXAMPLE):
 	@$(MKDIR) $@
