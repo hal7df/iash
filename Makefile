@@ -42,6 +42,10 @@ MKDIR = mkdir -p
 
 .PHONY: clean all static dynamic example static-example dynamic-example
 
+ifeq ($(OS),Windows_NT)
+    MKDIR = md
+endif
+
 static: $(STATIC_LIB)
 
 dynamic: LIBFLAGS += -fpic
