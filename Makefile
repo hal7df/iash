@@ -20,6 +20,8 @@ EXAMPLE_FILES = $(notdir $(EXAMPLE_SRCS))
 # Output directories
 BIN_ROOT = bin
 BIN_OBJ = $(BIN_ROOT)/obj
+BIN_TOOLS = $(BIN_OBJ)/tools
+BIN_CMD = $(BIN_OBJ)/cmd
 BIN_LIB = $(BIN_ROOT)
 BIN_EXAMPLE = $(BIN_ROOT)/example
 
@@ -39,11 +41,17 @@ LIBFLAGS =
 EXAMPLE_LINKFLAGS = -L$(abspath $(BIN_LIB)) -liash
 AR = ar
 MKDIR = mkdir -p
+RM = rm -vrf
 
-.PHONY: clean all static dynamic example static-example dynamic-example
+.PHONY: clean all static dynamic example static-example dynamic-example dirs
 
 ifeq ($(OS),Windows_NT)
     MKDIR = md
+    RM = rmdir /s /q
+    BIN_OBJ = $(BIN_ROOT)\obj
+    BIN_TOOLS = $(BIN_OBJ)\tools
+    BIN_CMD = $(BIN_OBJ)\cmd
+    BIN_EXAMPLE = $(BIN_ROOT)\example
 endif
 
 static: $(STATIC_LIB)
@@ -62,8 +70,7 @@ $(STATIC_LIB): $(LIB_OBJS) $(BUILTIN_OBJS)
 $(DYNAMIC_LIB): $(LIB_OBJS) $(BUILTIN_OBJS)
 	$(CXX) $(LIB_OBJS) $(BUILTIN_OBJS) -shared -o "$@" 
 
-$(BIN_OBJ)/%.o: %.cpp 
-	@$(MKDIR) $(dir $@)
+$(BIN_OBJ)/%.o: %.cpp dirs
 	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(OPTIMIZATION) -c $< -o $@
 
 example: static-example
@@ -72,14 +79,18 @@ static-example: $(addsuffix .static, $(EXAMPLES))
 
 dynamic-example: $(addsuffix .dynamic, $(EXAMPLES))
 	
-$(BIN_EXAMPLE)/%.static: examples/%.cpp static | $(BIN_EXAMPLE) 
+$(BIN_EXAMPLE)/%.static: examples/%.cpp static | dirs
 	$(CXX) $(CXXFLAGS) $(OPTIMIZATION) -I $(PROJ_ROOT) $< $(STATIC_LIB) -o $@
 	
-$(BIN_EXAMPLE)/%.dynamic: examples/%.cpp dynamic | $(BIN_EXAMPLE)
+$(BIN_EXAMPLE)/%.dynamic: examples/%.cpp dynamic | dirs
 	$(CXX) $(CXXFLAGS) $(OPTIMIZATION) -I $(PROJ_ROOT) $< -o $@ $(EXAMPLE_LINKFLAGS)
 
-$(BIN_EXAMPLE):
-	@$(MKDIR) $@
+dirs:
+	@$(MKDIR) $(BIN_ROOT)
+	@$(MKDIR) $(BIN_OBJ)
+	@$(MKDIR) $(BIN_TOOLS)
+	@$(MKDIR) $(BIN_CMD)
+	@$(MKDIR) $(BIN_EXAMPLE)
 
 clean:
-	rm -vrf $(BIN_ROOT)
+	$(RM) $(BIN_ROOT)
