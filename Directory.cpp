@@ -28,7 +28,7 @@ Directory::Directory ()
 
 Directory::Directory (const string &dir)
 {
-	assert(isDir(dir.c_str()));
+        assert(isDir(dir.c_str()));
 
 	if (isDir(dir.c_str()))
 	{
@@ -97,14 +97,13 @@ string Directory::handleSeparators (const string &path)
 
 	while ((backslashPos = newPath.find('\\')) != static_cast<unsigned>(string::npos))
 	{
-		cout << backslashPos << ' ' << string::npos << endl;
 		newPath.replace(backslashPos, 1, "/");
 	}
 
 	return newPath;
 }
 
-const char* Directory::convToWindows (const string &path)
+string Directory::convToWindows (const string &path)
 {
 	string newPath = path;
 	unsigned slashPos;
@@ -114,7 +113,7 @@ const char* Directory::convToWindows (const string &path)
 		newPath.replace(slashPos, 1, "\\");
 	}
 
-	return newPath.c_str();
+	return newPath;
 }
 
 string Directory::computeRelative (const string &relPath) const
@@ -170,7 +169,7 @@ bool Directory::isDir (const char *pathname)
 
 	return S_ISDIR(st.st_mode);
 #elif __WIN32
-        DWORD fAttrib = GetFileAttributes(convToWindows(pathname));
+        DWORD fAttrib = GetFileAttributes(convToWindows(pathname).c_str());
 
         return (fAttrib != INVALID_FILE_ATTRIBUTES && (fAttrib & FILE_ATTRIBUTE_DIRECTORY));
 #endif
@@ -185,7 +184,7 @@ bool Directory::isFile (const char *pathname)
 
     return S_ISREG(st.st_mode);
 #elif __WIN32
-        DWORD fAttrib = GetFileAttributes(convToWindows(pathname));
+        DWORD fAttrib = GetFileAttributes(convToWindows(pathname).c_str());
 
         return (fAttrib != INVALID_FILE_ATTRIBUTES && !(fAttrib & FILE_ATTRIBUTE_DIRECTORY));
 #endif
