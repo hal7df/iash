@@ -17,10 +17,7 @@
  */
 
 #include "iash.h"
-#include "cmd/EchoCommand.h"
-#include "cmd/ExitCommand.h"
-#include "cmd/PwdCommand.h"
-#include "cmd/ClearCommand.h"
+#include "cmd/builtins.h"
 #include "tools/Tokenizer.h"
 #include "CommandPreprocessor.h"
 #include <fstream>
