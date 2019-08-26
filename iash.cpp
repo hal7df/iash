@@ -30,6 +30,7 @@ iash::iash (const string &appName)
 	addCommand<ExitCommand>();
 	addCommand<PwdCommand>();
 	addCommand<ClearCommand>();
+        addCommand<CatCommand>();
 }
 
 Environment* iash::getEnv ()
