@@ -180,7 +180,7 @@ int Directory::mkdir (const char *pathname)
 #ifdef __unix
 	return ::mkdir(pathname ,0755);
 #elif __WIN32
-	return _mkdir(toPlatform(pathname));
+	return _mkdir(toPlatform(pathname).c_str());
 #endif
 }
 
