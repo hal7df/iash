@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['usercommand',['UserCommand',['../class_user_command.html',1,'']]]
+  ['usercommand',['UserCommand',['../classUserCommand.html',1,'']]]
 ];
