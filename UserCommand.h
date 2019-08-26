@@ -84,6 +84,38 @@ public:
 	 */
 	std::vector<std::string> getOptions () const;
 
+        /**
+         * Returns whether the given single-letter option was specified by the
+         * user.
+         * <p>
+	 * Note that iash option syntax allows users to chain single-letter options
+	 * together (like `-abcde`), and will report all of the characters present
+	 * after a single minus as individual options (so, in this example, `a`,
+	 * `b`, `c`, `d`, `e` will all be reported as options). If you want iash to
+	 * report whole words as options, have users enter them with a double-minus
+	 * prefix (so `--abcde` will be reported as `abcde`).
+         *
+         * @param opt   the single-letter option to check for
+         * @return      whether the option was passed by the user
+         */
+        bool hasOption (char opt) const;
+
+        /**
+         * Returns whether the given whole-word option was specified by the
+         * user.
+         * <p>
+	 * Note that iash option syntax allows users to chain single-letter options
+	 * together (like `-abcde`), and will report all of the characters present
+	 * after a single minus as individual options (so, in this example, `a`,
+	 * `b`, `c`, `d`, `e` will all be reported as options). If you want iash to
+	 * report whole words as options, have users enter them with a double-minus
+	 * prefix (so `--abcde` will be reported as `abcde`).
+         *
+         * @param opt   the whole-word option to check for
+         * @return      whether the option was passed by the user
+         */
+        bool hasOption (const std::string &opt) const;
+
 	/**
 	 * Finds the argument following the specified single-letter option or flag.
 	 * If the specified option does not have an argument that follows it, or the

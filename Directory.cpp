@@ -8,6 +8,7 @@
 #include "Directory.h"
 
 #include <cassert>
+#include <cctype>
 #include <iostream>
 
 #ifdef __unix
@@ -32,7 +33,7 @@ Directory::Directory (const string &dir)
 
 	if (isDir(dir.c_str()))
 	{
-		m_dirpath = handleSeparators(dir);
+		m_dirpath = toIash(dir);
 		m_valid = true;
 	}
 	else m_valid = false;
@@ -54,7 +55,7 @@ const string& Directory::getAbsPath () const
 
 bool Directory::changeDirRel (const std::string &relPath)
 {
-	string newPath = computeRelative(relPath);
+	string newPath = resolvePath(relPath);
 
 	return changeDirAbs(newPath);
 }
@@ -63,35 +64,31 @@ bool Directory::changeDirAbs (const std::string &absPath)
 {
 	if (isDir(absPath.c_str()))
 	{
-		m_dirpath = handleSeparators(absPath);
+		m_dirpath = toIash(absPath);
 		ensureTrailingSlash();
 		return true;
 	}
 	else return false;
 }
 
-const char* Directory::getPathToFileInDirectory (const string &filename) const
-{
-	return (m_dirpath + filename).c_str();
-}
-
 int Directory::mkSubdir (const string &dirName) const
 {
-	return mkdir((m_dirpath + dirName).c_str());
+	return mkdir(resolvePath(dirName).c_str());
 }
 
 bool Directory::dirExists (const string &dirName) const
 {
-	return Directory::isDir((m_dirpath + dirName).c_str());
+	return Directory::isDir(resolvePath(dirName).c_str());
 }
 
 bool Directory::fileExists (const string &filename) const
 {
-	return Directory::isFile((m_dirpath + filename).c_str());
+	return Directory::isFile(resolvePath(filename).c_str());
 }
 
-string Directory::handleSeparators (const string &path)
+string Directory::toIash (const string &path)
 {
+#ifdef __WIN32
 	string newPath = path;
 	unsigned backslashPos;
 
@@ -101,10 +98,14 @@ string Directory::handleSeparators (const string &path)
 	}
 
 	return newPath;
+#else
+        return path;
+#endif
 }
 
-string Directory::convToWindows (const string &path)
+string Directory::toPlatform (const string &path)
 {
+#ifdef __WIN32
 	string newPath = path;
 	unsigned slashPos;
 
@@ -114,9 +115,12 @@ string Directory::convToWindows (const string &path)
 	}
 
 	return newPath;
+#else
+        return path;
+#endif
 }
 
-string Directory::computeRelative (const string &relPath) const
+string Directory::resolvePath (const string &relPath) const
 {
 	string curPath;
 	string curPathEl;
@@ -125,17 +129,37 @@ string Directory::computeRelative (const string &relPath) const
 
 	if (relPath[0] == '/')
 	{
+#ifdef __unix
 		curPath = "/";
 		firstSearchPos = 1;
+#elif __WIN32
+                //Get drive letter of current directory
+                curPath = m_dirpath.substr(0, 3);
+                firstSearchPos = 1;
+#endif
 	}
+#ifdef __WIN32
+        else if (relPath.size() >= 2 && isalpha(relPath[0]) && relPath[1] == ':')
+        {
+            curPath = relPath.substr(0, 3);
+            firstSearchPos = 3;
+        }
+#endif
 	else curPath = m_dirpath;
 
 	while ((curSearchPos = relPath.find('/', firstSearchPos)) != static_cast<unsigned>(string::npos))
 	{
 		curPathEl = relPath.substr(firstSearchPos, (curSearchPos - firstSearchPos));
 
-		if (curPathEl == "..") curPath = curPath.substr(0, (curPath.find('/', curPath.length() - 1)));
-		else if (curPathEl != ".")
+#ifdef __unix
+		if (curPathEl == ".." && curPath.size() > 1)
+#elif  __WIN32
+                if (curPathEl == ".." && curPath.size() > 3)
+#endif
+                {
+                    curPath = curPath.substr(0, (curPath.find('/', curPath.length() - 1)));
+                }
+		else if (curPathEl != "." && curPathEl != "..")
 		{
 			curPath += (curPathEl + '/');
 		}
@@ -154,9 +178,9 @@ void Directory::ensureTrailingSlash ()
 int Directory::mkdir (const char *pathname)
 {
 #ifdef __unix
-	return ::mkdir(handleSeparators(pathname).c_str(),0755);
+	return ::mkdir(pathname ,0755);
 #elif __WIN32
-	return _mkdir(pathname);
+	return _mkdir(toPlatform(pathname));
 #endif
 }
 
@@ -169,7 +193,7 @@ bool Directory::isDir (const char *pathname)
 
 	return S_ISDIR(st.st_mode);
 #elif __WIN32
-        DWORD fAttrib = GetFileAttributes(convToWindows(pathname).c_str());
+        DWORD fAttrib = GetFileAttributes(toPlatform(pathname).c_str());
 
         return (fAttrib != INVALID_FILE_ATTRIBUTES && (fAttrib & FILE_ATTRIBUTE_DIRECTORY));
 #endif
@@ -184,7 +208,7 @@ bool Directory::isFile (const char *pathname)
 
     return S_ISREG(st.st_mode);
 #elif __WIN32
-        DWORD fAttrib = GetFileAttributes(convToWindows(pathname).c_str());
+        DWORD fAttrib = GetFileAttributes(toPlatform(pathname).c_str());
 
         return (fAttrib != INVALID_FILE_ATTRIBUTES && !(fAttrib & FILE_ATTRIBUTE_DIRECTORY));
 #endif

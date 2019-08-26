@@ -55,14 +55,11 @@ int iash::runInteractive ()
 
 int iash::runScript (const char *fname)
 {
-	string filename = fname;
-
-	if (*(filename.begin()) != '/')
-		filename = m_iashCwd.getPathToFileInDirectory(fname);
+	string filename = Directory::toPlatform(m_iashCwd.resolvePath(fname));
 
 	ifstream fin (filename.c_str());
 
-	if (fin.is_open()) return run(fin);
+	if (fin) return run(fin);
 	else
 	{
 		cout << m_appName << ": " << fname << ": script could not be opened";

@@ -76,13 +76,13 @@ public:
 	bool changeDirAbs (const std::string &absPath);
 
 	/**
-	 * Gets an absolute path to a file in the directory referred to by this
-	 * Directory.
+	 * Converts a path relative to the current Directory to an absolute
+         * path.
 	 *
-	 * @param filename	the name of a file in the directory
-	 * @return			an absolute path to a file in this Directory
+	 * @param relpath   a path relative to the current Directory
+	 * @return          the absolute path to the item referred to by relpath
 	 */
-	const char* getPathToFileInDirectory (const std::string &filename) const;
+        std::string resolvePath (const std::string &relpath) const;
 
 	/**
 	 * Creates a directory inside of the current Directory instance.
@@ -141,6 +141,24 @@ public:
 	 */
 	static bool isFile (const char *pathname);
 
+        /**
+         * Converts `pathname` from system path representation to iash path
+         * representation. On Unix/Linux/macOS, this does nothing.
+         *
+         * @param pathname  the path to convert to iash representation
+         * @return          the path in iash representation
+         */
+        static std::string toIash (const std::string &pathname);
+        
+        /**
+         * Converts `pathname` from iash path representation to the platform's
+         * path representation. On Unix/Linux/macOS, this does nothing.
+         *
+         * @param pathname  the path to convert to platform representation
+         * @return          the path in platform representation
+         */
+        static std::string toPlatform (const std::string &pathname);
+
 	/**
 	 * Gets the user's home directory as a Directory instance.
 	 *
@@ -166,9 +184,6 @@ public:
 	 */
 	static Directory getWorkingDir ();
 private:
-	static std::string handleSeparators (const std::string &path);
-	static std::string convToWindows (const std::string &path);
-	std::string computeRelative (const std::string &relPath) const;
 	void ensureTrailingSlash ();
 
 	std::string m_dirpath;

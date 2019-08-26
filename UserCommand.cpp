@@ -7,6 +7,7 @@
 
 #include "UserCommand.h"
 #include "tools/Tokenizer.h"
+#include <algorithm>
 using namespace std;
 
 UserCommand::UserCommand (const string &inputCommand, istream &in, ostream &out)
@@ -44,10 +45,10 @@ vector<string> UserCommand::getArguments () const
 {
 	vector<string> args;
 
-	for (unsigned cmd = 0; cmd < m_commandParts.size(); ++cmd)
+	for (const string &part : m_commandParts)
 	{
-		if (m_commandParts[cmd].find('-') > 0)
-			args.push_back(m_commandParts[cmd]);
+		if (part.empty() || (part.size() > 1 && part[0] != '-'))
+			args.push_back(part);
 	}
 
 	return args;
@@ -73,6 +74,36 @@ vector<string> UserCommand::getOptions() const
 	}
 
 	return opts;
+}
+
+bool UserCommand::hasOption(char opt) const
+{
+    for (const std::string &part : m_commandParts)
+    {
+        //If not an option argument, continue to the next argument
+        if (part.size() < 2 || part[0] != '-' || part[1] == '-') continue;
+
+        auto it = part.begin();
+
+        while (++it != part.end())
+            if (*it == opt) return true;
+    }
+
+    return false;
+}
+
+bool UserCommand::hasOption(const std::string &opt) const
+{
+    for (const std::string &part : m_commandParts)
+    {
+        if (part.size() != (opt.size() + 2) || !(part[0] == '-' && part[1] == '-'))
+            continue;
+
+        if (std::equal(opt.cbegin(), opt.cend(), (part.cbegin() + 2)))
+            return true;
+    }
+
+    return false;
 }
 
 string UserCommand::getContextualArgument (char opt) const

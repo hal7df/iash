@@ -85,7 +85,7 @@ const vector<UserCommand>& CommandPreprocessor::process(const string& raw)
 					{
 						const Directory &cwd = *(m_parent->getCwd());
 
-						fname = cwd.getPathToFileInDirectory(fname.c_str());
+						fname = cwd.resolvePath(fname);
 					}
 
 					if (Directory::isFile(fname.c_str()))
@@ -111,7 +111,7 @@ const vector<UserCommand>& CommandPreprocessor::process(const string& raw)
 					{
 						const Directory &cwd = *(m_parent->getCwd());
 
-						fname = cwd.getPathToFileInDirectory(fname.c_str());
+						fname = cwd.resolvePath(fname);
 					}
 
 					if (Directory::isFile(fname.c_str()))
