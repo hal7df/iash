@@ -70,7 +70,7 @@ $(STATIC_LIB): $(LIB_OBJS) $(BUILTIN_OBJS)
 $(DYNAMIC_LIB): $(LIB_OBJS) $(BUILTIN_OBJS)
 	$(CXX) $(LIB_OBJS) $(BUILTIN_OBJS) -shared -o "$@" 
 
-$(BIN_OBJ)/%.o: %.cpp dirs
+$(BIN_OBJ)/%.o: %.cpp | dirs
 	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(OPTIMIZATION) -c $< -o $@
 
 example: static-example
